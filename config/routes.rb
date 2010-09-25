@@ -1,4 +1,6 @@
 MoneyTracker::Application.routes.draw do
+  
+  resources :transactions, :only => [:index, :edit, :update]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
