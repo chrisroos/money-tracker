@@ -1,0 +1,13 @@
+%table.transactions
+  %thead
+    %tr
+      %th Datetime
+      %th Description
+      %th Note
+  %tbody
+    - @transactions.each do |transaction|
+      - content_tag_for(:tr, transaction) do
+        %td.datetime= transaction.datetime.to_s(:money_tracker)
+        %td.description= transaction.description
+        %td.note= transaction.note
+        %td.actions= link_to "edit", edit_transaction_path(transaction)
