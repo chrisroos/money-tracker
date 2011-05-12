@@ -71,6 +71,7 @@ GEM
       treetop (>= 1.4.5)
     mime-types (1.16)
     nokogiri (1.4.3.1)
+    pickle (0.3.4)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -114,6 +115,7 @@ DEPENDENCIES
   factory_girl_rails
   haml
   launchy
+  pickle
   rails (= 3.0.0)
   shoulda
   sqlite3-ruby

@@ -3,7 +3,7 @@ Feature: Manage transactions
   I want to be able to record notes against my transactions
   
   Scenario: Adding a note to an existing transaction
-    Given the following transactions:
+    Given the following transactions exist:
       | id | date       | description | amount |
       | 1  | 2010-01-01 | Shop X      | 1      |
     And I am on the transactions page
