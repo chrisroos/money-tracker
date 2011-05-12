@@ -6,7 +6,8 @@ class UploadsController < ApplicationController
   
   def create
     upload = Upload.new(params[:upload])
-    StatementImporter.import(upload.ofx_file)
+    duplicates = StatementImporter.import(upload.ofx_file)
+    flash[:info] = "#{duplicates} duplicate transactions were ignored" if duplicates > 0
     redirect_to transactions_path
   end
   

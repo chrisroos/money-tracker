@@ -25,4 +25,9 @@ class TransactionTest < ActiveSupport::TestCase
     assert ! transaction.valid?
   end
   
+  should "be invalid unless the fit_id is unique" do
+    Factory.create(:transaction, :fit_id => '123')
+    assert_raise(ActiveRecord::RecordInvalid) { Factory.create(:transaction, :fit_id => '123') }
+  end
+  
 end

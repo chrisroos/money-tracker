@@ -1,6 +1,7 @@
 class StatementImporter
   
   def self.import(ofx)
+    duplicates = 0
     OFX(ofx) do
       account.transactions.each do |transaction|
         attrs = {
@@ -8,9 +9,13 @@ class StatementImporter
           :amount => transaction.amount_in_pennies, :fit_id => transaction.fit_id, 
           :name => transaction.name, :memo => transaction.memo
         }
-        Transaction.create! attrs
+        transaction = Transaction.new(attrs)
+        unless transaction.save
+          duplicates += 1
+        end
       end
     end
+    duplicates
   end
   
 end

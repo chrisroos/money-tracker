@@ -14,3 +14,11 @@ Feature: Manage uploads
       | Date       | Name   | Memo     | Amount | Note |
       | 1 Jan 2011 | Shop X | London   | £-1.23 |      |
       | 2 Jan 2011 | Wages  | Acme Ltd | £3.21  |      |
+
+  Scenario: Uploading a duplicate OFX file
+    Given I have uploaded "features/fixtures/example.ofx"
+    
+    When I upload "features/fixtures/example.ofx"
+    
+    Then I should be on the transactions page
+    And I should see "2 duplicate transactions were ignored"
