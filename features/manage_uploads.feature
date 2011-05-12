@@ -10,6 +10,8 @@ Feature: Manage uploads
     And I press "Upload"
     
     Then I should be on the transactions page
+    And I should see that 2 transactions were imported
+    And I should see that there were 0 duplicates
     And I should see the following transactions:
       | Date       | Name   | Memo     | Amount | Note |
       | 1 Jan 2011 | Shop X | London   | £-1.23 |      |
@@ -21,4 +23,5 @@ Feature: Manage uploads
     When I upload "features/fixtures/example.ofx"
     
     Then I should be on the transactions page
-    And I should see "2 duplicate transactions were ignored"
+    And I should see that 0 transactions were imported
+    And I should see that there were 2 duplicates
