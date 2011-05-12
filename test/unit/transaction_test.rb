@@ -19,4 +19,10 @@ class TransactionTest < ActiveSupport::TestCase
     assert ! transaction.valid?
   end
   
+  should "be invalid without an amount" do
+    transaction = Factory.build(:transaction)
+    transaction.amount = nil
+    assert ! transaction.valid?
+  end
+  
 end
