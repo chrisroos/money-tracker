@@ -1,4 +1,4 @@
 Factory.define :transaction do |transaction|
-  transaction.datetime    Time.now
+  transaction.date        Date.today
   transaction.description 'transaction-description'
 end

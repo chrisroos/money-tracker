@@ -4,8 +4,8 @@ Feature: Manage transactions
   
   Scenario: Adding a note to an existing transaction
     Given the following transactions:
-      | id | datetime         | description |
-      | 1  | 2010-01-01 09:00 | Shop X      |
+      | id | date       | description |
+      | 1  | 2010-01-01 | Shop X      |
     And I am on the transactions page
 
     When I follow "edit" within "#transaction_1"
@@ -14,5 +14,5 @@ Feature: Manage transactions
     
     Then I should be on the transactions page
     And I should see the following transactions:
-      | Datetime          | Description | Note                   |
-      | 01 Jan 2010 09:00 | Shop X      | Weekly shopping from X |
+      | Date        | Description | Note                   |
+      | 1 Jan 2010  | Shop X      | Weekly shopping from X |

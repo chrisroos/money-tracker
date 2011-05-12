@@ -1,3 +1,3 @@
 class Transaction < ActiveRecord::Base
-  validates_presence_of :datetime, :description
+  validates_presence_of :date, :description
 end

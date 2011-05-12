@@ -1,1 +1,0 @@
-Time::DATE_FORMATS[:money_tracker] = "%d %b %Y %H:%M"

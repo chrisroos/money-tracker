@@ -9,7 +9,7 @@ class TransactionTest < ActiveSupport::TestCase
   
   should "be invalid without a datetime" do
     transaction = Factory.build(:transaction)
-    transaction.datetime = nil
+    transaction.date = nil
     assert ! transaction.valid?
   end
   
