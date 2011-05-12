@@ -13,9 +13,9 @@ class TransactionTest < ActiveSupport::TestCase
     assert ! transaction.valid?
   end
   
-  should "be invalid without a description" do
+  should "be invalid without a name" do
     transaction = Factory.build(:transaction)
-    transaction.description = nil
+    transaction.name = nil
     assert ! transaction.valid?
   end
   

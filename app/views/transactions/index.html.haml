@@ -2,14 +2,14 @@
   %thead
     %tr
       %th Date
-      %th Description
+      %th Name
       %th Amount
       %th Note
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
         %td.date= transaction.date.to_formatted_s(:rfc822)
-        %td.description= transaction.description
+        %td.name= transaction.name
         %td.amount= transaction.amount
         %td.note= transaction.note
         %td.actions= link_to "edit", edit_transaction_path(transaction)
