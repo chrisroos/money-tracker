@@ -22,4 +22,10 @@ ActiveRecord::Schema.define(:version => 20110512135127) do
     t.string  "memo"
   end
 
+  create_table "uploads", :force => true do |t|
+    t.string   "ofx_file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end

@@ -15,4 +15,4 @@ Feature: Manage transactions
     Then I should be on the transactions page
     And I should see the following transactions:
       | Date        | Name   | Amount | Note                   |
-      | 1 Jan 2010  | Shop X | 1      | Weekly shopping from X |
+      | 1 Jan 2010  | Shop X | £0.01  | Weekly shopping from X |
