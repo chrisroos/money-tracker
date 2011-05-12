@@ -3,7 +3,8 @@ Feature: Manage uploads
   I want to be able to upload an OFX file
   
   Scenario: Uploading an OFX file
-    Given I am on the new upload page
+    Given I am on the home page
+    And I follow "Upload statement"
     
     When I attach the file "features/fixtures/example.ofx" to "Ofx file"
     And I press "Upload"
