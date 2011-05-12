@@ -17,6 +17,13 @@ Feature: Manage uploads
       | 1 Jan 2011 | Shop X | London   | £-1.23 |      |
       | 2 Jan 2011 | Wages  | Acme Ltd | £3.21  |      |
 
+  Scenario: Not uploading anything
+    Given I am on the new upload page
+    
+    When I press "Upload"
+
+    Then I should see "Please select the OFX file to upload"
+
   Scenario: Uploading a duplicate OFX file
     Given I have uploaded "features/fixtures/example.ofx"
     
