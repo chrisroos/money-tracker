@@ -10,5 +10,6 @@
     -if flash[:info]
       #flash= flash[:info]
     %nav
+      = link_to 'Transactions', transactions_path
       = link_to 'Upload statement', new_upload_path
     = yield
