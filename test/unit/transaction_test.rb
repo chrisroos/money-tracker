@@ -8,26 +8,22 @@ class TransactionValidationTest < ActiveSupport::TestCase
   end
   
   should "be invalid without a datetime" do
-    transaction = Factory.build(:transaction)
-    transaction.date = nil
+    transaction = Factory.build(:transaction, :date => nil)
     assert ! transaction.valid?
   end
   
   should "be invalid without a name" do
-    transaction = Factory.build(:transaction)
-    transaction.name = nil
+    transaction = Factory.build(:transaction, :name => nil)
     assert ! transaction.valid?
   end
   
   should "be invalid without an amount" do
-    transaction = Factory.build(:transaction)
-    transaction.amount = nil
+    transaction = Factory.build(:transaction, :amount => nil)
     assert ! transaction.valid?
   end
   
   should "be invalid without a fit_id" do
-    transaction = Factory.build(:transaction)
-    transaction.fit_id = nil
+    transaction = Factory.build(:transaction, :fit_id => nil)
     assert ! transaction.valid?
   end
   
