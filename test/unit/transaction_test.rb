@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TransactionTest < ActiveSupport::TestCase
+class TransactionValidationTest < ActiveSupport::TestCase
 
   should "be valid when build from the factory" do
     transaction = Factory.build(:transaction)
@@ -36,12 +36,6 @@ class TransactionTest < ActiveSupport::TestCase
     assert_raise(ActiveRecord::RecordInvalid) { Factory.create(:transaction, :fit_id => '123') }
   end
   
-  should "always order by the most recent date" do
-    old_transaction = Factory.create(:transaction, :date => Date.parse('2010-01-01'))
-    new_transaction = Factory.create(:transaction, :date => Date.parse('2011-01-01'))
-    assert_equal [new_transaction, old_transaction], Transaction.all
-  end
-  
 end
 
 class TransactionSearchTest < ActiveSupport::TestCase
@@ -62,6 +56,16 @@ class TransactionSearchTest < ActiveSupport::TestCase
     t1 = Factory.create(:transaction, :note => 'matching transaction')
     t2 = Factory.create(:transaction, :note => 'no-match')
     assert_equal [t1], Transaction.search('matching')
+  end
+  
+end
+
+class TransactionTest < ActiveSupport::TestCase
+  
+  should "always order by the most recent date" do
+    old_transaction = Factory.create(:transaction, :date => Date.parse('2010-01-01'))
+    new_transaction = Factory.create(:transaction, :date => Date.parse('2011-01-01'))
+    assert_equal [new_transaction, old_transaction], Transaction.all
   end
   
 end
