@@ -16,3 +16,17 @@ Feature: Manage transactions
     And I should see the following transactions:
       | Date        | Name   | Amount | Note                   |
       | 1 Jan 2010  | Shop X | £0.01  | Weekly shopping from X |
+
+  Scenario: Searching transactions
+    Given the following transactions exist:
+      | date       | name            | amount |
+      | 2010-01-01 | Shop X          | 1      |
+      | 2011-01-01 | Cash withdrawal | 1      |
+    And I am on the transactions page
+    
+    When I fill in "Search transactions" with "cash"
+    And I press "Search"
+
+    And I should see the following transactions:
+      | Date        | Name            |
+      | 1 Jan 2011  | Cash Withdrawal |

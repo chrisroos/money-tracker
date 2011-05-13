@@ -14,4 +14,9 @@ class TransactionsController < ApplicationController
     redirect_to transactions_path
   end
   
+  def search
+    @transactions = Transaction.search(params[:q])
+    render :index
+  end
+  
 end

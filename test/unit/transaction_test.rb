@@ -43,3 +43,25 @@ class TransactionTest < ActiveSupport::TestCase
   end
   
 end
+
+class TransactionSearchTest < ActiveSupport::TestCase
+  
+  should "search Transaction#name" do
+    t1 = Factory.create(:transaction, :name => 'matching transaction')
+    t2 = Factory.create(:transaction, :name => 'no-match')
+    assert_equal [t1], Transaction.search('matching')
+  end
+  
+  should "search Transaction#memo" do
+    t1 = Factory.create(:transaction, :memo => 'matching transaction')
+    t2 = Factory.create(:transaction, :memo => 'no-match')
+    assert_equal [t1], Transaction.search('matching')
+  end
+  
+  should "search Transaction#note" do
+    t1 = Factory.create(:transaction, :note => 'matching transaction')
+    t2 = Factory.create(:transaction, :note => 'no-match')
+    assert_equal [t1], Transaction.search('matching')
+  end
+  
+end
