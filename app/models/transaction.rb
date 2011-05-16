@@ -19,8 +19,14 @@ class Transaction < ActiveRecord::Base
   end
   
   def description
-    description = [name, memo].compact.join(' / ')
-    "#{description} (#{type})"
+    read_attribute(:description) || original_description
   end
+  
+  private
+  
+    def original_description
+      description = [name, memo].compact.join(' / ')
+      "#{description} (#{type})"
+    end
   
 end

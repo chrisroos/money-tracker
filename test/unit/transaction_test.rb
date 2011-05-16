@@ -88,4 +88,9 @@ class TransactionDescriptionTest < ActiveSupport::TestCase
     assert_equal 'name (other)', transaction.description
   end
   
+  should "prefer a custom description" do
+    transaction = Factory.build(:transaction, :description => 'custom description')
+    assert_equal 'custom description', transaction.description
+  end
+  
 end

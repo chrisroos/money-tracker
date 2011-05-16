@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110516151117) do
+ActiveRecord::Schema.define(:version => 20110516152116) do
 
   create_table "transactions", :force => true do |t|
     t.date    "date"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20110516151117) do
     t.string  "type"
     t.string  "fit_id"
     t.string  "memo"
+    t.string  "description"
   end
 
   create_table "uploads", :force => true do |t|
