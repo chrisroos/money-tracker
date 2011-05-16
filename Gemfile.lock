@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/chrisroos/ofx.git
+  revision: c4312c3e26caaf6d6cb057f5bfa0967fcbe56e71
+  branch: additional_transaction_types
+  specs:
+    ofx (0.3.0)
+      nokogiri
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -71,8 +79,6 @@ GEM
       treetop (>= 1.4.5)
     mime-types (1.16)
     nokogiri (1.4.3.1)
-    ofx (0.3.0)
-      nokogiri
     pickle (0.3.4)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -119,7 +125,7 @@ DEPENDENCIES
   factory_girl_rails
   haml
   launchy
-  ofx
+  ofx!
   pickle
   rack-ssl
   rails (= 3.0.0)
