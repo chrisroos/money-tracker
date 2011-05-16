@@ -59,6 +59,18 @@ class TransactionSearchTest < ActiveSupport::TestCase
     assert_equal [t1], Transaction.search('matching')
   end
   
+  should "search Transaction#type" do
+    t1 = Factory.create(:transaction, :type => 'matching transaction')
+    t2 = Factory.create(:transaction, :type => 'no-match')
+    assert_equal [t1], Transaction.search('matching')
+  end
+  
+  should "search Transaction#description" do
+    t1 = Factory.create(:transaction, :description => 'matching transaction')
+    t2 = Factory.create(:transaction, :description => 'no-match')
+    assert_equal [t1], Transaction.search('matching')
+  end
+  
 end
 
 class TransactionTest < ActiveSupport::TestCase
