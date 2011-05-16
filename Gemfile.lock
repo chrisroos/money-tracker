@@ -59,6 +59,7 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    exception_notification (2.4.0)
     factory_girl (1.3.2)
     factory_girl_rails (1.0)
       factory_girl (~> 1.3)
@@ -122,6 +123,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   cucumber-rails
+  exception_notification
   factory_girl_rails
   haml
   launchy

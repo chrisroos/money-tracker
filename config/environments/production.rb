@@ -50,4 +50,9 @@ MoneyTracker::Application.configure do
   # I want all production requests (currently hosted on heroku) secured
   # Inserting before Rack::Lock ensures it's inserted at the top of the middleware stack
   config.middleware.insert_before Rack::Lock, "Rack::SSL"
+  
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[Money Tracker] ",
+    :sender_address => %{"notifier" <notifier@money-tracker.heroku.com>},
+    :exception_recipients => ENV['MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT'] || 'exceptions@example.com'
 end
