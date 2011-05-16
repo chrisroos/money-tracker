@@ -22,6 +22,11 @@ class TransactionValidationTest < ActiveSupport::TestCase
     assert ! transaction.valid?
   end
   
+  should "be invalid without an ofx type" do
+    transaction = Factory.build(:transaction, :ofx_type => nil)
+    assert ! transaction.valid?
+  end
+  
   should "be invalid without a fit_id" do
     transaction = Factory.build(:transaction, :fit_id => nil)
     assert ! transaction.valid?
