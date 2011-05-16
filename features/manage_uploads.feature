@@ -13,9 +13,9 @@ Feature: Manage uploads
     And I should see that 2 transactions were imported
     And I should see that there were 0 duplicates
     And I should see the following transactions:
-      | Date       | Name   | Memo     | Amount | Note |
-      | 2 Jan 2011 | Wages  | Acme Ltd | £3.21  |      |
-      | 1 Jan 2011 | Shop X | London   | £-1.23 |      |
+      | Date       | Name   | Memo     | Paid in | Paid out |
+      | 2 Jan 2011 | Wages  | Acme Ltd | £3.21   |          |
+      | 1 Jan 2011 | Shop X | London   |         | £1.23    |
 
   Scenario: Not uploading anything
     Given I am on the new upload page
