@@ -9,7 +9,11 @@ class Transaction < ActiveRecord::Base
     )
   }
   
-  validates_presence_of :date, :name, :amount, :fit_id, :ofx_type
+  validates_presence_of :date, :name, :amount_in_pence, :fit_id, :ofx_type
   validates_uniqueness_of :fit_id
+  
+  def amount
+    amount_in_pence/100.0
+  end
   
 end

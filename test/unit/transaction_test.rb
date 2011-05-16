@@ -17,8 +17,8 @@ class TransactionValidationTest < ActiveSupport::TestCase
     assert ! transaction.valid?
   end
   
-  should "be invalid without an amount" do
-    transaction = Factory.build(:transaction, :amount => nil)
+  should "be invalid without an amount in pence" do
+    transaction = Factory.build(:transaction, :amount_in_pence => nil)
     assert ! transaction.valid?
   end
   
@@ -67,6 +67,11 @@ class TransactionTest < ActiveSupport::TestCase
     old_transaction = Factory.create(:transaction, :date => Date.parse('2010-01-01'))
     new_transaction = Factory.create(:transaction, :date => Date.parse('2011-01-01'))
     assert_equal [new_transaction, old_transaction], Transaction.all
+  end
+  
+  should "convert amount in pence to amount in pounds" do
+    transaction = Factory.build(:transaction, :amount_in_pence => 123)
+    assert_equal 1.23, transaction.amount
   end
   
 end

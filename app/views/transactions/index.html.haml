@@ -20,7 +20,7 @@
         %td.name= transaction.name.titleize
         %td.memo= transaction.memo.titleize if transaction.memo
         %td.type= transaction.ofx_type.titleize
-        %td.paid_in= number_to_currency(transaction.amount/100.0, :unit => '£') if transaction.amount > 0
-        %td.paid_out= number_to_currency(-transaction.amount/100.0, :unit => '£') if transaction.amount < 0
+        %td.paid_in= number_to_currency(transaction.amount, :unit => '£') if transaction.amount > 0
+        %td.paid_out= number_to_currency(-transaction.amount, :unit => '£') if transaction.amount < 0
         %td.note= transaction.note
         %td.actions= link_to "edit", edit_transaction_path(transaction)
