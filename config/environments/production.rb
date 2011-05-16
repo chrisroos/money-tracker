@@ -46,4 +46,8 @@ MoneyTracker::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # I want all production requests (currently hosted on heroku) secured
+  # Inserting before Rack::Lock ensures it's inserted at the top of the middleware stack
+  config.middleware.insert_before Rack::Lock, "Rack::SSL"
 end
