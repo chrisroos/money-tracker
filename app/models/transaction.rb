@@ -1,5 +1,7 @@
 class Transaction < ActiveRecord::Base
   
+  set_inheritance_column :_disabled_sti
+  
   default_scope order('date DESC')
   
   scope :search, lambda { |search_string| 
@@ -9,7 +11,7 @@ class Transaction < ActiveRecord::Base
     )
   }
   
-  validates_presence_of :date, :name, :amount_in_pence, :fit_id, :ofx_type
+  validates_presence_of :date, :name, :amount_in_pence, :fit_id, :type
   validates_uniqueness_of :fit_id
   
   def amount
@@ -18,7 +20,7 @@ class Transaction < ActiveRecord::Base
   
   def description
     description = [name, memo].compact.join(' / ')
-    "#{description} (#{ofx_type})"
+    "#{description} (#{type})"
   end
   
 end

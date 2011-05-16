@@ -23,7 +23,7 @@ class TransactionValidationTest < ActiveSupport::TestCase
   end
   
   should "be invalid without an ofx type" do
-    transaction = Factory.build(:transaction, :ofx_type => nil)
+    transaction = Factory.build(:transaction, :type => nil)
     assert ! transaction.valid?
   end
   
@@ -79,12 +79,12 @@ end
 class TransactionDescriptionTest < ActiveSupport::TestCase
   
   should "build the description from the name, memo and type" do
-    transaction = Factory.build(:transaction, :name => 'name', :memo => 'memo', :ofx_type => 'other')
+    transaction = Factory.build(:transaction, :name => 'name', :memo => 'memo', :type => 'other')
     assert_equal 'name / memo (other)', transaction.description
   end
   
   should "build the description from the name and type" do
-    transaction = Factory.build(:transaction, :name => 'name', :memo => nil, :ofx_type => 'other')
+    transaction = Factory.build(:transaction, :name => 'name', :memo => nil, :type => 'other')
     assert_equal 'name (other)', transaction.description
   end
   

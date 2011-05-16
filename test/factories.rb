@@ -7,7 +7,7 @@ Factory.define :transaction do |transaction|
   transaction.name            'transaction-name'
   transaction.amount_in_pence 1
   transaction.fit_id          { Factory.next(:fit_id) }
-  transaction.ofx_type        'OTHER'
+  transaction.type            'OTHER'
 end
 
 Factory.define :upload do |upload|

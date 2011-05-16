@@ -4,8 +4,8 @@ Feature: Manage transactions
   
   Scenario: Adding a note to an existing transaction
     Given the following transactions exist:
-      | id | date       | name   | ofx_type | amount_in_pence |
-      | 1  | 2010-01-01 | Shop X | other    | -1              |
+      | id | date       | name   | type  | amount_in_pence |
+      | 1  | 2010-01-01 | Shop X | other | -1              |
     And I am on the transactions page
 
     When I follow "edit" within "#transaction_1"
@@ -19,9 +19,9 @@ Feature: Manage transactions
 
   Scenario: Searching transactions
     Given the following transactions exist:
-      | date       | name            | ofx_type | amount_in_pence |
-      | 2010-01-01 | Shop X          | Other    | -1              |
-      | 2011-01-01 | Cash withdrawal | Atm      | -1              |
+      | date       | name            | type  | amount_in_pence |
+      | 2010-01-01 | Shop X          | Other | -1              |
+      | 2011-01-01 | Cash withdrawal | Atm   | -1              |
     And I am on the transactions page
     
     When I fill in "Search transactions" with "cash"
