@@ -75,3 +75,17 @@ class TransactionTest < ActiveSupport::TestCase
   end
   
 end
+
+class TransactionDescriptionTest < ActiveSupport::TestCase
+  
+  should "build the description from the name, memo and type" do
+    transaction = Factory.build(:transaction, :name => 'name', :memo => 'memo', :ofx_type => 'other')
+    assert_equal 'name / memo (other)', transaction.description
+  end
+  
+  should "build the description from the name and type" do
+    transaction = Factory.build(:transaction, :name => 'name', :memo => nil, :ofx_type => 'other')
+    assert_equal 'name (other)', transaction.description
+  end
+  
+end

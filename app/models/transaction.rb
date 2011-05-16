@@ -16,4 +16,9 @@ class Transaction < ActiveRecord::Base
     amount_in_pence/100.0
   end
   
+  def description
+    description = [name, memo].compact.join(' / ')
+    "#{description} (#{ofx_type})"
+  end
+  
 end
