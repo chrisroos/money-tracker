@@ -11,6 +11,7 @@
       %th Paid in
       %th Paid out
       %th Note
+      %th Actions
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
