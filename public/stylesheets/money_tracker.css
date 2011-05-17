@@ -1,0 +1,13 @@
+table {
+  width: 100%;
+}
+
+thead {
+  background-color: black;
+  color: white;
+  text-align: left;
+}
+
+tbody tr {
+  background-color: rgba(0, 0, 255, 0.1);
+}
