@@ -17,7 +17,13 @@
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
-        %td.date= transaction.date.to_formatted_s(:rfc822)
+        %td.date
+          - if params[:edit]
+            = form_for(transaction, :html => {:id => nil}) do |transaction_form|
+              = transaction_form.text_field :date, :size => '10', :id => nil
+              = transaction_form.submit 'Save date', :id => nil
+          - else
+            = transaction.date.to_formatted_s(:rfc822)
         %td.description
           - if params[:edit]
             = form_for(transaction, :html => {:id => nil}) do |transaction_form|

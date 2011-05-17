@@ -5,7 +5,7 @@ class StatementImporter
     OFX(ofx) do
       account.transactions.each do |transaction|
         attrs = {
-          :date => transaction.posted_at, :type => transaction.type, 
+          :original_date => transaction.posted_at, :type => transaction.type, 
           :amount_in_pence => transaction.amount_in_pennies, :fit_id => transaction.fit_id, 
           :name => transaction.name, :memo => transaction.memo
         }

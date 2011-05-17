@@ -7,8 +7,8 @@ class TransactionValidationTest < ActiveSupport::TestCase
     assert transaction.valid?
   end
   
-  should "be invalid without a datetime" do
-    transaction = Factory.build(:transaction, :date => nil)
+  should "be invalid without an original date" do
+    transaction = Factory.build(:transaction, :original_date => nil)
     assert ! transaction.valid?
   end
   
@@ -75,10 +75,11 @@ end
 
 class TransactionTest < ActiveSupport::TestCase
   
-  should "always order by the most recent date" do
-    old_transaction = Factory.create(:transaction, :date => Date.parse('2010-01-01'))
-    new_transaction = Factory.create(:transaction, :date => Date.parse('2011-01-01'))
-    assert_equal [new_transaction, old_transaction], Transaction.all
+  should "always order by the most recent custom and then original date" do
+    transaction_a = Factory.create(:transaction, :original_date => Date.parse('2011-01-01'))
+    transaction_b = Factory.create(:transaction, :original_date => Date.parse('2011-01-03'))
+    transaction_c = Factory.create(:transaction, :original_date => Date.parse('2011-01-05'), :date => Date.parse('2011-01-02'))
+    assert_equal [transaction_b, transaction_c, transaction_a], Transaction.all
   end
   
   should "convert amount in pence to amount in pounds" do
@@ -103,6 +104,20 @@ class TransactionDescriptionTest < ActiveSupport::TestCase
   should "prefer a custom description" do
     transaction = Factory.build(:transaction, :description => 'custom description')
     assert_equal 'custom description', transaction.description
+  end
+  
+end
+
+class TransactionDateTest < ActiveSupport::TestCase
+  
+  should "return the original date" do
+    transaction = Factory.build(:transaction, :original_date => Date.parse('2011-01-01'))
+    assert_equal Date.parse('2011-01-01'), transaction.date
+  end
+  
+  should "prefer a custom date" do
+    transaction = Factory.build(:transaction, :original_date => Date.parse('2011-01-01'), :date => Date.parse('2011-01-02'))
+    assert_equal Date.parse('2011-01-02'), transaction.date
   end
   
 end

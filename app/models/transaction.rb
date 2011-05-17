@@ -2,7 +2,7 @@ class Transaction < ActiveRecord::Base
   
   set_inheritance_column :_disabled_sti
   
-  default_scope order('date DESC')
+  default_scope order('COALESCE(date, original_date) DESC')
   
   scope :search, lambda { |search_string| 
     where(
@@ -11,7 +11,7 @@ class Transaction < ActiveRecord::Base
     )
   }
   
-  validates_presence_of :date, :name, :amount_in_pence, :fit_id, :type
+  validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type
   validates_uniqueness_of :fit_id
   
   def amount
@@ -20,6 +20,10 @@ class Transaction < ActiveRecord::Base
   
   def description
     read_attribute(:description) || original_description
+  end
+  
+  def date
+    read_attribute(:date) || original_date
   end
   
   private

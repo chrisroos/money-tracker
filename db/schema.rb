@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110516152116) do
+ActiveRecord::Schema.define(:version => 20110517153547) do
 
   create_table "transactions", :force => true do |t|
-    t.date    "date"
+    t.date    "original_date"
     t.string  "name"
     t.text    "note"
     t.integer "amount_in_pence"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20110516152116) do
     t.string  "fit_id"
     t.string  "memo"
     t.string  "description"
+    t.date    "date"
   end
 
   create_table "uploads", :force => true do |t|

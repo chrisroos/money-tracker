@@ -9,6 +9,8 @@ Feature: Manage transactions
     And I am on the transactions page
 
     When I follow "Edit"
+    And I fill in "transaction[date]" with "2010-01-02" within "#transaction_1"
+    And I press "Save date"
     And I fill in "transaction[description]" with "Groceries" within "#transaction_1"
     And I press "Save description"
     And I fill in "transaction[note]" with "Weekly shopping from X" within "#transaction_1"
@@ -18,7 +20,7 @@ Feature: Manage transactions
     Then I should be on the transactions page
     And I should see the following transactions:
       | Date        | Description | Paid out | Note                   |
-      | 1 Jan 2010  | Groceries   | £0.01    | Weekly shopping from X |
+      | 2 Jan 2010  | Groceries   | £0.01    | Weekly shopping from X |
 
   Scenario: Searching transactions
     Given the following transactions exist:

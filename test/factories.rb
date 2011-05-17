@@ -3,7 +3,7 @@ Factory.sequence :fit_id do |n|
 end
 
 Factory.define :transaction do |transaction|
-  transaction.date            Date.today
+  transaction.original_date   Date.today
   transaction.name            'transaction-name'
   transaction.amount_in_pence 1
   transaction.fit_id          { Factory.next(:fit_id) }
