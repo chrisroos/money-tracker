@@ -6,7 +6,7 @@ class Transaction < ActiveRecord::Base
   
   scope :search, lambda { |search_string| 
     where(
-      'name LIKE :q OR memo LIKE :q OR note LIKE :q OR type LIKE :q OR description LIKE :q', 
+      'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q', 
       {:q => "%#{search_string}%"}
     )
   }
