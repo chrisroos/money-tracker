@@ -8,10 +8,12 @@ Feature: Manage transactions
       | 1  | 2010-01-01 | Shop X | other | -1              |
     And I am on the transactions page
 
-    When I follow "edit" within "#transaction_1"
-    And I fill in "Description" with "Groceries"
-    And I fill in "Note" with "Weekly shopping from X"
-    And I press "Update"
+    When I follow "Edit"
+    And I fill in "transaction[description]" with "Groceries" within "#transaction_1"
+    And I press "Save description"
+    And I fill in "transaction[note]" with "Weekly shopping from X" within "#transaction_1"
+    And I press "Save note"
+    And I follow "Transactions"
     
     Then I should be on the transactions page
     And I should see the following transactions:
