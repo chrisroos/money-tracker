@@ -19,8 +19,8 @@ Feature: Manage transactions
     
     Then I should be on the transactions page
     And I should see the following transactions:
-      | Date        | Description | Paid out | Note                   |
-      | 2 Jan 2010  | Groceries   | £0.01    | Weekly shopping from X |
+      | Date           | Description | Paid out | Note                   |
+      | Sat 2nd Jan 2010 | Groceries   | £0.01    | Weekly shopping from X |
 
   Scenario: Searching transactions
     Given the following transactions exist:
@@ -33,5 +33,5 @@ Feature: Manage transactions
     And I press "Search"
 
     And I should see the following transactions:
-      | Date        | Description           |
-      | 1 Jan 2011  | Cash Withdrawal (Atm) |
+      | Date           | Description           |
+      | Sat 1st Jan 2011 | Cash Withdrawal (Atm) |

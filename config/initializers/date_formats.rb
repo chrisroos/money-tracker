@@ -1,0 +1,1 @@
+Date::DATE_FORMATS[:human_friendly] = lambda { |date| date.strftime("%a #{date.day.ordinalize} %b %Y") }
