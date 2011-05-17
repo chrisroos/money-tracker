@@ -9,7 +9,10 @@ class StatementImporter
           :amount_in_pence => transaction.amount_in_pennies, :fit_id => transaction.fit_id, 
           :name => transaction.name, :memo => transaction.memo
         }
-        transaction = Transaction.new(attrs)
+        transaction = Transaction.new
+        attrs.each do |key, value|
+          transaction.send "#{key}=", value
+        end
         transaction.save ? imported += 1 : duplicates += 1
       end
     end

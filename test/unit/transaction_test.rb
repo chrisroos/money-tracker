@@ -1,5 +1,23 @@
 require 'test_helper'
 
+class TransactionProtectedAttributesTest < ActiveSupport::TestCase
+  
+  {
+    :original_date   => Date.parse('2011-01-01'),
+    :name            => 'ofx-name',
+    :amount_in_pence => 123,
+    :type            => 'ofx-type',
+    :fit_id          => 'ofx-fit-id',
+    :memo            => 'ofx-memo'
+  }.each do |protected_attribute, value|
+    should "not allow mass assignment of #{protected_attribute}" do
+      transaction = Transaction.new(protected_attribute => value)
+      assert_nil transaction.send(protected_attribute)
+    end
+  end
+  
+end
+
 class TransactionValidationTest < ActiveSupport::TestCase
 
   should "be valid when build from the factory" do

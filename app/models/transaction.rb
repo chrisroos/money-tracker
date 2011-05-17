@@ -14,6 +14,8 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type
   validates_uniqueness_of :fit_id
   
+  attr_protected :original_date, :name, :amount_in_pence, :type, :fit_id, :memo
+  
   def amount
     amount_in_pence/100.0
   end
