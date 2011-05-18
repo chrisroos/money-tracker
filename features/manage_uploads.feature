@@ -12,11 +12,13 @@ Feature: Manage uploads
     Then I should be on the transactions page
     And I should see that 2 transactions were imported
     And I should see that there were 0 duplicates
-    And I should see "All transactions"
-    And I should see the following transactions:
-      | Date           | Description              | Paid in | Paid out |
-      | Sun 2nd Jan 2011 | Wages / Acme Ltd (Other) | £3.21   |          |
-      | Sat 1st Jan 2011 | Shop X / London (Other)  |         | £1.23    |
+    
+    When I go to the transactions page for period "2011-01"
+    
+    Then I should see the following transactions:
+      | Date    | Description              | Paid in | Paid out |
+      | Sun 2nd | Wages / Acme Ltd (Other) | £3.21   |          |
+      | Sat 1st | Shop X / London (Other)  |         | £1.23    |
 
   Scenario: Not uploading anything
     Given I am on the new upload page

@@ -1,11 +1,9 @@
 class TransactionsController < ApplicationController
   
   def index
-    if params[:period]
-      @transactions = Transaction.period(params[:period])
-    else
-      @transactions = Transaction.all
-    end
+    redirect_to current_period_transactions_path unless params[:period]
+    
+    @transactions = Transaction.period(params[:period])
   end
   
   def update
@@ -14,7 +12,7 @@ class TransactionsController < ApplicationController
     if request.xhr?
       render :text => 'OK'
     else
-      redirect_to transactions_path(:edit => true)
+      redirect_to :back
     end
   end
   

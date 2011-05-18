@@ -1,5 +1,5 @@
 %p
-  = link_to 'Edit', transactions_path(:edit => true)
+  = link_to 'Edit', transactions_path(:period => params[:period], :edit => true)
   
 = form_tag search_transactions_path, :method => :get do
   = label_tag :q, 'Search transactions'
