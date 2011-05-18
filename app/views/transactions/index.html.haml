@@ -24,7 +24,7 @@
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
         %td.date= transaction.date.to_s(:weekday_and_day)
-        %td.description= transaction.description.titleize
-        %td.paid_in= number_to_currency(transaction.amount, :unit => '£') if transaction.amount > 0
-        %td.paid_out= number_to_currency(-transaction.amount, :unit => '£') if transaction.amount < 0
+        %td.description= transaction_description(transaction)
+        %td.paid_in= transaction_amount_in(transaction)
+        %td.paid_out= transaction_amount_out(transaction)
         %td.note= transaction.note
