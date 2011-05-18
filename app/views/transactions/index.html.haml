@@ -30,7 +30,10 @@
               = transaction_form.text_field :date, :size => '10', :id => nil
               = transaction_form.submit 'Save date', :id => nil
           - else
-            = transaction.date.to_formatted_s(:human_friendly)
+            - if params[:period]
+              = transaction.date.to_formatted_s(:weekday_and_day)
+            -else
+              = transaction.date.to_formatted_s(:human_friendly)
         %td.description
           - if params[:edit]
             = form_for(transaction, :html => {:id => nil}) do |transaction_form|

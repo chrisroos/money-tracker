@@ -46,5 +46,5 @@ Feature: Manage transactions
 
     Then I should see "Transactions for January 2011"
     And I should see the following transactions:
-      | Date             | Description    |
-      | Sat 1st Jan 2011 | Shop X (Other) |
+      | Date    | Description    |
+      | Sat 1st | Shop X (Other) |
