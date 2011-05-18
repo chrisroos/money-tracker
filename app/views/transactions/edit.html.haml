@@ -22,11 +22,11 @@
       = content_tag_for(:tr, transaction) do
         %td.date
           = form_for(transaction, :html => {:id => nil}) do |transaction_form|
-            = transaction_form.text_field :date, :size => '10', :id => nil
+            = transaction_form.text_field :date, :size => '10', :id => nil, :value => transaction.date
             = transaction_form.submit 'Save date', :id => nil
         %td.description
           = form_for(transaction, :html => {:id => nil}) do |transaction_form|
-            = transaction_form.text_field :description, :size => '80', :id => nil
+            = transaction_form.text_field :description, :size => '80', :id => nil, :value => transaction.description
             = transaction_form.submit 'Save description', :id => nil
         %td.paid_in= transaction_amount_in(transaction)
         %td.paid_out= transaction_amount_out(transaction)
