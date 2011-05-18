@@ -4,6 +4,7 @@ class TransactionsController < ApplicationController
     redirect_to current_period_transactions_path unless params[:period]
     
     @transactions = Transaction.period(params[:period])
+    render :edit if params[:edit]
   end
   
   def update

@@ -23,8 +23,17 @@
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
-        %td.date= transaction.date.to_s(:weekday_and_day)
-        %td.description= transaction.description.titleize
+        %td.date
+          = form_for(transaction, :html => {:id => nil}) do |transaction_form|
+            = transaction_form.text_field :date, :size => '10', :id => nil
+            = transaction_form.submit 'Save date', :id => nil
+        %td.description
+          = form_for(transaction, :html => {:id => nil}) do |transaction_form|
+            = transaction_form.text_field :description, :size => '80', :id => nil
+            = transaction_form.submit 'Save description', :id => nil
         %td.paid_in= number_to_currency(transaction.amount, :unit => '£') if transaction.amount > 0
         %td.paid_out= number_to_currency(-transaction.amount, :unit => '£') if transaction.amount < 0
-        %td.note= transaction.note
+        %td.note
+          = form_for(transaction, :html => {:id => nil}) do |transaction_form|
+            = transaction_form.text_area :note, :size => '40x3', :id => nil
+            = transaction_form.submit 'Save note', :id => nil
