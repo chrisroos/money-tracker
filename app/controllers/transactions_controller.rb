@@ -18,7 +18,6 @@ class TransactionsController < ApplicationController
   
   def search
     @transactions = Transaction.search(params[:q])
-    render :index
   end
   
 end

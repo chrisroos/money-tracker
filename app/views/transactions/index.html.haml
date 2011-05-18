@@ -1,8 +1,7 @@
-- unless params[:q]
-  %p
-    = link_to 'Edit', transactions_path(:period => params[:period], :edit => true)
-    = link_to_previous_period params[:period]
-    = link_to_next_period params[:period]
+%p
+  = link_to 'Edit', transactions_path(:period => params[:period], :edit => true)
+  = link_to_previous_period params[:period]
+  = link_to_next_period params[:period]
   
 = form_tag search_transactions_path, :method => :get do
   = label_tag :q, 'Search transactions'
@@ -10,12 +9,8 @@
   = submit_tag 'Search'
 
 %h1
-  - if params[:period]
-    Transactions for
-    = Date.from_period(params[:period]).to_s(:month_and_year)
-  - elsif params[:q]
-    Transactions matching
-    = "'#{params[:q]}'"
+  Transactions for
+  = Date.from_period(params[:period]).to_s(:month_and_year)
 
 %table#transactions
   %thead
@@ -34,10 +29,7 @@
               = transaction_form.text_field :date, :size => '10', :id => nil
               = transaction_form.submit 'Save date', :id => nil
           - else
-            - if params[:period]
-              = transaction.date.to_s(:weekday_and_day)
-            -else
-              = transaction.date.to_s(:human_friendly)
+            = transaction.date.to_s(:weekday_and_day)
         %td.description
           - if params[:edit]
             = form_for(transaction, :html => {:id => nil}) do |transaction_form|
