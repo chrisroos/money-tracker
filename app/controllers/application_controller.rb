@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
   
   def current_period_transactions_path
-    transactions_path(:period => Date.today.strftime("%Y-%m"))
+    transactions_path(:period => Date.today.to_s(:period))
   end
   
   def authenticate

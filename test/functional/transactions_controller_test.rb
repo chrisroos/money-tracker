@@ -3,7 +3,7 @@ require 'test_helper'
 class TransactionsControllerTest < ActionController::TestCase
   
   should "redirect to the most recent period" do
-    current_period = Date.today.strftime("%Y-%m")
+    current_period = Date.today.to_s(:period)
     
     get :index
     
