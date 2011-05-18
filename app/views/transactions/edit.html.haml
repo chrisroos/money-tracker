@@ -3,10 +3,7 @@
   = link_to_previous_period params[:period]
   = link_to_next_period params[:period]
   
-= form_tag search_transactions_path, :method => :get do
-  = label_tag :q, 'Search transactions'
-  = text_field_tag :q
-  = submit_tag 'Search'
+= render :partial => 'search_form'
 
 %h1
   Transactions for
