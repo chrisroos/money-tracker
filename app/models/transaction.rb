@@ -12,7 +12,7 @@ class Transaction < ActiveRecord::Base
   }
   
   scope :period, lambda { |period|
-    date = Date.parse("#{period}-01")
+    date = Date.from_period(period)
     where(
       "COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?",
       date.beginning_of_month, date.end_of_month

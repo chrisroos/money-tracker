@@ -12,7 +12,7 @@
 %h1
   - if params[:period]
     Transactions for
-    = Date.parse("#{params[:period]}-01").to_s(:month_and_year)
+    = Date.from_period(params[:period]).to_s(:month_and_year)
   - elsif params[:q]
     Transactions matching
     = "'#{params[:q]}'"
