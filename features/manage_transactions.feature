@@ -37,15 +37,33 @@ Feature: Manage transactions
       | Date           | Description           |
       | Sat 1st Jan 2011 | Cash Withdrawal (Atm) |
   
-  Scenario: Viewing transactions for a specific month
+  Scenario: Navigating transaction periods
     Given the following transactions exist:
-      | date       | name            | type  | amount_in_pence |
-      | 2011-01-01 | Shop X          | Other | -1              |
-      | 2011-02-01 | Cash withdrawal | Atm   | -1              |
+      | date       | name          | type  | amount_in_pence |
+      | 2010-12-01 | Transaction 1 | Other | -1              |
+      | 2011-01-01 | Transaction 2 | Other | -1              |
+      | 2011-02-01 | Transaction 3 | Other | -1              |
     
-    When I go to the transactions page for period "2011-01"
+    When I go to the transactions page for period "2011-02"
 
-    Then I should see "Transactions for January 2011"
-    And I should see the following transactions:
-      | Date    | Description    |
-      | Sat 1st | Shop X (Other) |
+    Then I should see the following transactions:
+      | Date    | Description           |
+      | Tue 1st | Transaction 3 (Other) |
+      
+    When I follow "January 2011"
+    
+    Then I should see the following transactions:
+      | Date    | Description           |
+      | Sat 1st | Transaction 2 (Other) |
+      
+    When I follow "December 2010"
+    
+    Then I should see the following transactions:
+      | Date    | Description           |
+      | Wed 1st | Transaction 1 (Other) |
+    
+    When I follow "January 2011"
+    
+    Then I should see the following transactions:
+      | Date    | Description           |
+      | Sat 1st | Transaction 2 (Other) |
