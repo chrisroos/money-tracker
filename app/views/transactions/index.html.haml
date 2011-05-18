@@ -6,6 +6,13 @@
   = text_field_tag :q
   = submit_tag 'Search'
 
+%h1
+  - if params[:period]
+    Transactions for
+    = Date.parse("#{params[:period]}-01").strftime("%B %Y")
+  - else
+    All transactions
+
 %table#transactions
   %thead
     %tr

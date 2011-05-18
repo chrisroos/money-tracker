@@ -19,7 +19,7 @@ Feature: Manage transactions
     
     Then I should be on the transactions page
     And I should see the following transactions:
-      | Date           | Description | Paid out | Note                   |
+      | Date             | Description | Paid out | Note                   |
       | Sat 2nd Jan 2010 | Groceries   | £0.01    | Weekly shopping from X |
 
   Scenario: Searching transactions
@@ -44,6 +44,7 @@ Feature: Manage transactions
     
     When I go to the transactions page for period "2011-01"
 
-    Then I should see the following transactions:
+    Then I should see "Transactions for January 2011"
+    And I should see the following transactions:
       | Date             | Description    |
       | Sat 1st Jan 2011 | Shop X (Other) |

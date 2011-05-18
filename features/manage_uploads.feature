@@ -12,6 +12,7 @@ Feature: Manage uploads
     Then I should be on the transactions page
     And I should see that 2 transactions were imported
     And I should see that there were 0 duplicates
+    And I should see "All transactions"
     And I should see the following transactions:
       | Date           | Description              | Paid in | Paid out |
       | Sun 2nd Jan 2011 | Wages / Acme Ltd (Other) | £3.21   |          |
