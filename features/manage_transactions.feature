@@ -32,7 +32,8 @@ Feature: Manage transactions
     When I fill in "Search transactions" with "cash"
     And I press "Search"
 
-    Then I should see the following transactions:
+    Then I should see "Transactions matching 'cash'"
+    And I should see the following transactions:
       | Date           | Description           |
       | Sat 1st Jan 2011 | Cash Withdrawal (Atm) |
   

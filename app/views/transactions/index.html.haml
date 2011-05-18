@@ -10,8 +10,9 @@
   - if params[:period]
     Transactions for
     = Date.parse("#{params[:period]}-01").strftime("%B %Y")
-  - else
-    All transactions
+  - elsif params[:q]
+    Transactions matching
+    = "'#{params[:q]}'"
 
 %table#transactions
   %thead
