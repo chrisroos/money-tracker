@@ -91,6 +91,24 @@ class TransactionSearchTest < ActiveSupport::TestCase
   
 end
 
+class TransactionPeriodTest < ActiveSupport::TestCase
+  
+  should "only return transactions within the given period" do
+    transaction_a = Factory.create(:transaction, :original_date => Date.parse('2011-01-01'))
+    transaction_b = Factory.create(:transaction, :original_date => Date.parse('2011-02-01'))
+    transaction_c = Factory.create(:transaction, :original_date => Date.parse('2011-03-01'))
+    assert_equal [transaction_b], Transaction.period('2011-02')
+  end
+  
+  should "return transactions with a date in the given period even if the original date is not" do
+    transaction_a = Factory.create(:transaction, :original_date => Date.parse('2011-01-01'))
+    transaction_b = Factory.create(:transaction, :original_date => Date.parse('2011-02-01'))
+    transaction_c = Factory.create(:transaction, :original_date => Date.parse('2011-03-01'), :date => Date.parse('2011-02-28'))
+    assert_equal [transaction_b, transaction_c].to_set, Transaction.period('2011-02').to_set
+  end
+  
+end
+
 class TransactionTest < ActiveSupport::TestCase
   
   should "always order by the most recent custom and then original date" do

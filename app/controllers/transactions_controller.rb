@@ -1,7 +1,11 @@
 class TransactionsController < ApplicationController
   
   def index
-    @transactions = Transaction.all
+    if params[:period]
+      @transactions = Transaction.period(params[:period])
+    else
+      @transactions = Transaction.all
+    end
   end
   
   def update

@@ -10,6 +10,9 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    
+    when /the transactions page for period "(.*)"/
+      transactions_path(:period => $1)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

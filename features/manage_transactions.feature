@@ -32,6 +32,18 @@ Feature: Manage transactions
     When I fill in "Search transactions" with "cash"
     And I press "Search"
 
-    And I should see the following transactions:
+    Then I should see the following transactions:
       | Date           | Description           |
       | Sat 1st Jan 2011 | Cash Withdrawal (Atm) |
+  
+  Scenario: Viewing transactions for a specific month
+    Given the following transactions exist:
+      | date       | name            | type  | amount_in_pence |
+      | 2011-01-01 | Shop X          | Other | -1              |
+      | 2011-02-01 | Cash withdrawal | Atm   | -1              |
+    
+    When I go to the transactions page for period "2011-01"
+
+    Then I should see the following transactions:
+      | Date             | Description    |
+      | Sat 1st Jan 2011 | Shop X (Other) |

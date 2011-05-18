@@ -11,6 +11,14 @@ class Transaction < ActiveRecord::Base
     )
   }
   
+  scope :period, lambda { |period|
+    date = Date.parse("#{period}-01")
+    where(
+      "COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?",
+      date.beginning_of_month, date.end_of_month
+    )
+  }
+  
   validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type
   validates_uniqueness_of :fit_id
   
