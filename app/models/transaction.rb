@@ -28,6 +28,14 @@ class Transaction < ActiveRecord::Base
     amount_in_pence/100.0
   end
   
+  def credit?
+    amount > 0
+  end
+  
+  def debit?
+    amount < 0
+  end
+  
   def description
     read_attribute(:description) || original_description
   end

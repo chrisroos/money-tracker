@@ -123,6 +123,16 @@ class TransactionTest < ActiveSupport::TestCase
     assert_equal 1.23, transaction.amount
   end
   
+  should "be a debit" do
+    transaction = Factory.build(:transaction, :amount_in_pence => -100)
+    assert transaction.debit?
+  end
+  
+  should "be a credit" do
+    transaction = Factory.build(:transaction, :amount_in_pence => 100)
+    assert transaction.credit?
+  end
+  
 end
 
 class TransactionDescriptionTest < ActiveSupport::TestCase
