@@ -13,12 +13,12 @@ module TransactionsHelper
   end
   
   def transaction_income(transactions)
-    income = transactions.select { |transaction| transaction.credit? }.inject(0) { |total, transaction| total + transaction.amount }
+    income = transactions.select { |transaction| transaction.credit? }.sum(&:amount)
     number_to_currency(income, :unit => '£')
   end
   
   def transaction_expenditure(transactions)
-    expenditure = transactions.select { |transaction| transaction.debit? }.inject(0) { |total, transaction| total + transaction.amount }
+    expenditure = transactions.select { |transaction| transaction.debit? }.sum(&:amount)
     number_to_currency(-expenditure, :unit => '£')
   end
   
