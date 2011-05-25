@@ -40,25 +40,31 @@ Feature: Manage transactions
   Scenario: Navigating transaction periods
     Given the following transactions exist:
       | date       | name          | type  | amount_in_pence |
-      | 2010-12-01 | Transaction 1 | Other | -1              |
-      | 2011-01-01 | Transaction 2 | Other | -1              |
-      | 2011-02-01 | Transaction 3 | Other | -1              |
+      | 2010-12-01 | Transaction 1 | Other | -100            |
+      | 2011-01-01 | Transaction 2 | Other | 100             |
+      | 2011-02-01 | Transaction 3 | Other | -200            |
     
     When I go to the transactions page for period "2011-02"
 
-    Then I should see the following transactions:
+    Then I should see that my monthly income was £0
+    And I should see that my monthly expenditure was £2
+    And I should see the following transactions:
       | Date    | Description           |
       | Tue 1st | Transaction 3 (Other) |
       
     When I follow "January 2011"
     
-    Then I should see the following transactions:
+    Then I should see that my monthly income was £1
+    And I should see that my monthly expenditure was £0
+    And I should see the following transactions:
       | Date    | Description           |
       | Sat 1st | Transaction 2 (Other) |
       
     When I follow "December 2010"
     
-    Then I should see the following transactions:
+    Then I should see that my monthly income was £0
+    And I should see that my monthly expenditure was £1
+    And I should see the following transactions:
       | Date    | Description           |
       | Wed 1st | Transaction 1 (Other) |
     

@@ -9,6 +9,12 @@
   Transactions for
   = Date.from_period(params[:period]).to_s(:month_and_year)
 
+%h2 Income
+#income= transaction_income(@transactions)
+
+%h2 Expenditure
+#expenditure= transaction_expenditure(@transactions)
+
 %table#transactions
   %thead
     %tr
