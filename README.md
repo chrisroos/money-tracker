@@ -4,6 +4,12 @@ I've played around with various financial software over time and have never been
 
 It's got some [stories](https://www.pivotaltracker.com/projects/290359) and a list of [alternative packages](https://github.com/chrisroos/money-tracker/wiki/Alternatives).  What more could you want.
 
+## Demo
+
+I've deployed a demo copy of the app to [money-tracker-demo.heroku.com](https://money-tracker-demo.heroku.com).  It's configured with the default HTTP basic auth credentials which are 'username' and 'password'.
+
+Do what you want with it, but don't do anything daft like upload sensitive data.  I'll probably delete the data periodically but this won't help if you've just shared your transactions with the world.
+
 ## Installation on [Heroku](http://www.heroku.com/)
 
 ### Clone the app
