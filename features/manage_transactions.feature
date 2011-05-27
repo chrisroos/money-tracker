@@ -15,12 +15,14 @@ Feature: Manage transactions
     And I press "Save description"
     And I fill in "transaction[note]" with "Weekly shopping from X" within "#transaction_1"
     And I press "Save note"
+    And I fill in "transaction[category]" with "Household shopping"
+    And I press "Save category"
     And I go to the transactions page for period "2010-01"
     
     Then I should be on the transactions page
     And I should see the following transactions:
-      | Date    | Description | Paid out | Note                   |
-      | Sat 2nd | Groceries   | £0.01    | Weekly shopping from X |
+      | Date    | Description | Paid out | Note                   | Category           |
+      | Sat 2nd | Groceries   | £0.01    | Weekly shopping from X | Household shopping |
 
   Scenario: Searching transactions
     Given the following transactions exist:

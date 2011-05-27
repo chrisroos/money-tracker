@@ -19,6 +19,7 @@
       %th Paid in
       %th Paid out
       %th Note
+      %th Category
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
@@ -27,3 +28,4 @@
         %td.paid_in= transaction_amount_in(transaction)
         %td.paid_out= transaction_amount_out(transaction)
         %td.note= transaction.note
+        %td.category= transaction.category
