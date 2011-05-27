@@ -44,3 +44,14 @@ class TransactionsControllerEditTest < ActionController::TestCase
   end
   
 end
+
+class TransactionsControllerSearchTest < ActionController::TestCase
+  tests TransactionsController
+  
+  should "display the search string in the search form" do
+    get :search, :q => 'search-string'
+    
+    assert_select "#q[value='search-string']"
+  end
+  
+end

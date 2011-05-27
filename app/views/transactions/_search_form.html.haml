@@ -1,4 +1,4 @@
 = form_tag search_transactions_path, :method => :get do
   = label_tag :q, 'Search transactions'
-  = text_field_tag :q
+  = text_field_tag :q, params[:q], :size => '60'
   = submit_tag 'Search'
