@@ -5,10 +5,14 @@ class Transaction < ActiveRecord::Base
   default_scope order('COALESCE(date, original_date) DESC')
   
   scope :search, lambda { |search_string| 
-    where(
-      'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q', 
-      {:q => "%#{search_string}%"}
-    )
+    if search_string =~ /category:(.*)/
+      where(:category => $1)
+    else
+      where(
+        'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q', 
+        {:q => "%#{search_string}%"}
+      )
+    end
   }
   
   scope :period, lambda { |period|

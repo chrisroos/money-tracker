@@ -89,6 +89,12 @@ class TransactionSearchTest < ActiveSupport::TestCase
     assert_equal [t1], Transaction.search('matching')
   end
   
+  should "filter by Transaction#category" do
+    t1 = Factory.create(:transaction, :category => 'MATCHING TRANSACTION')
+    t2 = Factory.create(:transaction, :category => 'no-match')
+    assert_equal [t1], Transaction.search('category:MATCHING TRANSACTION')
+  end
+  
 end
 
 class TransactionPeriodTest < ActiveSupport::TestCase

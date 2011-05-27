@@ -42,6 +42,22 @@ Feature: Manage transactions
       | Date             | Description            | Category   |
       | Sat 1st Jan 2011 | Cash Withdrawal (Atm)  | Withdrawal |
       | Sat 1st Jan 2011 | Cash Deposit (Deposit) | Deposit    |
+      
+  Scenario: Viewing all transactions with a given category
+    Given the following transactions exist:
+      | date       | name            | type    | amount_in_pence | category   |
+      | 2011-01-01 | Shop X          | Other   | -2000           | Shopping   |
+      | 2011-01-02 | Cash withdrawal | Atm     | -100            | Withdrawal |
+      | 2011-02-01 | Shop Y          | Other   | -3000           | Shopping   |
+    And I am on the transactions page for period "2011-02"
+    
+    When I follow "Shopping"
+    
+    Then I should see "Transactions matching 'category:Shopping'"
+    And I should see the following transactions:
+      | Date             | Description    | Category |
+      | Tue 1st Feb 2011 | Shop Y (Other) | Shopping |
+      | Sat 1st Jan 2011 | Shop X (Other) | Shopping |
   
   Scenario: Navigating transaction periods
     Given the following transactions exist:
