@@ -4,11 +4,7 @@
   Transactions matching
   = "'#{params[:q]}'"
   
-%h2 Income
-#income= transaction_income(@transactions)
-
-%h2 Expenditure
-#expenditure= transaction_expenditure(@transactions)
+= render :partial => 'income_and_expenditure'
 
 %table#transactions
   %thead
