@@ -24,18 +24,22 @@ Feature: Manage transactions
 
   Scenario: Searching transactions
     Given the following transactions exist:
-      | date       | name            | type  | amount_in_pence |
-      | 2010-01-01 | Shop X          | Other | -1              |
-      | 2011-01-01 | Cash withdrawal | Atm   | -1              |
+      | date       | name            | type    | amount_in_pence |
+      | 2010-01-01 | Shop X          | Other   | -1              |
+      | 2011-01-01 | Cash withdrawal | Atm     | -100            |
+      | 2011-01-01 | Cash deposit    | Deposit | 200             |
     And I am on the transactions page
     
     When I fill in "Search transactions" with "cash"
     And I press "Search"
 
     Then I should see "Transactions matching 'cash'"
+    And I should see that the income of the transactions is £2
+    And I should see that the expenditure of the transactions is £1
     And I should see the following transactions:
-      | Date           | Description           |
-      | Sat 1st Jan 2011 | Cash Withdrawal (Atm) |
+      | Date             | Description            |
+      | Sat 1st Jan 2011 | Cash Withdrawal (Atm)  |
+      | Sat 1st Jan 2011 | Cash Deposit (Deposit) |
   
   Scenario: Navigating transaction periods
     Given the following transactions exist:
@@ -46,24 +50,24 @@ Feature: Manage transactions
     
     When I go to the transactions page for period "2011-02"
 
-    Then I should see that my monthly income was £0
-    And I should see that my monthly expenditure was £2
+    Then I should see that the income of the transactions is £0
+    And I should see that the expenditure of the transactions is £2
     And I should see the following transactions:
       | Date    | Description           |
       | Tue 1st | Transaction 3 (Other) |
       
     When I follow "January 2011"
     
-    Then I should see that my monthly income was £1
-    And I should see that my monthly expenditure was £0
+    Then I should see that the income of the transactions is £1
+    And I should see that the expenditure of the transactions is £0
     And I should see the following transactions:
       | Date    | Description           |
       | Sat 1st | Transaction 2 (Other) |
       
     When I follow "December 2010"
     
-    Then I should see that my monthly income was £0
-    And I should see that my monthly expenditure was £1
+    Then I should see that the income of the transactions is £0
+    And I should see that the expenditure of the transactions is £1
     And I should see the following transactions:
       | Date    | Description           |
       | Wed 1st | Transaction 1 (Other) |

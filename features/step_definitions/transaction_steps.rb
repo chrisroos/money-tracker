@@ -2,10 +2,10 @@ Then /^I should see the following transactions:$/ do |expected_transactions_tabl
   expected_transactions_table.diff!(tableish('table tr', 'td,th'))
 end
 
-Then /^I should see that my monthly income was £(\d+)$/ do |income|
+Then /^I should see that the income of the transactions is £(\d+)$/ do |income|
   assert page.has_css?('#income', :text => "£#{income}")
 end
 
-Then /^I should see that my monthly expenditure was £(\d+)$/ do |expenditure|
+Then /^I should see that the expenditure of the transactions is £(\d+)$/ do |expenditure|
   assert page.has_css?('#expenditure', :text => "£#{expenditure}")
 end
