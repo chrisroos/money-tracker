@@ -26,10 +26,10 @@ Feature: Manage transactions
 
   Scenario: Searching transactions
     Given the following transactions exist:
-      | date       | name            | type    | amount_in_pence |
-      | 2010-01-01 | Shop X          | Other   | -1              |
-      | 2011-01-01 | Cash withdrawal | Atm     | -100            |
-      | 2011-01-01 | Cash deposit    | Deposit | 200             |
+      | date       | name            | type    | amount_in_pence | category   |
+      | 2010-01-01 | Shop X          | Other   | -1              | Shopping   |
+      | 2011-01-01 | Cash withdrawal | Atm     | -100            | Withdrawal |
+      | 2011-01-01 | Cash deposit    | Deposit | 200             | Deposit    |
     And I am on the transactions page
     
     When I fill in "Search transactions" with "cash"
@@ -39,9 +39,9 @@ Feature: Manage transactions
     And I should see that the income of the transactions is £2
     And I should see that the expenditure of the transactions is £1
     And I should see the following transactions:
-      | Date             | Description            |
-      | Sat 1st Jan 2011 | Cash Withdrawal (Atm)  |
-      | Sat 1st Jan 2011 | Cash Deposit (Deposit) |
+      | Date             | Description            | Category   |
+      | Sat 1st Jan 2011 | Cash Withdrawal (Atm)  | Withdrawal |
+      | Sat 1st Jan 2011 | Cash Deposit (Deposit) | Deposit    |
   
   Scenario: Navigating transaction periods
     Given the following transactions exist:
