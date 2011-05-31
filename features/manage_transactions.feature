@@ -33,6 +33,27 @@ Feature: Manage transactions
       | Date    | Description  | Paid in | Paid out | Note                   | Category           |
       | Sun 3rd | Cash Deposit | £0.01   |          | Paid in gift money     | Gift               |
       | Sat 2nd | Groceries    |         | £0.01    | Weekly shopping from X | Household shopping |
+      
+  Scenario: Editing a single transaction
+    Given the following transactions exist:
+      | id | date       | name   | type  | amount_in_pence |
+      | 1  | 2010-01-01 | Shop X | other | -1              |
+      | 2  | 2010-01-01 | Shop Y | other | -2              |
+    And I am on the transactions page for period "2010-01"
+
+    When I follow "Edit" within "#transaction_1"
+    And I fill in "Date" with "2010-01-02"
+    And I fill in "Description" with "Groceries"
+    And I fill in "Note" with "Weekly shopping from X"
+    And I fill in "Category" with "Household shopping"
+    And I press "Save"
+    And I go to the transactions page for period "2010-01"
+
+    Then I should be on the transactions page
+    And I should see the following transactions:
+      | Date    | Description    | Paid out | Note                   | Category           |
+      | Sat 2nd | Groceries      | £0.01    | Weekly shopping from X | Household shopping |
+      | Fri 1st | Shop Y (Other) | £0.02    |                        |                    |
 
   Scenario: Searching transactions
     Given the following transactions exist:

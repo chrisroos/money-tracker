@@ -20,6 +20,7 @@
       %th Paid out
       %th Note
       %th Category
+      %th Actions
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
@@ -29,3 +30,4 @@
         %td.paid_out= transaction_amount_out(transaction)
         %td.note= transaction.note
         %td.category= link_to transaction.category, search_transactions_path(:q => ['category', transaction.category].join(':')) if transaction.category
+        %td.actions= link_to 'Edit', edit_transaction_path(transaction)
