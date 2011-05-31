@@ -19,6 +19,7 @@ class TransactionsController < ApplicationController
   
   def search
     @transactions = Transaction.search(params[:q])
+    render :edit if params[:edit]
   end
   
 end

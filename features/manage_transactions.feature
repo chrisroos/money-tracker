@@ -43,6 +43,23 @@ Feature: Manage transactions
       | Sat 1st Jan 2011 | Cash Withdrawal (Atm)  | Withdrawal |
       | Sat 1st Jan 2011 | Cash Deposit (Deposit) | Deposit    |
       
+  Scenario: Editing transactions from a search result
+    Given the following transactions exist:
+      | id | date       | name   | type  | amount_in_pence |
+      | 1  | 2010-01-01 | Shop X | other | -1              |
+    And I am on the search results page for the query "shop"
+
+    When I follow "Edit"
+    And I fill in "transaction[date]" with "2010-01-02" within "#transaction_1"
+    And I press "Save date"
+    And I fill in "transaction[description]" with "Groceries" within "#transaction_1"
+    And I press "Save description"
+    And I go to the transactions page for period "2010-01"
+
+    And I should see the following transactions:
+      | Date    | Description | Paid out |
+      | Sat 2nd | Groceries   | £0.01    |
+      
   Scenario: Viewing all transactions with a given category
     Given the following transactions exist:
       | date       | name            | type    | amount_in_pence | category   |

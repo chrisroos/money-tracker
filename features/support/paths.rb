@@ -13,6 +13,9 @@ module NavigationHelpers
     
     when /the transactions page for period "(.*)"/
       transactions_path(:period => $1)
+      
+    when /the search results page for the query "(.*)"/
+      search_transactions_path(:q => $1)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -1,3 +1,6 @@
+%p
+  = link_to 'Edit', search_transactions_path(:q => params[:q], :edit => true)
+  
 = render :partial => 'search_form'
 
 %h1

@@ -43,6 +43,13 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select "textarea[name='transaction[note]']", :text => 'custom-note'
   end
   
+  should "display the period navigation links" do
+    get :index, :period => Date.parse('2011-01-01').to_s(:period), :edit => 'true'
+  
+    assert_select 'a.previous_period', :count => 1
+    assert_select 'a.next_period', :count => 1
+  end
+  
 end
 
 class TransactionsControllerSearchTest < ActionController::TestCase
@@ -52,6 +59,24 @@ class TransactionsControllerSearchTest < ActionController::TestCase
     get :search, :q => 'search-string'
     
     assert_select "#q[value='search-string']"
+  end
+  
+end
+
+class TransactionsControllerSearchAndEditTest < ActionController::TestCase
+  tests TransactionsController
+  
+  should "not display the edit link" do
+    get :search, :q => 'search-string', :edit => 'true'
+
+    assert_select 'a', :text => 'Edit', :count => 0
+  end
+  
+  should "not display the period navigation links" do
+    get :search, :q => 'search-string', :edit => 'true'
+  
+    assert_select 'a.previous_period', :count => 0
+    assert_select 'a.next_period', :count => 0
   end
   
 end

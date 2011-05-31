@@ -1,13 +1,17 @@
-%p
-  = link_to 'Edit', transactions_path(:period => params[:period], :edit => true)
-  = link_to_previous_period params[:period]
-  = link_to_next_period params[:period]
+- if params[:period]
+  %p
+    = link_to_previous_period params[:period]
+    = link_to_next_period params[:period]
   
 = render :partial => 'search_form'
 
 %h1
-  Transactions for
-  = Date.from_period(params[:period]).to_s(:month_and_year)
+  - if params[:q]
+    Transactions matching
+    = "'#{params[:q]}'"
+  - else 
+    Transactions for
+    = Date.from_period(params[:period]).to_s(:month_and_year)
 
 %table#transactions
   %thead
