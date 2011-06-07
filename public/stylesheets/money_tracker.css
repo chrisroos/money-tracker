@@ -11,3 +11,7 @@ thead {
 tbody tr {
   background-color: rgba(0, 0, 255, 0.1);
 }
+
+.paid_in, .paid_out {
+  text-align: right;
+}

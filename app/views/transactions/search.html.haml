@@ -6,8 +6,6 @@
 %h1
   Transactions matching
   = "'#{params[:q]}'"
-  
-= render :partial => 'income_and_expenditure'
 
 %table#transactions
   %thead
@@ -18,6 +16,12 @@
       %th Paid out
       %th Note
       %th Category
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+        %td#income.paid_in= transaction_income(@transactions)
+        %td#expenditure.paid_out= transaction_expenditure(@transactions)
+        %td{:colspan => 2}
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
