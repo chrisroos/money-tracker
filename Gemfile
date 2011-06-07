@@ -14,4 +14,5 @@ group :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'pickle'
+  gem 'database_cleaner'
 end
