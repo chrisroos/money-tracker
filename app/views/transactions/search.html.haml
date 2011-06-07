@@ -8,20 +8,8 @@
   = "'#{params[:q]}'"
 
 %table#transactions
-  %thead
-    %tr
-      %th Date
-      %th Description
-      %th Paid in
-      %th Paid out
-      %th Note
-      %th Category
-  %tfoot
-    %tr
-      %td{:colspan => 2}
-      %td#income.paid_in= transaction_income(@transactions)
-      %td#expenditure.paid_out= transaction_expenditure(@transactions)
-      %td{:colspan => 2}
+  = render :partial => 'table_header'
+  = render :partial => 'table_footer'
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
@@ -31,3 +19,4 @@
         %td.paid_out= transaction_amount_out(transaction)
         %td.note= transaction.note
         %td.category= transaction.category
+        %td.actions

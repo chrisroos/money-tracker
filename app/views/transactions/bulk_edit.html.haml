@@ -14,14 +14,8 @@
     = Date.from_period(params[:period]).to_s(:month_and_year)
 
 %table#transactions
-  %thead
-    %tr
-      %th Date
-      %th Description
-      %th Paid in
-      %th Paid out
-      %th Note
-      %th Category
+  = render :partial => 'table_header'
+  = render :partial => 'table_footer'
   %tbody
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
@@ -39,7 +33,8 @@
           = form_for(transaction, :html => {:id => nil}) do |transaction_form|
             = transaction_form.text_area :note, :size => '40x3', :id => nil
             = transaction_form.submit 'Save note', :id => nil
-        %td.note
+        %td.category
           = form_for(transaction, :html => {:id => nil}) do |transaction_form|
             = transaction_form.text_field :category, :size => 40, :id => nil
             = transaction_form.submit 'Save category', :id => nil
+        %td.actions
