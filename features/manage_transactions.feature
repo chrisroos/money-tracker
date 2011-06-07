@@ -33,6 +33,33 @@ Feature: Manage transactions
       | Date    | Description  | Paid in | Paid out | Note                   | Category           |
       | Sun 3rd | Cash Deposit | £0.01   |          | Paid in gift money     | Gift               |
       | Sat 2nd | Groceries    |         | £0.01    | Weekly shopping from X | Household shopping |
+
+  @javascript
+  Scenario: Editing multiple transactions with javascript
+    Given the following transactions exist:
+      | id | date       | name    | type    | amount_in_pence |
+      | 1  | 2010-01-01 | Shop X  | other   | -1              |
+      | 2  | 2010-01-02 | Deposit | deposit | 1               |
+    And I am on the transactions page for period "2010-01"
+
+    When I follow "Edit"
+    And I fill in "transaction[date]" with "2010-01-02" within "#transaction_1"
+    And I fill in "transaction[description]" with "Groceries" within "#transaction_1"
+    And I fill in "transaction[note]" with "Weekly shopping from X" within "#transaction_1"
+    And I fill in "transaction[category]" with "Household shopping" within "#transaction_1"
+    And I fill in "transaction[date]" with "2010-01-03" within "#transaction_2"
+    And I fill in "transaction[description]" with "Cash deposit" within "#transaction_2"
+    And I fill in "transaction[note]" with "Paid in gift money" within "#transaction_2"
+    And I fill in "transaction[category]" with "Gift" within "#transaction_2"
+    And I follow "Transactions"
+    And I go to the transactions page for period "2010-01"
+
+    Then I should be on the transactions page
+
+    And I should see the following transactions:
+      | Date    | Description  | Paid in | Paid out | Note                   | Category           |
+      | Sun 3rd | Cash Deposit | £0.01   |          | Paid in gift money     | Gift               |
+      | Sat 2nd | Groceries    |         | £0.01    | Weekly shopping from X | Household shopping |
       
   Scenario: Editing a single transaction
     Given the following transactions exist:

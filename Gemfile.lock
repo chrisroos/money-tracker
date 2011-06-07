@@ -136,4 +136,5 @@ DEPENDENCIES
   pickle
   rack-ssl
   rails (~> 3.0)
+  selenium-webdriver
   shoulda
