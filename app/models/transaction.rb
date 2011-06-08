@@ -23,24 +23,6 @@ class Transaction < ActiveRecord::Base
     )
   }
   
-  def self.find_by_description(description)
-    if transaction = where(:description => description).first
-      return transaction
-    else
-      if description =~ /(.*) \/ (.*) \((.*)\)/
-        name, memo, type = $1, $2, $3
-        if transaction = where(:name => name, :memo => memo, :type => type).first
-          return transaction
-        end
-      elsif description =~ /(.*) \((.*)\)/
-        name, type = $1, $2
-        if transaction = where(:name => name, :type => type).first
-          return transaction
-        end
-      end
-    end
-  end
-  
   validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type
   validates_uniqueness_of :fit_id
   
