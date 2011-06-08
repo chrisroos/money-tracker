@@ -1,11 +1,11 @@
+%h1
+  Transactions for
+  = Date.from_period(params[:period]).to_s(:month_and_year)
+  
 %p
   = link_to 'Edit', transactions_path(:period => params[:period], :edit => true)
   = link_to_previous_period params[:period]
   = link_to_next_period params[:period]
-
-%h1
-  Transactions for
-  = Date.from_period(params[:period]).to_s(:month_and_year)
 
 %table#transactions
   = render :partial => 'table_header'

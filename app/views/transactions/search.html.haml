@@ -1,9 +1,9 @@
-%p
-  = link_to 'Edit', search_transactions_path(:q => params[:q], :edit => true)
-
 %h1
   Transactions matching
   = "'#{params[:q]}'"
+  
+%p
+  = link_to 'Edit', search_transactions_path(:q => params[:q], :edit => true)
 
 %table#transactions
   = render :partial => 'table_header'
