@@ -14,9 +14,11 @@
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
         %td.date= transaction.date.to_s(:human_friendly)
-        %td.description= transaction_description(transaction)
+        %td.detail
+          %p.description_and_category
+            %span.description= transaction_description(transaction)
+            %span.category= link_to transaction.category, search_transactions_path(:q => ['category', transaction.category].join(':')) if transaction.category
+          %p.note= preserve transaction.note
         %td.paid_in= transaction_amount_in(transaction)
         %td.paid_out= transaction_amount_out(transaction)
-        %td.note= transaction.note
-        %td.category= transaction.category
-        %td.actions
+        %td.actions= link_to 'Edit', edit_transaction_path(transaction)

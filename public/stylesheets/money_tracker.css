@@ -8,10 +8,35 @@ thead {
   text-align: left;
 }
 
-tbody tr {
-  background-color: rgba(0, 0, 255, 0.1);
+#transactions tr {
+  height: 2em;
+}
+
+#transactions td, #transactions th {
+  padding: 0.2em 0.5em;
+  vertical-align: top;
 }
 
 .paid_in, .paid_out {
   text-align: right;
+}
+
+.date {
+  min-width: 5em;
+  text-align: right;
+}
+
+.detail p {
+  margin: 0;
+}
+
+.note {
+  color: #777;
+  font-size: 0.9em;
+  white-space: pre-wrap;
+}
+
+.category a {
+  color: #080;
+  font-size: 0.9em;
 }
