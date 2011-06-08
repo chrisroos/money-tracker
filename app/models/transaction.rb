@@ -46,6 +46,8 @@ class Transaction < ActiveRecord::Base
   
   attr_protected :original_date, :name, :amount_in_pence, :type, :fit_id, :memo
   
+  before_save :set_original_description
+  
   def amount
     amount_in_pence/100.0
   end
@@ -68,9 +70,9 @@ class Transaction < ActiveRecord::Base
   
   private
   
-    def original_description
+    def set_original_description
       description = [name, memo].compact.join(' / ')
-      "#{description} (#{type})"
+      self.original_description = "#{description} (#{type})"
     end
   
 end

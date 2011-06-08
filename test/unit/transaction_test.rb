@@ -143,16 +143,6 @@ end
 
 class TransactionDescriptionTest < ActiveSupport::TestCase
   
-  should "build the description from the name, memo and type" do
-    transaction = Factory.build(:transaction, :name => 'name', :memo => 'memo', :type => 'other')
-    assert_equal 'name / memo (other)', transaction.description
-  end
-  
-  should "build the description from the name and type" do
-    transaction = Factory.build(:transaction, :name => 'name', :memo => nil, :type => 'other')
-    assert_equal 'name (other)', transaction.description
-  end
-  
   should "prefer a custom description" do
     transaction = Factory.build(:transaction, :description => 'custom description')
     assert_equal 'custom description', transaction.description
@@ -171,6 +161,20 @@ class TransactionDescriptionTest < ActiveSupport::TestCase
   should "find by a description made of name and memo and type" do
     transaction = Factory.create(:transaction, :name => 'name', :memo => 'memo', :type => 'other')
     assert_equal transaction, Transaction.find_by_description('name / memo (other)')
+  end
+  
+end
+
+class TransactionOriginalDescriptionTest < ActiveSupport::TestCase
+  
+  should "build the description from the name, memo and type" do
+    transaction = Factory.create(:transaction, :name => 'name', :memo => 'memo', :type => 'other')
+    assert_equal 'name / memo (other)', transaction.original_description
+  end
+  
+  should "build the description from the name and type" do
+    transaction = Factory.create(:transaction, :name => 'name', :memo => nil, :type => 'other')
+    assert_equal 'name (other)', transaction.original_description
   end
   
 end
