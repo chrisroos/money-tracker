@@ -17,3 +17,15 @@ end
 Then /^I should see a debit of £(\d+\.\d+) on (\d{4}\-\d{2}\-\d{2}) described as "([^"]*)"$/ do |amount, date, description|
   assert_debit_transaction amount, date, description
 end
+
+Then /^I should see a debit of £(\d+\.\d+) on (\d{4}\-\d{2}\-\d{2}) described as "([^"]*)" in the "([^"]*)" category$/ do |amount, date, description, category|
+  assert_debit_transaction amount, date, description, nil, category
+end
+
+Then /^I should see a credit of £(\d+\.\d+) on (\d{4}\-\d{2}\-\d{2}) described as "([^"]*)" with a note of "([^"]*)" in the "([^"]*)" category$/ do |amount, date, description, note, category|
+  assert_credit_transaction amount, date, description, note, category
+end
+
+Then /^I should see a debit of £(\d+\.\d+) on (\d{4}\-\d{2}\-\d{2}) described as "([^"]*)" with a note of "([^"]*)" in the "([^"]*)" category$/ do |amount, date, description, note, category|
+  assert_debit_transaction amount, date, description, note, category
+end

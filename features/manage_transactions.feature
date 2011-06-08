@@ -29,10 +29,8 @@ Feature: Manage transactions
     And I go to the transactions page for period "2010-01"
     
     Then I should be on the transactions page
-    And I should see the following transactions:
-      | Date    | Description  | Paid in | Paid out | Note                   | Category           |
-      | Sun 3rd | Cash deposit | £0.01   |          | Paid in gift money     | Gift               |
-      | Sat 2nd | Groceries    |         | £0.01    | Weekly shopping from X | Household shopping |
+    And I should see a credit of £0.01 on 2010-01-03 described as "Cash deposit" with a note of "Paid in gift money" in the "Gift" category
+    And I should see a debit of £0.01 on 2010-01-02 described as "Groceries" with a note of "Weekly shopping from X" in the "Household shopping" category
 
   @javascript
   Scenario: Editing multiple transactions with javascript
@@ -55,11 +53,8 @@ Feature: Manage transactions
     And I go to the transactions page for period "2010-01"
 
     Then I should be on the transactions page
-
-    And I should see the following transactions:
-      | Date    | Description  | Paid in | Paid out | Note                   | Category           |
-      | Sun 3rd | Cash deposit | £0.01   |          | Paid in gift money     | Gift               |
-      | Sat 2nd | Groceries    |         | £0.01    | Weekly shopping from X | Household shopping |
+    And I should see a credit of £0.01 on 2010-01-03 described as "Cash deposit" with a note of "Paid in gift money" in the "Gift" category
+    And I should see a debit of £0.01 on 2010-01-02 described as "Groceries" with a note of "Weekly shopping from X" in the "Household shopping" category
       
   Scenario: Editing a single transaction
     Given the following transactions exist:
@@ -77,17 +72,15 @@ Feature: Manage transactions
     And I go to the transactions page for period "2010-01"
 
     Then I should be on the transactions page
-    And I should see the following transactions:
-      | Date    | Description    | Paid out | Note                   | Category           |
-      | Sat 2nd | Groceries      | £0.01    | Weekly shopping from X | Household shopping |
-      | Fri 1st | Shop Y (other) | £0.02    |                        |                    |
+    And I should see a debit of £0.01 on 2010-01-02 described as "Groceries" with a note of "Weekly shopping from X" in the "Household shopping" category
+    And I should see a debit of £0.02 on 2010-01-01 described as "Shop Y (other)"
 
   Scenario: Searching transactions
     Given the following transactions exist:
-      | date       | name            | type    | amount_in_pence | category   |
-      | 2010-01-01 | Shop X          | Other   | -1              | Shopping   |
-      | 2011-01-01 | Cash withdrawal | Atm     | -100            | Withdrawal |
-      | 2011-01-01 | Cash deposit    | Deposit | 200             | Deposit    |
+      | date       | name            | type    | amount_in_pence |
+      | 2010-01-01 | Shop X          | Other   | -1              |
+      | 2011-01-01 | Cash withdrawal | Atm     | -100            |
+      | 2011-01-01 | Cash deposit    | Deposit | 200             |
     And I am on the transactions page
     
     When I fill in "Search transactions" with "cash"
@@ -96,10 +89,8 @@ Feature: Manage transactions
     Then I should see "Transactions matching 'cash'"
     And I should see that the income of the transactions is £2
     And I should see that the expenditure of the transactions is £1
-    And I should see the following transactions:
-      | Date             | Description            | Category   |
-      | Sat 1st Jan 2011 | Cash withdrawal (Atm)  | Withdrawal |
-      | Sat 1st Jan 2011 | Cash deposit (Deposit) | Deposit    |
+    And I should see a debit of £1.00 on 2011-01-01 described as "Cash withdrawal (Atm)"
+    And I should see a credit of £2.00 on 2011-01-01 described as "Cash deposit (Deposit)"
       
   Scenario: Editing transactions from a search result
     Given the following transactions exist:
@@ -114,9 +105,7 @@ Feature: Manage transactions
     And I press "Save description"
     And I go to the transactions page for period "2010-01"
 
-    And I should see the following transactions:
-      | Date    | Description | Paid out |
-      | Sat 2nd | Groceries   | £0.01    |
+    Then I should see a debit of £0.01 on 2010-01-02 described as "Groceries"
       
   Scenario: Viewing all transactions with a given category
     Given the following transactions exist:
@@ -129,10 +118,8 @@ Feature: Manage transactions
     When I follow "Shopping"
     
     Then I should see "Transactions matching 'category:Shopping'"
-    And I should see the following transactions:
-      | Date             | Description    | Category |
-      | Tue 1st Feb 2011 | Shop Y (Other) | Shopping |
-      | Sat 1st Jan 2011 | Shop X (Other) | Shopping |
+    And I should see a debit of £20.00 on 2011-01-01 described as "Shop X (Other)" in the "Shopping" category
+    And I should see a debit of £30.00 on 2011-02-01 described as "Shop Y (Other)" in the "Shopping" category
   
   Scenario: Navigating transaction periods
     Given the following transactions exist:
@@ -145,28 +132,20 @@ Feature: Manage transactions
 
     Then I should see that the income of the transactions is £0
     And I should see that the expenditure of the transactions is £2
-    And I should see the following transactions:
-      | Date    | Description           |
-      | Tue 1st | Transaction 3 (Other) |
+    And I should see a debit of £2.00 on 2011-02-01 described as "Transaction 3 (Other)"
       
     When I follow "January 2011"
     
     Then I should see that the income of the transactions is £1
     And I should see that the expenditure of the transactions is £0
-    And I should see the following transactions:
-      | Date    | Description           |
-      | Sat 1st | Transaction 2 (Other) |
+    And I should see a credit of £1.00 on 2011-01-01 described as "Transaction 2 (Other)"
       
     When I follow "December 2010"
     
     Then I should see that the income of the transactions is £0
     And I should see that the expenditure of the transactions is £1
-    And I should see the following transactions:
-      | Date    | Description           |
-      | Wed 1st | Transaction 1 (Other) |
+    And I should see a debit of £1.00 on 2010-12-01 described as "Transaction 1 (Other)"
     
     When I follow "January 2011"
     
-    Then I should see the following transactions:
-      | Date    | Description           |
-      | Sat 1st | Transaction 2 (Other) |
+    Then I should see a credit of £1.00 on 2011-01-01 described as "Transaction 2 (Other)"
