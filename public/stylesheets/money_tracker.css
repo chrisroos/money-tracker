@@ -49,3 +49,23 @@ thead {
   display: inline;
   font-weight: bold;
 }
+
+#header {
+  overflow: auto;
+}
+
+#title {
+  font-size: 3em;
+  display: inline;
+  float: left;
+}
+
+#navAndSearch {
+  display: inline;
+  float: right;
+}
+
+#navAndSearch nav {
+  margin-bottom: 0.5em;
+  text-align: right;
+}

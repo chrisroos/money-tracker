@@ -10,7 +10,16 @@
   %body
     -if flash[:info]
       #flash= flash[:info]
-    %nav
-      = link_to 'Transactions', transactions_path
-      = link_to 'Upload statement', new_upload_path
+    #header
+      #title
+        Money Tracker
+      #navAndSearch
+        %nav
+          = link_to 'Recent transactions', transactions_path
+          = link_to 'Upload statement', new_upload_path
+        #searchContainer
+          = form_tag search_transactions_path, :method => :get do
+            = label_tag :q, 'Search transactions'
+            = text_field_tag :q, params[:q], :size => '60'
+            = submit_tag 'Search'
     = yield

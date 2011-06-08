@@ -49,7 +49,7 @@ Feature: Manage transactions
     And I fill in "transaction[description]" with "Cash deposit" within "#transaction_2"
     And I fill in "transaction[note]" with "Paid in gift money" within "#transaction_2"
     And I fill in "transaction[category]" with "Gift" within "#transaction_2"
-    And I follow "Transactions"
+    And I follow "Recent transactions"
     And I go to the transactions page for period "2010-01"
 
     Then I should be on the transactions page
