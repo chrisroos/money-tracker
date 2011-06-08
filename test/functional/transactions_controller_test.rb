@@ -10,6 +10,18 @@ class TransactionsControllerIndexTest < ActionController::TestCase
     
     assert_redirected_to transactions_path(:period => current_period)
   end
+  
+  should "add a class to the first transaction on a given day" do
+    today = Date.today
+    transaction_1 = Factory.create(:transaction, :date => today)
+    transaction_2 = Factory.create(:transaction, :date => today)
+    
+    get :index, :period => today.to_s(:period)
+
+    assert_select "#transaction_#{transaction_1.id} .date.firstOfDay"
+    assert_select "#transaction_#{transaction_2.id} .date"
+    assert_select "#transaction_#{transaction_2.id} .date.firstOfDay", :count => 0
+  end
 
 end
 
@@ -59,6 +71,18 @@ class TransactionsControllerSearchTest < ActionController::TestCase
     get :search, :q => 'search-string'
     
     assert_select "#q[value='search-string']"
+  end
+  
+  should "add a class to the first transaction on a given day" do
+    today = Date.today
+    transaction_1 = Factory.create(:transaction, :date => today, :description => 'test description')
+    transaction_2 = Factory.create(:transaction, :date => today, :description => 'test description')
+    
+    get :search, :q => 'test description'
+
+    assert_select "#transaction_#{transaction_1.id} .date.firstOfDay"
+    assert_select "#transaction_#{transaction_2.id} .date"
+    assert_select "#transaction_#{transaction_2.id} .date.firstOfDay", :count => 0
   end
   
 end

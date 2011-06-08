@@ -13,9 +13,11 @@
   = render :partial => 'table_header'
   = render :partial => 'table_footer'
   %tbody
-    - @transactions.each do |transaction|
+    - @transactions.each_with_index do |transaction, index|
       = content_tag_for(:tr, transaction) do
-        %td.date= transaction.date.to_s(:weekday_and_day)
+        %td
+          - klass = 'firstOfDay' if index == 0 || transaction.date != @transactions[index-1].date
+          %span.date{:class => klass}= transaction.date.to_s(:weekday_and_day)
         %td.detail
           %p.description_and_category
             %span.description= transaction_description(transaction)

@@ -40,3 +40,12 @@ thead {
   color: #080;
   font-size: 0.9em;
 }
+
+.transaction .date {
+  display: none;
+}
+
+.transaction .date.firstOfDay {
+  display: inline;
+  font-weight: bold;
+}
