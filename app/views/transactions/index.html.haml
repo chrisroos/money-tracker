@@ -10,17 +10,4 @@
 %table#transactions
   = render :partial => 'table_header'
   = render :partial => 'table_footer'
-  %tbody
-    - @transactions.each_with_index do |transaction, index|
-      = content_tag_for(:tr, transaction) do
-        %td
-          - klass = 'firstOfDay' if index == 0 || transaction.date != @transactions[index-1].date
-          %span.date{:class => klass}= transaction.date.to_s(:weekday_and_day)
-        %td.detail
-          %p.description_and_category
-            %span.description= transaction_description(transaction)
-            %span.category= link_to transaction.category, search_transactions_path(:q => ['category', transaction.category].join(':')) if transaction.category
-          %p.note= preserve transaction.note
-        %td.paid_in= transaction_amount_in(transaction)
-        %td.paid_out= transaction_amount_out(transaction)
-        %td.actions= link_to 'Edit', edit_transaction_path(transaction)
+  = render :partial => 'table_body', :locals => {:date_format => :weekday_and_day}
