@@ -29,12 +29,12 @@ class Transaction < ActiveRecord::Base
     else
       if description =~ /(.*) \/ (.*) \((.*)\)/
         name, memo, type = $1, $2, $3
-        if transaction = where("UPPER(name) = UPPER(?) AND UPPER(memo) = UPPER(?) AND UPPER(type) = UPPER(?)", name, memo, type).first
+        if transaction = where(:name => name, :memo => memo, :type => type).first
           return transaction
         end
       elsif description =~ /(.*) \((.*)\)/
         name, type = $1, $2
-        if transaction = where("UPPER(name) = UPPER(?) AND UPPER(type) = UPPER(?)", name, type).first
+        if transaction = where(:name => name, :type => type).first
           return transaction
         end
       end

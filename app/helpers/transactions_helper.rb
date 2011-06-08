@@ -1,7 +1,7 @@
 module TransactionsHelper
   
   def transaction_description(transaction)
-    transaction.description.titleize
+    transaction.description
   end
   
   def transaction_amount_in(transaction)

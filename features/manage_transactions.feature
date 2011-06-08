@@ -31,7 +31,7 @@ Feature: Manage transactions
     Then I should be on the transactions page
     And I should see the following transactions:
       | Date    | Description  | Paid in | Paid out | Note                   | Category           |
-      | Sun 3rd | Cash Deposit | £0.01   |          | Paid in gift money     | Gift               |
+      | Sun 3rd | Cash deposit | £0.01   |          | Paid in gift money     | Gift               |
       | Sat 2nd | Groceries    |         | £0.01    | Weekly shopping from X | Household shopping |
 
   @javascript
@@ -58,7 +58,7 @@ Feature: Manage transactions
 
     And I should see the following transactions:
       | Date    | Description  | Paid in | Paid out | Note                   | Category           |
-      | Sun 3rd | Cash Deposit | £0.01   |          | Paid in gift money     | Gift               |
+      | Sun 3rd | Cash deposit | £0.01   |          | Paid in gift money     | Gift               |
       | Sat 2nd | Groceries    |         | £0.01    | Weekly shopping from X | Household shopping |
       
   Scenario: Editing a single transaction
@@ -80,7 +80,7 @@ Feature: Manage transactions
     And I should see the following transactions:
       | Date    | Description    | Paid out | Note                   | Category           |
       | Sat 2nd | Groceries      | £0.01    | Weekly shopping from X | Household shopping |
-      | Fri 1st | Shop Y (Other) | £0.02    |                        |                    |
+      | Fri 1st | Shop Y (other) | £0.02    |                        |                    |
 
   Scenario: Searching transactions
     Given the following transactions exist:
@@ -98,8 +98,8 @@ Feature: Manage transactions
     And I should see that the expenditure of the transactions is £1
     And I should see the following transactions:
       | Date             | Description            | Category   |
-      | Sat 1st Jan 2011 | Cash Withdrawal (Atm)  | Withdrawal |
-      | Sat 1st Jan 2011 | Cash Deposit (Deposit) | Deposit    |
+      | Sat 1st Jan 2011 | Cash withdrawal (Atm)  | Withdrawal |
+      | Sat 1st Jan 2011 | Cash deposit (Deposit) | Deposit    |
       
   Scenario: Editing transactions from a search result
     Given the following transactions exist:

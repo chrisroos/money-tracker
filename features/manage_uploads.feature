@@ -15,8 +15,8 @@ Feature: Manage uploads
     
     When I go to the transactions page for period "2011-01"
 
-    Then I should see a credit of £3.21 on 2011-01-02 described as "Wages / Acme Ltd (Other)"
-    And I should see a debit of £1.23 on 2011-01-01 described as "Shop X / London (Other)"
+    Then I should see a credit of £3.21 on 2011-01-02 described as "WAGES / ACME LTD (other)"
+    And I should see a debit of £1.23 on 2011-01-01 described as "SHOP X / LONDON (other)"
 
   Scenario: Not uploading anything
     Given I am on the new upload page
