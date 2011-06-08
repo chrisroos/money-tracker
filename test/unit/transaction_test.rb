@@ -158,6 +158,31 @@ class TransactionDescriptionTest < ActiveSupport::TestCase
     assert_equal 'custom description', transaction.description
   end
   
+  should "find by a custom description" do
+    transaction = Factory.create(:transaction, :description => 'custom')
+    assert_equal transaction, Transaction.find_by_description('custom')
+  end
+  
+  should "find by a description made of name and type" do
+    transaction = Factory.create(:transaction, :name => 'name', :memo => nil, :type => 'other')
+    assert_equal transaction, Transaction.find_by_description('name (other)')
+  end
+  
+  should "find by a description made of name and type irrespective of case" do
+    transaction = Factory.create(:transaction, :name => 'NAME', :memo => nil, :type => 'OTHER')
+    assert_equal transaction, Transaction.find_by_description('name (other)')
+  end
+  
+  should "find by a description made of name and memo and type" do
+    transaction = Factory.create(:transaction, :name => 'name', :memo => 'memo', :type => 'other')
+    assert_equal transaction, Transaction.find_by_description('name / memo (other)')
+  end
+  
+  should "find by a description made of name and memo and type irrespective of case" do
+    transaction = Factory.create(:transaction, :name => 'NAME', :memo => 'MEMO', :type => 'OTHER')
+    assert_equal transaction, Transaction.find_by_description('name / memo (other)')
+  end
+  
 end
 
 class TransactionDateTest < ActiveSupport::TestCase

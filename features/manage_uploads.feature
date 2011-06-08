@@ -14,11 +14,9 @@ Feature: Manage uploads
     And I should see that there were 0 duplicates
     
     When I go to the transactions page for period "2011-01"
-    
-    Then I should see the following transactions:
-      | Date    | Description              | Paid in | Paid out |
-      | Sun 2nd | Wages / Acme Ltd (Other) | £3.21   |          |
-      | Sat 1st | Shop X / London (Other)  |         | £1.23    |
+
+    Then I should see a credit of £3.21 on 2011-01-02 described as "Wages / Acme Ltd (Other)"
+    And I should see a debit of £1.23 on 2011-01-01 described as "Shop X / London (Other)"
 
   Scenario: Not uploading anything
     Given I am on the new upload page
