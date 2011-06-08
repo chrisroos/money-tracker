@@ -8,7 +8,8 @@ class TransactionProtectedAttributesTest < ActiveSupport::TestCase
     :amount_in_pence => 123,
     :type            => 'ofx-type',
     :fit_id          => 'ofx-fit-id',
-    :memo            => 'ofx-memo'
+    :memo            => 'ofx-memo',
+    :original_description => 'original-description'
   }.each do |protected_attribute, value|
     should "not allow mass assignment of #{protected_attribute}" do
       transaction = Transaction.new(protected_attribute => value)
@@ -42,6 +43,12 @@ class TransactionValidationTest < ActiveSupport::TestCase
   
   should "be invalid without an ofx type" do
     transaction = Factory.build(:transaction, :type => nil)
+    assert ! transaction.valid?
+  end
+  
+  should "be invalid without an original description" do
+    transaction = Factory.create(:transaction)
+    transaction.original_description = nil
     assert ! transaction.valid?
   end
   

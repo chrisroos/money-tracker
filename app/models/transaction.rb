@@ -23,12 +23,12 @@ class Transaction < ActiveRecord::Base
     )
   }
   
-  validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type
+  validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description
   validates_uniqueness_of :fit_id
   
-  attr_protected :original_date, :name, :amount_in_pence, :type, :fit_id, :memo
+  attr_protected :original_date, :name, :amount_in_pence, :type, :fit_id, :memo, :original_description
   
-  before_save :set_original_description
+  before_validation :set_original_description, :on => :create
   
   def amount
     amount_in_pence/100.0
