@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title MoneyTracker
+    %title= ['MoneyTracker', yield(:title)].compact.join(' - ')
     = csrf_meta_tag
     %meta{:charset => 'utf-8'}
     = javascript_include_tag 'jquery-1.6.1.min.js', 'application'

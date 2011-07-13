@@ -22,10 +22,18 @@ class TransactionsControllerIndexTest < ActionController::TestCase
     assert_select "#transaction_#{transaction_2.id} .date"
     assert_select "#transaction_#{transaction_2.id} .date.firstOfDay", :count => 0
   end
+  
+  should "include the period in the page title" do
+    today = Date.today
+    
+    get :index, :period => today.to_s(:period)
+    
+    assert_select 'head title', :text => "MoneyTracker - Transactions for #{today.to_s(:month_and_year)}"
+  end
 
 end
 
-class TransactionsControllerEditTest < ActionController::TestCase
+class TransactionsControllerBulkEditTest < ActionController::TestCase
   tests TransactionsController
   
   should "display original values in the edit form" do
@@ -62,6 +70,14 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select 'a.next_period', :count => 1
   end
   
+  should "include the period in the page title" do
+    today = Date.today
+    
+    get :index, :period => today.to_s(:period), :edit => true
+    
+    assert_select 'head title', :text => "MoneyTracker - Transactions for #{today.to_s(:month_and_year)}"
+  end
+  
 end
 
 class TransactionsControllerSearchTest < ActionController::TestCase
@@ -85,6 +101,12 @@ class TransactionsControllerSearchTest < ActionController::TestCase
     assert_select "#transaction_#{transaction_2.id} .date.firstOfDay", :count => 0
   end
   
+  should "include the search string in the page title" do
+    get :search, :q => 'test description'
+    
+    assert_select 'head title', :text => "MoneyTracker - Transactions matching 'test description'"
+  end
+  
 end
 
 class TransactionsControllerSearchAndEditTest < ActionController::TestCase
@@ -103,4 +125,22 @@ class TransactionsControllerSearchAndEditTest < ActionController::TestCase
     assert_select 'a.next_period', :count => 0
   end
   
+  should "include the search string in the page title" do
+    get :search, :q => 'search-string', :edit => true
+    
+    assert_select 'head title', :text => "MoneyTracker - Transactions matching 'search-string'"
+  end
+  
+end
+
+class TransactionsControllerEditTest < ActionController::TestCase
+  tests TransactionsController
+  
+  should "have a useful page title" do
+    transaction = Factory.create(:transaction)
+    
+    get :edit, :id => transaction.id
+    
+    assert_select 'head title', :text => "MoneyTracker - Edit transaction"
+  end
 end

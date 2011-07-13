@@ -1,10 +1,12 @@
-%h1
-  - if params[:q]
-    Transactions matching
-    = "'#{params[:q]}'"
-  - else 
-    Transactions for
-    = Date.from_period(params[:period]).to_s(:month_and_year)
+-page_title = if params[:q]
+  - "Transactions matching '#{params[:q]}'"
+-else
+  - "Transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
+
+- content_for :title do
+  = page_title
+  
+%h1= page_title
     
 - if params[:period]
   %p

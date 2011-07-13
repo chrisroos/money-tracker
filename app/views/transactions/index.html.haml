@@ -1,6 +1,9 @@
-%h1
-  Transactions for
-  = Date.from_period(params[:period]).to_s(:month_and_year)
+- page_title = "Transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
+
+- content_for :title do
+  = page_title
+  
+%h1= page_title
   
 %p
   = link_to 'Edit', transactions_path(:period => params[:period], :edit => true)
