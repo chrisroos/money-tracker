@@ -59,6 +59,12 @@ thead {
   display: inline;
   float: left;
 }
+#title a {
+  text-decoration: none;
+}
+#title a:visited {
+  color: #000;
+}
 
 #navAndSearch {
   display: inline;
