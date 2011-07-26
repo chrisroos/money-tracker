@@ -1,0 +1,6 @@
+sudo apt-get -y -q install postgresql
+sudo apt-get -y -q install libpq-dev
+
+sudo -u postgres createuser --superuser $USER
+
+cp config/database.example.yml config/database.yml
