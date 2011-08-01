@@ -6,7 +6,7 @@
         %span.date{:class => klass}= transaction.date.to_s(date_format)
       %td.detail
         %p.description_and_category
-          %span.description= transaction_description(transaction)
+          %span.description= link_to transaction_description(transaction), search_transactions_path(:q => ['description', transaction_description(transaction)].join(':'))
           %span.category= link_to transaction.category, search_transactions_path(:q => ['category', transaction.category].join(':')) if transaction.category
         %p.note= preserve transaction.note
       %td.paid_in= transaction_amount_in(transaction)

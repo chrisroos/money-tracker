@@ -7,6 +7,8 @@ class Transaction < ActiveRecord::Base
   scope :search, lambda { |search_string| 
     if search_string =~ /category:(.*)/
       where(:category => $1)
+    elsif search_string =~ /description:(.*)/
+      where(:description => $1)
     else
       where(
         'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q', 

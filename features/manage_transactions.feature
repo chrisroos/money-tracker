@@ -120,6 +120,19 @@ Feature: Manage transactions
     Then I should see "Transactions matching 'category:Shopping'"
     And I should see a debit of £20.00 on 2011-01-01 described as "Shop X (Other)" in the "Shopping" category
     And I should see a debit of £30.00 on 2011-02-01 described as "Shop Y (Other)" in the "Shopping" category
+    
+  Scenario: Viewing all transactions with a given description
+    Given the following transactions exist:
+      | date       | description     | amount_in_pence |
+      | 2011-01-01 | Shop X          | -2000           |
+      | 2011-01-02 | Cash withdrawal | -100            |
+      | 2011-02-01 | Shop X          | -3000           |
+    And I am on the transactions page for period "2011-02"
+
+    When I follow "Shop X"
+    Then I should see "Transactions matching 'description:Shop X'"
+    And I should see a debit of £20.00 on 2011-01-01 described as "Shop X"
+    And I should see a debit of £30.00 on 2011-02-01 described as "Shop X"
   
   Scenario: Navigating transaction periods
     Given the following transactions exist:
