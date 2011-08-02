@@ -31,7 +31,7 @@ def xpath_paid_out(amount)
 end
 
 def xpath_description(description)
-  "*[@class='description']/a[contains(text(), '#{description}')]"
+  "*[@class='description'][contains(text(), '#{description}')]"
 end
 
 def xpath_date(date)
@@ -43,5 +43,5 @@ def xpath_note(note)
 end
 
 def xpath_category(category)
-  "*[@class='category']/a[contains(text(), '#{category}')]"
+  "*[@class='category'][contains(text(), '#{category}')]"
 end
