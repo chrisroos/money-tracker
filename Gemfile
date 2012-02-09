@@ -14,7 +14,7 @@ gem 'ofx', :git => 'git://github.com/floehopper/ofx.git'
 gem 'exception_notification', :require => 'exception_notifier'
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', '~> 0.5.1'
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda'
