@@ -13,6 +13,10 @@ gem 'ofx', :git => 'git://github.com/floehopper/ofx.git'
 
 gem 'exception_notification', :require => 'exception_notifier'
 
+group :development do
+  gem 'heroku'
+end
+
 group :test do
   gem 'cucumber-rails', '~> 0.5.1'
   gem 'capybara'
