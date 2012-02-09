@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/floehopper/ofx.git
+  revision: d45a9f5d6567f2ebff34a78a24d0be83bb59ab33
+  specs:
+    ofx (0.3.1)
+      nokogiri
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -77,8 +84,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     nokogiri (1.4.4)
-    ofx (0.3.1)
-      nokogiri
     pg (0.11.0)
     pickle (0.4.7)
       cucumber (>= 0.8)
@@ -132,7 +137,7 @@ DEPENDENCIES
   haml
   launchy
   nokogiri (>= 1.4.4)
-  ofx
+  ofx!
   pg
   pickle
   rack-ssl

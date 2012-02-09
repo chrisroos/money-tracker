@@ -7,7 +7,10 @@ gem 'rails', '~> 3.0'
 gem 'pg'
 gem 'haml'
 gem 'rack-ssl', :require => 'rack/ssl'
-gem 'ofx'
+
+# Avoid iconv deprecation warning
+gem 'ofx', :git => 'git://github.com/floehopper/ofx.git'
+
 gem 'exception_notification', :require => 'exception_notifier'
 
 group :test do
