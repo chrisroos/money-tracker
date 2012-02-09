@@ -131,6 +131,7 @@ DEPENDENCIES
   factory_girl_rails
   haml
   launchy
+  nokogiri (>= 1.4.4)
   ofx
   pg
   pickle
