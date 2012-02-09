@@ -42,5 +42,5 @@ The app is protected by HTTP Basic Authentication.  The default username and pas
 
 Sometimes the application breaks.  If you want to be emailed when it does you'll want to enable the free [SendGrid](http://sendgrid.com/) addon and set your email address.
 
-    $ heroku addons:add sendgrid:free
+    $ heroku addons:add sendgrid:starter
     $ heroku config:add MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT=your-email-address
