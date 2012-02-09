@@ -104,7 +104,7 @@ GEM
       activesupport (= 3.0.7)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
-    rake (0.9.2)
+    rake (0.9.2.2)
     rubyzip (0.9.4)
     selenium-webdriver (0.2.1)
       childprocess (>= 0.1.7)
