@@ -4,3 +4,4 @@ rvm:
 before_script:
   - "psql -c 'create database money_tracker_test;' -U postgres"
   - "cp config/database.travis-ci.yml config/database.yml"
+  - "bundle exec rake db:schema:load"
