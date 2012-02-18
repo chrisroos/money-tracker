@@ -1,4 +1,4 @@
-## Money Tracker
+## Money Tracker [![Build Status](https://secure.travis-ci.org/chrisroos/money-tracker.png?branch=master)](http://travis-ci.org/chrisroos/money-tracker)
 
 I've played around with various financial software over time and have never been satisfied with what's on offer.  I'm going to use this project to explore what I believe to be missing and see whether I can build something that I want to use.
 
