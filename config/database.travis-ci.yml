@@ -1,0 +1,7 @@
+test: &test
+  adapter: postgresql
+  database: money_tracker_test
+  username: postgres
+
+cucumber:
+  <<: *test
