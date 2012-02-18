@@ -10,6 +10,24 @@ I've deployed a demo copy of the app to [money-tracker-demo.heroku.com](https://
 
 Do what you want with it, but don't do anything daft like upload sensitive data.  I'll probably delete the data periodically but this won't help if you've just shared your transactions with the world.
 
+## Running the app locally
+
+You'll need postgresql installed if you want to use the example database configuration. This is what Heroku uses.
+
+    $ brew install postgresql
+
+Copy the example database configuration and create all the databases.
+
+    $ cp config/database{.example,}.yml
+    $ rake db:create:all
+    $ rake db:migrate
+
+### Running the tests
+
+You'll need the [chromedriver executable](http://code.google.com/p/chromium/downloads/list) in your `PATH` to run the cucumber tests.
+
+    $ rake
+
 ## Installation on [Heroku](http://www.heroku.com/)
 
 ### Clone the app
@@ -44,23 +62,3 @@ Sometimes the application breaks.  If you want to be emailed when it does you'll
 
     $ heroku addons:add sendgrid:starter
     $ heroku config:add MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT=your-email-address
-
-### Running the app locally
-
-You'll need postgresql installed if you want to use the example database configuration. This is what Heroku uses.
-
-    $ brew install postgresql
-
-Copy the example database configuration and create all the databases.
-
-    $ cp config/database{.example,}.yml
-    $ rake db:create:all
-    $ rake db:migrate
-
-### Running the tests
-
-You'll need the [chromedriver executable][1] in your `PATH` to run the cucumber tests.
-
-    $ rake
-
-[1]: http://code.google.com/p/chromium/downloads/list
