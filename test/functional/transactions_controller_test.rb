@@ -13,8 +13,8 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
   should "add a class to the first transaction on a given day" do
     today = Date.today
-    transaction_1 = Factory.create(:transaction, :date => today)
-    transaction_2 = Factory.create(:transaction, :date => today)
+    transaction_1 = FactoryGirl.create(:transaction, :date => today)
+    transaction_2 = FactoryGirl.create(:transaction, :date => today)
 
     get :index, :period => today.to_s(:period)
 
@@ -39,7 +39,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   should "display original values in the edit form" do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
-    transaction = Factory.create(:transaction, :name => 'name', :memo => 'memo', :type => 'type', :original_date => date)
+    transaction = FactoryGirl.create(:transaction, :name => 'name', :memo => 'memo', :type => 'type', :original_date => date)
 
     get :index, :period => period, :edit => true
 
@@ -54,7 +54,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   should "display user-entered values in the edit form" do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
-    Factory.create :transaction, :description => 'custom-description', :date => date, :note => 'custom-note'
+    FactoryGirl.create :transaction, :description => 'custom-description', :date => date, :note => 'custom-note'
 
     get :index, :period => period, :edit => true
 
@@ -91,8 +91,8 @@ class TransactionsControllerSearchTest < ActionController::TestCase
 
   should "add a class to the first transaction on a given day" do
     today = Date.today
-    transaction_1 = Factory.create(:transaction, :date => today, :description => 'test description')
-    transaction_2 = Factory.create(:transaction, :date => today, :description => 'test description')
+    transaction_1 = FactoryGirl.create(:transaction, :date => today, :description => 'test description')
+    transaction_2 = FactoryGirl.create(:transaction, :date => today, :description => 'test description')
 
     get :search, :q => 'test description'
 
@@ -137,7 +137,7 @@ class TransactionsControllerEditTest < ActionController::TestCase
   tests TransactionsController
 
   should "have a useful page title" do
-    transaction = Factory.create(:transaction)
+    transaction = FactoryGirl.create(:transaction)
 
     get :edit, :id => transaction.id
 

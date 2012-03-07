@@ -7,7 +7,7 @@ FactoryGirl.define do
     original_date   Date.today
     name            'transaction-name'
     amount_in_pence 1
-    fit_id          { Factory.next(:fit_id) }
+    fit_id
     type            'OTHER'
   end
 
