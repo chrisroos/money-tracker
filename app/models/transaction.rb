@@ -1,6 +1,6 @@
 class Transaction < ActiveRecord::Base
 
-  set_inheritance_column :_disabled_sti
+  self.inheritance_column = :_disabled_sti
 
   default_scope order('COALESCE(date, original_date) DESC')
 

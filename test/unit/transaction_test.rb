@@ -12,8 +12,7 @@ class TransactionProtectedAttributesTest < ActiveSupport::TestCase
     :original_description => 'original-description'
   }.each do |protected_attribute, value|
     should "not allow mass assignment of #{protected_attribute}" do
-      transaction = Transaction.new(protected_attribute => value)
-      assert_nil transaction.send(protected_attribute)
+      assert_raise(ActiveModel::MassAssignmentSecurity::Error) { Transaction.new(protected_attribute => value) }
     end
   end
 
