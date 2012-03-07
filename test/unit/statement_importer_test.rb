@@ -1,15 +1,15 @@
 require 'test_helper'
 
 class StatementImporterTest < ActiveSupport::TestCase
-  
+
   def setup
     StatementImporter.import(example_ofx)
   end
-  
+
   def test_should_import_two_transactions
     assert_equal 2, Transaction.count
   end
-  
+
   def test_should_import_the_first_transaction
     transaction = Transaction.find_by_fit_id('2011010112345678901234567890123')
     assert_equal Date.parse('2011-01-01'), transaction.original_date
@@ -18,7 +18,7 @@ class StatementImporterTest < ActiveSupport::TestCase
     assert_equal 'SHOP X',                 transaction.name
     assert_equal 'LONDON',                 transaction.memo
   end
-  
+
   def test_should_import_the_second_transaction
     transaction = Transaction.find_by_fit_id('2011010212345678901234567890123')
     assert_equal Date.parse('2011-01-02'), transaction.original_date
@@ -27,9 +27,9 @@ class StatementImporterTest < ActiveSupport::TestCase
     assert_equal 'WAGES',                  transaction.name
     assert_equal 'ACME LTD',               transaction.memo
   end
-  
+
   private
-  
+
   def example_ofx
     <<-EndOfx
 OFXHEADER:100
@@ -98,5 +98,5 @@ NEWFILEUID:NONE
 </OFX>
     EndOfx
   end
-  
+
 end

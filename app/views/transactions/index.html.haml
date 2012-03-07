@@ -2,9 +2,9 @@
 
 - content_for :title do
   = page_title
-  
+
 %h1= page_title
-  
+
 %p
   = link_to 'Edit', transactions_path(:period => params[:period], :edit => true)
   = link_to_previous_period params[:period]
