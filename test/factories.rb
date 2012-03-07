@@ -1,15 +1,17 @@
-Factory.sequence :fit_id do |n|
-  n.to_s
-end
+FactoryGirl.define do
+  sequence :fit_id do |n|
+    n.to_s
+  end
 
-Factory.define :transaction do |transaction|
-  transaction.original_date   Date.today
-  transaction.name            'transaction-name'
-  transaction.amount_in_pence 1
-  transaction.fit_id          { Factory.next(:fit_id) }
-  transaction.type            'OTHER'
-end
+  factory :transaction do
+    original_date   Date.today
+    name            'transaction-name'
+    amount_in_pence 1
+    fit_id          { Factory.next(:fit_id) }
+    type            'OTHER'
+  end
 
-Factory.define :upload do |upload|
-  upload.ofx_file 'ofx-file'
+  factory :upload do
+    ofx_file 'ofx-file'
+  end
 end
