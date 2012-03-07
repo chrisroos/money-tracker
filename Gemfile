@@ -6,7 +6,6 @@ gem 'nokogiri', '>= 1.4.4'
 gem 'rails', '3.2.2'
 gem 'pg'
 gem 'haml'
-gem 'rack-ssl', :require => 'rack/ssl'
 
 # Avoid iconv deprecation warning
 gem 'ofx', :git => 'git://github.com/floehopper/ofx.git'

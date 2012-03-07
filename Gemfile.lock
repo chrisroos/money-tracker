@@ -165,7 +165,6 @@ DEPENDENCIES
   ofx!
   pg
   pickle
-  rack-ssl
   rails (= 3.2.2)
   selenium-webdriver
   shoulda
