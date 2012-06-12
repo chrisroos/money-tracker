@@ -6,6 +6,7 @@ gem 'nokogiri', '>= 1.4.4'
 gem 'rails', '3.2.2'
 gem 'pg'
 gem 'haml'
+gem 'thin'
 
 # Avoid iconv deprecation warning
 gem 'ofx', :git => 'git://github.com/floehopper/ofx.git'
@@ -17,6 +18,7 @@ group :development do
   gem 'travis-lint'
   gem 'taps'
   gem 'sqlite3'
+  gem 'foreman'
 end
 
 group :test do
