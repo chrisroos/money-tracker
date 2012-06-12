@@ -15,6 +15,8 @@ gem 'exception_notification', :require => 'exception_notifier'
 group :development do
   gem 'heroku'
   gem 'travis-lint'
+  gem 'taps'
+  gem 'sqlite3'
 end
 
 group :test do
