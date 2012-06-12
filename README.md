@@ -37,17 +37,11 @@ You'll need the [chromedriver executable](http://code.google.com/p/chromium/down
 
 ### Push to Heroku
 
-This assumes that you know what Heroku is, have an account and installed the gem.
+This assumes that you know what Heroku is and have an account.
 
-    $ heroku apps:create
+    $ heroku apps:create your-app-name --addons sendgrid:starter --stack cedar
     $ git push heroku master
-    $ heroku rake db:migrate
-
-### Install the SSL addon
-
-The app uses SSL to encrypt the data between the server and your browser.  It redirects all plain HTTP requests over HTTPS so it won't work without this addon.
-
-    $ heroku addons:add ssl:piggyback
+    $ heroku run rake db:migrate
 
 ### Change the default username and password
 
@@ -58,7 +52,6 @@ The app is protected by HTTP Basic Authentication.  The default username and pas
 
 ### Configuring SendGrid so that we get Exception emails
 
-Sometimes the application breaks.  If you want to be emailed when it does you'll want to enable the free [SendGrid](http://sendgrid.com/) addon and set your email address.
+Sometimes the application breaks.  If you want to be emailed when it does you'll want to configure the email address that receives the exception notifications.
 
-    $ heroku addons:add sendgrid:starter
     $ heroku config:add MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT=your-email-address
