@@ -63,7 +63,6 @@ GEM
     eventmachine (0.12.10)
     exception_notification (2.6.1)
       actionmailer (>= 3.0.4)
-    excon (0.15.5)
     factory_girl (4.0.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.0.0)
@@ -76,14 +75,6 @@ GEM
       json (>= 1.4.6)
     haml (3.1.6)
     hashr (0.0.21)
-    heroku (2.30.2)
-      heroku-api (~> 0.3.2)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.5)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.2)
-      excon (~> 0.15.5)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.4)
@@ -98,7 +89,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.3.6)
-    netrc (0.7.5)
     nokogiri (1.5.5)
     pg (0.14.0)
     pickle (0.4.11)
@@ -183,7 +173,6 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   haml
-  heroku
   launchy
   nokogiri (>= 1.4.4)
   ofx!
