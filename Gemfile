@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 # Avoid "WARNING: Nokogiri was built against LibXML version 2.7.8, but has dynamically loaded 2.7.3"
 gem 'nokogiri', '>= 1.4.4'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 gem 'pg'
 gem 'haml'
 gem 'thin'
