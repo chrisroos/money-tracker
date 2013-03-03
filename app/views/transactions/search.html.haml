@@ -6,7 +6,7 @@
 %h1= page_title
 
 %p
-  = link_to 'Edit', search_transactions_path(:q => params[:q], :edit => true)
+  = link_to 'Edit transactions', search_transactions_path(:q => params[:q], :edit => true)
 
 %table#transactions
   = render :partial => 'table_header'
