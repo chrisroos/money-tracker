@@ -9,11 +9,13 @@
 %h1= page_title
 
 - if params[:period]
-  %p
-    = link_to_previous_period params[:period]
-    = link_to_next_period params[:period]
+  %ul.nav.nav-pills
+    %li
+      = link_to_previous_period params[:period]
+    %li
+      = link_to_next_period params[:period]
 
-%table#transactions
+%table#transactions.table.table-striped.table-condensed
   %thead
     %tr
       %th Date

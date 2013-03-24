@@ -5,10 +5,11 @@
 
 %h1= page_title
 
-%p
-  = link_to 'Edit transactions', search_transactions_path(:q => params[:q], :edit => true)
+%ul.nav.nav-pills
+  %li
+    = link_to 'Edit transactions', search_transactions_path(:q => params[:q], :edit => true)
 
-%table#transactions
+%table#transactions.table.table-striped.table-condensed
   = render :partial => 'table_header'
   = render :partial => 'table_footer'
   = render :partial => 'table_body', :locals => {:date_format => :human_friendly}
