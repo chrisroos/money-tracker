@@ -6,16 +6,21 @@
 - content_for :title do
   = page_title
 
-%h1= page_title
+.row
+  .span8
+    %h1= page_title
+  .span4
+    - if params[:q]
+      = link_to 'View transactions', search_transactions_path(:q => params[:q]), class: 'btn pull-right'
+    - else
+      = link_to 'View transactions', transactions_path(:period => params[:period]), class: 'btn pull-right'
 
 - if params[:period]
-  %ul.nav.nav-pills
-    %li
-      = link_to_previous_period params[:period]
-    %li
-      = link_to_next_period params[:period]
+  .nav
+    = link_to_previous_period params[:period]
+    = link_to_next_period params[:period]
 
-%table#transactions.table.table-striped.table-condensed
+%table#transactions.table.table-striped.table-condensed.table-bordered
   %thead
     %tr
       %th Date
