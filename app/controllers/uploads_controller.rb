@@ -5,7 +5,8 @@ class UploadsController < ApplicationController
   end
 
   def create
-    @upload = Upload.new(params[:upload])
+    upload_params = params[:upload] ? params[:upload].permit(:ofx_file) : {}
+    @upload = Upload.new(upload_params)
     if @upload.valid?
       imported, duplicates = StatementImporter.import(@upload.ofx_file)
       flash[:info] = "#{imported} transactions were imported.  #{duplicates} duplicate transactions were ignored."

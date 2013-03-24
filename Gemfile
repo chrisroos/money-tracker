@@ -6,6 +6,7 @@ ruby "1.9.3"
 gem 'nokogiri', '>= 1.4.4'
 
 gem 'rails', '3.2.13'
+gem 'strong_parameters'
 gem 'pg'
 gem 'haml'
 gem 'thin'

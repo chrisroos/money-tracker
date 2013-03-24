@@ -174,6 +174,10 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    strong_parameters (0.2.0)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+      railties (~> 3.0)
     taps (0.3.24)
       rack (>= 1.0.1)
       rest-client (>= 1.4.0, < 1.7.0)
@@ -229,6 +233,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   sqlite3
+  strong_parameters
   taps
   therubyracer
   thin
