@@ -17,6 +17,6 @@
     = transaction_form.text_area :note, :size => '40x3'
   %div
     = transaction_form.label :category
-    = transaction_form.text_field :category, :size => 40
+    = transaction_form.text_field :category, :size => 40, class: 'category'
   %div
     = transaction_form.submit 'Save'

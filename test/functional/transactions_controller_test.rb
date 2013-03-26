@@ -63,6 +63,14 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select "textarea[name='transaction[note]']", :text => 'custom-note'
   end
 
+  test 'adds a category class to the category field to enable autocomplete' do
+    FactoryGirl.create(:transaction, category: 'category-name')
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select 'input.category', value: 'category-name'
+  end
+
   should "display the period navigation links" do
     get :index, :period => Date.parse('2011-01-01').to_s(:period), :edit => 'true'
 
@@ -142,5 +150,13 @@ class TransactionsControllerEditTest < ActionController::TestCase
     get :edit, :id => transaction.id
 
     assert_select 'head title', :text => "MoneyTracker - Edit transaction"
+  end
+
+  test 'adds a category class to the category field to enable autocomplete' do
+    transaction = FactoryGirl.create(:transaction, category: 'category-name')
+
+    get :edit, id: transaction
+
+    assert_select 'input.category', value: 'category-name'
   end
 end

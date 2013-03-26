@@ -48,5 +48,5 @@
             = transaction_form.submit 'Save note', :id => nil
         %td
           = form_for(transaction, :html => {:id => nil}) do |transaction_form|
-            = transaction_form.text_field :category, :size => 40, :id => nil
+            = transaction_form.text_field :category, :size => 40, :id => nil, class: 'category'
             = transaction_form.submit 'Save category', :id => nil

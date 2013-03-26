@@ -109,6 +109,15 @@ class TransactionSearchTest < ActiveSupport::TestCase
 
 end
 
+class TransactionCategorySearchTest < ActiveSupport::TestCase
+  should 'return the categories matching the query in alphabetical order' do
+    t1 = FactoryGirl.create(:transaction, category: 'Z MATCHING')
+    t2 = FactoryGirl.create(:transaction, category: 'A matching')
+    t3 = FactoryGirl.create(:transaction, category: 'no-match')
+    assert_equal ['A matching', 'Z MATCHING'], Transaction.category_search('matching').map(&:category)
+  end
+end
+
 class TransactionPeriodTest < ActiveSupport::TestCase
 
   should "only return transactions within the given period" do

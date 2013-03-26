@@ -6,4 +6,9 @@ MoneyTracker::Application.routes.draw do
     end
   end
   resources :uploads,      :only => [:new, :create]
+  resources :categories,   :only => [] do
+    collection do
+      get :search
+    end
+  end
 end

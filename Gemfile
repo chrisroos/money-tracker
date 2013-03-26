@@ -31,6 +31,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 group :development do
   gem 'travis-lint'

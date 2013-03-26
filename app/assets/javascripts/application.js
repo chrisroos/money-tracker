@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.autocomplete
 //= require twitter/bootstrap
 //= require_tree .
 
@@ -38,4 +39,9 @@ $(document).ready(function() {
   });
 
   $('#transactions input[type=submit]').remove();
+
+  $("input.category").autocomplete({
+    source: '/categories/search',
+    minLength: 0, delay: 100
+  });
 });
