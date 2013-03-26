@@ -6,6 +6,6 @@ class UploadsControllerNewTest < ActionController::TestCase
   test "should have a useful page title" do
     get :new
 
-    assert_select 'head title', :text => "MoneyTracker - Upload statement"
+    assert_select 'head title', text: "MoneyTracker - Upload statement"
   end
 end

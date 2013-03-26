@@ -7,7 +7,7 @@ class UploadTest < ActiveSupport::TestCase
   end
 
   test "should be invalid without a file" do
-    upload = FactoryGirl.build(:upload, :ofx_file => nil)
+    upload = FactoryGirl.build(:upload, ofx_file: nil)
     assert !upload.valid?
   end
 end

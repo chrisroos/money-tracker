@@ -6,13 +6,13 @@ class Transaction < ActiveRecord::Base
 
   scope :search, lambda { |search_string|
     if search_string =~ /category:(.*)/
-      where(:category => $1)
+      where(category: $1)
     elsif search_string =~ /description:(.*)/
-      where(:description => $1)
+      where(description: $1)
     else
       where(
         'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q',
-        {:q => "%#{search_string}%"}
+        {q: "%#{search_string}%"}
       )
     end
   }
@@ -34,7 +34,7 @@ class Transaction < ActiveRecord::Base
 
   attr_protected :original_date, :name, :amount_in_pence, :type, :fit_id, :memo, :original_description
 
-  before_validation :set_original_description, :on => :create
+  before_validation :set_original_description, on: :create
 
   def amount
     amount_in_pence/100.0

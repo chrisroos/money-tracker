@@ -9,9 +9,9 @@ When /^I upload "([^"]*)"$/ do |filename|
 end
 
 Then /^I should see that (\d+) transactions were imported$/ do |imported|
-  assert page.has_css?('#flash', :text => /#{imported} transactions were imported/)
+  assert page.has_css?('#flash', text: /#{imported} transactions were imported/)
 end
 
 Then /^I should see that there were (\d+) duplicates$/ do |duplicates|
-  assert page.has_css?('#flash', :text => /#{duplicates} duplicate transactions/)
+  assert page.has_css?('#flash', text: /#{duplicates} duplicate transactions/)
 end
