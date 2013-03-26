@@ -37,8 +37,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.3)
     arel (3.0.2)
-    bourne (1.4.0)
-      mocha (~> 0.13.2)
     builder (3.0.4)
     capybara (2.0.2)
       mime-types (>= 1.16)
@@ -162,13 +160,6 @@ GEM
       rubyzip
       websocket (~> 1.0.4)
     sequel (3.20.0)
-    shoulda (3.4.0)
-      shoulda-context (~> 1.0, >= 1.0.1)
-      shoulda-matchers (~> 1.0, >= 1.4.1)
-    shoulda-context (1.0.2)
-    shoulda-matchers (1.5.4)
-      activesupport (>= 3.0.0)
-      bourne (~> 1.3)
     sinatra (1.0)
       rack (>= 1.0)
     sprockets (2.2.2)
@@ -228,6 +219,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   less-rails
+  mocha
   nokogiri (>= 1.4.4)
   ofx!
   pg
@@ -235,7 +227,6 @@ DEPENDENCIES
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   selenium-webdriver
-  shoulda
   sqlite3
   strong_parameters
   taps

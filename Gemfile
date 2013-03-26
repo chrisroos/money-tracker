@@ -44,9 +44,9 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'capybara'
   gem 'launchy'
-  gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'database_cleaner'
   gem 'selenium-webdriver'
+  gem 'mocha', require: false
 end
