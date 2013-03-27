@@ -1,7 +1,7 @@
 -page_title = if params[:q]
-  - "Transactions matching '#{params[:q]}'"
+  - "Edit transactions matching '#{params[:q]}'"
 -else
-  - "Transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
+  - "Edit transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
 
 - content_for :title do
   = page_title
@@ -17,8 +17,8 @@
 
 - if params[:period]
   .nav
-    = link_to_previous_period params[:period]
-    = link_to_next_period params[:period]
+    = link_to_previous_period params[:period], edit: true
+    = link_to_next_period params[:period], edit: true
 
 %table#transactions.table.table-striped.table-condensed.table-bordered
   %thead

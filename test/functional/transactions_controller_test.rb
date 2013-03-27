@@ -90,11 +90,11 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select 'input.description', value: 'description-name'
   end
 
-  test "should display the period navigation links" do
-    get :index, period: Date.parse('2011-01-01').to_s(:period), edit: 'true'
+  test "should link to the edit form of the previous and next period" do
+    get :index, period: Date.parse('2011-08-01').to_s(:period), edit: 'true'
 
-    assert_select 'a.previous_period', count: 1
-    assert_select 'a.next_period', count: 1
+    assert_select 'a.previous_period[href=?]', CGI.escapeHTML(transactions_path(period: '2011-07', edit: true))
+    assert_select 'a.next_period[href=?]', CGI.escapeHTML(transactions_path(period: '2011-09', edit: true))
   end
 
   test "should include the period in the page title" do
@@ -102,7 +102,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
 
     get :index, period: today.to_s(:period), edit: true
 
-    assert_select 'head title', text: "MoneyTracker - Transactions for #{today.to_s(:month_and_year)}"
+    assert_select 'head title', text: "MoneyTracker - Edit transactions for #{today.to_s(:month_and_year)}"
   end
 end
 
@@ -153,7 +153,7 @@ class TransactionsControllerSearchAndEditTest < ActionController::TestCase
   test "should include the search string in the page title" do
     get :search, q: 'search-string', edit: true
 
-    assert_select 'head title', text: "MoneyTracker - Transactions matching 'search-string'"
+    assert_select 'head title', text: "MoneyTracker - Edit transactions matching 'search-string'"
   end
 end
 
