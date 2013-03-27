@@ -29,3 +29,7 @@ th.date, th.paid_in, th.paid_out {
 tfoot td.paid_in, tfoot td.paid_out {
   text-align: right;
 }
+
+#transactions .edited {
+  background-color: #ff0;
+}
