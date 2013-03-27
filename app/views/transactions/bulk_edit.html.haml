@@ -38,7 +38,7 @@
             = transaction_form.submit 'Save date', id: nil
         %td
           = form_for(transaction, html: {id: nil}) do |transaction_form|
-            = transaction_form.text_field :description, size: '80', id: nil, value: transaction.description
+            = transaction_form.text_field :description, size: '80', id: nil, value: transaction.description, class: 'description'
             = transaction_form.submit 'Save description', id: nil
         %td= transaction_amount_in(transaction)
         %td= transaction_amount_out(transaction)

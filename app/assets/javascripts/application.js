@@ -45,4 +45,9 @@ $(document).ready(function() {
     source: '/categories/search',
     minLength: 0, delay: 100
   });
+
+  $("input.description").autocomplete({
+    source: '/descriptions/search',
+    minLength: 0, delay: 100
+  });
 });

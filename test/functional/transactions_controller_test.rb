@@ -70,6 +70,14 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select 'input.category', value: 'category-name'
   end
 
+  test 'adds a description class to the description field to enable autocomplete' do
+    FactoryGirl.create(:transaction, description: 'description-name')
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select 'input.description', value: 'description-name'
+  end
+
   test "should display the period navigation links" do
     get :index, period: Date.parse('2011-01-01').to_s(:period), edit: 'true'
 
@@ -154,5 +162,13 @@ class TransactionsControllerEditTest < ActionController::TestCase
     get :edit, id: transaction
 
     assert_select 'input.category', value: 'category-name'
+  end
+
+  test 'adds a description class to the description field to enable autocomplete' do
+    transaction = FactoryGirl.create(:transaction, description: 'description-name')
+
+    get :edit, id: transaction
+
+    assert_select 'input.description', value: 'category-name'
   end
 end

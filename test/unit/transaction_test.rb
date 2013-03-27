@@ -112,6 +112,15 @@ class TransactionCategorySearchTest < ActiveSupport::TestCase
   end
 end
 
+class TransactionDescriptionSearchTest < ActiveSupport::TestCase
+  test 'should return the descriptions matching the query in alphabetical order' do
+    t1 = FactoryGirl.create(:transaction, description: 'Z MATCHING')
+    t2 = FactoryGirl.create(:transaction, description: 'A matching')
+    t3 = FactoryGirl.create(:transaction, description: 'no-match')
+    assert_equal ['A matching', 'Z MATCHING'], Transaction.description_search('matching').map(&:description)
+  end
+end
+
 class TransactionPeriodTest < ActiveSupport::TestCase
   test "should only return transactions within the given period" do
     transaction_a = FactoryGirl.create(:transaction, original_date: Date.parse('2011-01-01'))

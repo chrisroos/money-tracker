@@ -29,6 +29,10 @@ class Transaction < ActiveRecord::Base
     unscoped.select("DISTINCT(category)").where('category ILIKE :q', {q: "%#{query}%"}).order("category ASC")
   end
 
+  def self.description_search(query)
+    unscoped.select("DISTINCT(description)").where('description ILIKE :q', {q: "%#{query}%"}).order("description ASC")
+  end
+
   validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description
   validates_uniqueness_of :fit_id
 

@@ -11,7 +11,7 @@
     = transaction_form.text_field :date, size: '10', value: @transaction.date
   %div
     = transaction_form.label :description
-    = transaction_form.text_field :description, size: '80', value: @transaction.description
+    = transaction_form.text_field :description, size: '80', value: @transaction.description, class: 'description'
   %div
     = transaction_form.label :note
     = transaction_form.text_area :note, size: '40x3'
