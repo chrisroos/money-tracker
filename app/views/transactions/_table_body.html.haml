@@ -7,6 +7,7 @@
       %td.detail
         %p.description_and_category
           = link_to transaction_description(transaction), search_transactions_path(q: ['description', transaction_description(transaction)].join(':')), class: 'description'
+          = link_to_location(transaction)
           - unless transaction.category.blank?
             = link_to transaction.category, search_transactions_path(q: ['category', transaction.category].join(':')), class: 'category label label-info'
         %p.note= preserve transaction.note

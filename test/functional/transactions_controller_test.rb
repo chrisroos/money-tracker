@@ -30,6 +30,14 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
     assert_select 'head title', text: "MoneyTracker - Transactions for #{today.to_s(:month_and_year)}"
   end
+
+  test "should link to a map of the location" do
+    FactoryGirl.create(:transaction, location: 'London EC2A')
+
+    get :index, period: Date.today.to_s(:period)
+
+    assert_select "a[title='View in Google Maps']"
+  end
 end
 
 class TransactionsControllerBulkEditTest < ActionController::TestCase

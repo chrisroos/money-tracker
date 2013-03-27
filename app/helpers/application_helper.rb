@@ -14,4 +14,11 @@ module ApplicationHelper
     end
   end
 
+  def link_to_location(transaction)
+    return if transaction.location.blank?
+    query = CGI.escape(transaction.location)
+    link_to "https://maps.google.co.uk/maps?q=#{query}", target: 'blank', title: 'View in Google Maps' do
+      '<i class="icon-map-marker"></i>'.html_safe
+    end
+  end
 end
