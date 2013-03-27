@@ -6,7 +6,7 @@
 - content_for :title do
   = page_title
 
-.row
+.row-fluid
   .span8
     %h1= page_title
   .span4
@@ -25,6 +25,7 @@
     %tr
       %th Date
       %th Description
+      %th Location
       %th Paid in
       %th Paid out
       %th Note
@@ -40,6 +41,10 @@
           = form_for(transaction, html: {id: nil}) do |transaction_form|
             = transaction_form.text_field :description, size: '80', id: nil, value: transaction.description, class: 'description'
             = transaction_form.submit 'Save description', id: nil
+        %td
+          = form_for(transaction, html: {id: nil}) do |transaction_form|
+            = transaction_form.text_field :location, size: '40', id: nil, value: transaction.location
+            = transaction_form.submit 'Save location', id: nil
         %td= transaction_amount_in(transaction)
         %td= transaction_amount_out(transaction)
         %td

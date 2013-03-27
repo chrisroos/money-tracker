@@ -35,6 +35,18 @@ end
 class TransactionsControllerBulkEditTest < ActionController::TestCase
   tests TransactionsController
 
+  test "displays the edit form" do
+    transaction = FactoryGirl.create(:transaction)
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select "input[name='transaction[date]']"
+    assert_select "input[name='transaction[description]']"
+    assert_select "input[name='transaction[location]']"
+    assert_select "textarea[name='transaction[note]']"
+    assert_select "input[name='transaction[category]']"
+  end
+
   test "should display original values in the edit form" do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
@@ -156,6 +168,18 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select 'head title', text: "MoneyTracker - Edit transaction"
   end
 
+  test "displays the edit form" do
+    transaction = FactoryGirl.create(:transaction)
+
+    get :edit, id: transaction
+
+    assert_select "input[name='transaction[date]']"
+    assert_select "input[name='transaction[description]']"
+    assert_select "input[name='transaction[location]']"
+    assert_select "textarea[name='transaction[note]']"
+    assert_select "input[name='transaction[category]']"
+  end
+
   test 'adds a category class to the category field to enable autocomplete' do
     transaction = FactoryGirl.create(:transaction, category: 'category-name')
 
@@ -170,5 +194,32 @@ class TransactionsControllerEditTest < ActionController::TestCase
     get :edit, id: transaction
 
     assert_select 'input.description', value: 'category-name'
+  end
+end
+
+class TransactionsControllerUpdateTest < ActionController::TestCase
+  tests TransactionsController
+
+  test "should update transaction and redirect back" do
+    request.env['HTTP_REFERER'] = '/previous-location'
+
+    transaction = FactoryGirl.create(:transaction,
+      date: Date.today, description: 'old-description', location: 'old-location',
+      note: 'old-note', category: 'old-category'
+    )
+
+    put :update, id: transaction, transaction: {
+      date: Date.yesterday, description: 'new-description', location: 'new-location',
+      note: 'new-note', category: 'new-category'
+    }
+    transaction.reload
+
+    assert_redirected_to '/previous-location'
+
+    assert_equal Date.yesterday, transaction.date
+    assert_equal 'new-description', transaction.description
+    assert_equal 'new-location', transaction.location
+    assert_equal 'new-note', transaction.note
+    assert_equal 'new-category', transaction.category
   end
 end
