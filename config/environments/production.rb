@@ -20,7 +20,7 @@ MoneyTracker::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  # Defaults to Rails.root.join("public/assets")
+  # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
   # Specifies the header that your server uses for sending files
@@ -66,7 +66,7 @@ MoneyTracker::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.middleware.use ExceptionNotifier,
-    :email_prefix => "[Money Tracker] ",
-    :sender_address => %{"notifier" <notifier@money-tracker.heroku.com>},
-    :exception_recipients => ENV['MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT'] || 'exceptions@example.com'
+    email_prefix: "[Money Tracker] ",
+    sender_address: %{"notifier" <notifier@money-tracker.heroku.com>},
+    exception_recipients: ENV['MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT'] || 'exceptions@example.com'
 end

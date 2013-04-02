@@ -13,9 +13,9 @@ class TransactionsController < ApplicationController
 
   def update
     transaction = Transaction.find(params[:id])
-    transaction.update_attributes(params[:transaction])
+    transaction.update_attributes(params[:transaction].permit(:date, :description, :location, :note, :category))
     if request.xhr?
-      render :text => 'OK'
+      render text: 'OK'
     else
       redirect_to :back
     end

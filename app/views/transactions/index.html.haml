@@ -3,14 +3,18 @@
 - content_for :title do
   = page_title
 
-%h1= page_title
+.row-fluid
+  .span8
+    %h1= page_title
+  .span4
+    = link_to transactions_path(period: params[:period], edit: true), class: 'btn pull-right' do
+      - ['<i class="icon-edit"></i>', 'Edit transactions'].join(' ').html_safe
 
-%p
-  = link_to 'Edit', transactions_path(:period => params[:period], :edit => true)
+.nav
   = link_to_previous_period params[:period]
   = link_to_next_period params[:period]
 
-%table#transactions
-  = render :partial => 'table_header'
-  = render :partial => 'table_footer'
-  = render :partial => 'table_body', :locals => {:date_format => :weekday_and_day}
+%table#transactions.table.table-striped.table-condensed.table-bordered
+  = render partial: 'table_header'
+  = render partial: 'table_footer'
+  = render partial: 'table_body', locals: {date_format: :weekday_and_day}

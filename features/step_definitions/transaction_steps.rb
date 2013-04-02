@@ -1,11 +1,11 @@
 # encoding: utf-8
 
 Then /^I should see that the income of the transactions is £(\d+)$/ do |income|
-  assert page.has_css?('#income', :text => "£#{income}")
+  assert page.has_css?('#income', text: "£#{income}")
 end
 
 Then /^I should see that the expenditure of the transactions is £(\d+)$/ do |expenditure|
-  assert page.has_css?('#expenditure', :text => "£#{expenditure}")
+  assert page.has_css?('#expenditure', text: "£#{expenditure}")
 end
 
 Then /^I should see a credit of £(\d+\.\d+) on (\d{4}\-\d{2}\-\d{2}) described as "([^"]*)"$/ do |amount, date, description|

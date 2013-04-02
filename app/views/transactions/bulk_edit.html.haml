@@ -1,23 +1,31 @@
 -page_title = if params[:q]
-  - "Transactions matching '#{params[:q]}'"
+  - "Edit transactions matching '#{params[:q]}'"
 -else
-  - "Transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
+  - "Edit transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
 
 - content_for :title do
   = page_title
 
-%h1= page_title
+.row-fluid
+  .span8
+    %h1= page_title
+  .span4
+    - if params[:q]
+      = link_to 'View transactions', search_transactions_path(q: params[:q]), class: 'btn pull-right'
+    - else
+      = link_to 'View transactions', transactions_path(period: params[:period]), class: 'btn pull-right'
 
 - if params[:period]
-  %p
-    = link_to_previous_period params[:period]
-    = link_to_next_period params[:period]
+  .nav
+    = link_to_previous_period params[:period], edit: true
+    = link_to_next_period params[:period], edit: true
 
-%table#transactions
+%table#transactions.table.table-striped.table-condensed.table-bordered
   %thead
     %tr
       %th Date
       %th Description
+      %th Location
       %th Paid in
       %th Paid out
       %th Note
@@ -26,20 +34,24 @@
     - @transactions.each do |transaction|
       = content_tag_for(:tr, transaction) do
         %td
-          = form_for(transaction, :html => {:id => nil}) do |transaction_form|
-            = transaction_form.text_field :date, :size => '10', :id => nil, :value => transaction.date
-            = transaction_form.submit 'Save date', :id => nil
+          = form_for(transaction, html: {id: nil}) do |transaction_form|
+            = transaction_form.text_field :date, size: '10', id: nil, value: transaction.date
+            = transaction_form.submit 'Save date', id: nil
         %td
-          = form_for(transaction, :html => {:id => nil}) do |transaction_form|
-            = transaction_form.text_field :description, :size => '80', :id => nil, :value => transaction.description
-            = transaction_form.submit 'Save description', :id => nil
+          = form_for(transaction, html: {id: nil}) do |transaction_form|
+            = transaction_form.text_field :description, size: '80', id: nil, value: transaction.description, class: 'description'
+            = transaction_form.submit 'Save description', id: nil
+        %td
+          = form_for(transaction, html: {id: nil}) do |transaction_form|
+            = transaction_form.text_field :location, size: '40', id: nil, value: transaction.location
+            = transaction_form.submit 'Save location', id: nil
         %td= transaction_amount_in(transaction)
         %td= transaction_amount_out(transaction)
         %td
-          = form_for(transaction, :html => {:id => nil}) do |transaction_form|
-            = transaction_form.text_area :note, :size => '40x3', :id => nil
-            = transaction_form.submit 'Save note', :id => nil
+          = form_for(transaction, html: {id: nil}) do |transaction_form|
+            = transaction_form.text_area :note, size: '40x3', id: nil
+            = transaction_form.submit 'Save note', id: nil
         %td
-          = form_for(transaction, :html => {:id => nil}) do |transaction_form|
-            = transaction_form.text_field :category, :size => 40, :id => nil
-            = transaction_form.submit 'Save category', :id => nil
+          = form_for(transaction, html: {id: nil}) do |transaction_form|
+            = transaction_form.text_field :category, size: 40, id: nil, class: 'category'
+            = transaction_form.submit 'Save category', id: nil

@@ -5,7 +5,7 @@
 
 %h1= page_title
 
-= form_for @upload, :html => {:multipart => true} do |upload_form|
+= form_for @upload, html: {multipart: true} do |upload_form|
   %div
     = upload_form.label      :ofx_file
     = upload_form.file_field :ofx_file

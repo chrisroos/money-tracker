@@ -43,5 +43,5 @@ def xpath_note(note)
 end
 
 def xpath_category(category)
-  "*[@class='category'][contains(text(), '#{category}')]"
+  "*[contains(@class, 'category')][contains(text(), '#{category}')]"
 end
