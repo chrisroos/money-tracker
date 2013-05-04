@@ -55,3 +55,14 @@ The app is protected by HTTP Basic Authentication.  The default username and pas
 Sometimes the application breaks.  If you want to be emailed when it does you'll want to configure the email address that receives the exception notifications.
 
     $ heroku config:add MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT=your-email-address
+
+## Importing data from Heroku
+
+*NOTE* If you've got a single instance of the app deployed to heroku then you won't need to specify the --app switch
+
+    # Download the data
+    $ heroku pgbackups:capture --app money-tracker
+    $ curl -o money-tracker-db.dump `heroku pgbackups:url --app money-tracker`
+
+    # Import the data
+    $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -d money_tracker_development money-tracker-db.dump
