@@ -35,8 +35,6 @@ gem 'jquery-ui-rails'
 
 group :development do
   gem 'travis-lint'
-  gem 'taps'
-  gem 'sqlite3'
   gem 'foreman'
 end
 
