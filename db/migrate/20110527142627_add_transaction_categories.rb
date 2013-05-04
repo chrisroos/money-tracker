@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class AddTransactionCategories < ActiveRecord::Migration
   
   def self.up

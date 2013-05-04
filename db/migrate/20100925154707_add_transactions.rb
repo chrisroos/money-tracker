@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class AddTransactions < ActiveRecord::Migration
   def self.up
     create_table :transactions do |t|

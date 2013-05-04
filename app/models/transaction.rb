@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Transaction < ActiveRecord::Base
 
   self.inheritance_column = :_disabled_sti

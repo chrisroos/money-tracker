@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ModifyTransactionsTable < ActiveRecord::Migration
   
   def self.up

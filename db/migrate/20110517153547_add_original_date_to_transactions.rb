@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class AddOriginalDateToTransactions < ActiveRecord::Migration
   
   def self.up

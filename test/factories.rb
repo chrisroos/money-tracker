@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 FactoryGirl.define do
   sequence :fit_id do |n|
     n.to_s
