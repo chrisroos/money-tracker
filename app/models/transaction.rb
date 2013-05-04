@@ -6,7 +6,7 @@ class Transaction < ActiveRecord::Base
 
   default_scope order('COALESCE(date, original_date) DESC')
 
-  scope :search, lambda { |search_string|
+  scope :search, ->(search_string) {
     if search_string =~ /category:(.*)/
       where(category: $1)
     elsif search_string =~ /description:(.*)/
@@ -19,7 +19,7 @@ class Transaction < ActiveRecord::Base
     end
   }
 
-  scope :period, lambda { |period|
+  scope :period, ->(period) {
     date = Date.from_period(period)
     where(
       'COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?',
