@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class AddDescriptionToTransactions < ActiveRecord::Migration
-  
+
   def self.up
     add_column :transactions, :description, :string
   end
@@ -9,5 +9,5 @@ class AddDescriptionToTransactions < ActiveRecord::Migration
   def self.down
     remove_column :transactions, :description
   end
-  
+
 end
