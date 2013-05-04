@@ -22,17 +22,17 @@ class Transaction < ActiveRecord::Base
   scope :period, lambda { |period|
     date = Date.from_period(period)
     where(
-      "COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?",
+      'COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?',
       date.beginning_of_month, date.end_of_month
     )
   }
 
   def self.category_search(query)
-    unscoped.select("DISTINCT(category)").where('category ILIKE :q', {q: "%#{query}%"}).order("category ASC")
+    unscoped.select('DISTINCT(category)').where('category ILIKE :q', {q: "%#{query}%"}).order('category ASC')
   end
 
   def self.description_search(query)
-    unscoped.select("DISTINCT(description)").where('description ILIKE :q', {q: "%#{query}%"}).order("description ASC")
+    unscoped.select('DISTINCT(description)').where('description ILIKE :q', {q: "%#{query}%"}).order('description ASC')
   end
 
   validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description

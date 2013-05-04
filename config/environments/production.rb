@@ -68,7 +68,7 @@ MoneyTracker::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.middleware.use ExceptionNotifier,
-    email_prefix: "[Money Tracker] ",
+    email_prefix: '[Money Tracker] ',
     sender_address: %{"notifier" <notifier@money-tracker.heroku.com>},
     exception_recipients: ENV['MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT'] || 'exceptions@example.com'
 end
