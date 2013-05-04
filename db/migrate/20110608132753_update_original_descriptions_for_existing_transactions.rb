@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class UpdateOriginalDescriptionsForExistingTransactions < ActiveRecord::Migration
-  
+
   def self.up
     Transaction.find_each(conditions: {original_description: nil}) do |transaction|
       transaction.send :set_original_description
@@ -10,5 +12,5 @@ class UpdateOriginalDescriptionsForExistingTransactions < ActiveRecord::Migratio
   def self.down
     # Intentionally blank
   end
-  
+
 end

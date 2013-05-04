@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'test_helper'
 
 class StatementImporterTest < ActiveSupport::TestCase
@@ -5,11 +6,11 @@ class StatementImporterTest < ActiveSupport::TestCase
     StatementImporter.import(example_ofx)
   end
 
-  test "should import two transactions" do
+  test 'should import two transactions' do
     assert_equal 2, Transaction.count
   end
 
-  test "should import the first transaction" do
+  test 'should import the first transaction' do
     transaction = Transaction.find_by_fit_id('2011010112345678901234567890123')
     assert_equal Date.parse('2011-01-01'), transaction.original_date
     assert_equal 'other',                  transaction.type
@@ -18,7 +19,7 @@ class StatementImporterTest < ActiveSupport::TestCase
     assert_equal 'LONDON',                 transaction.memo
   end
 
-  test "should import the second transaction" do
+  test 'should import the second transaction' do
     transaction = Transaction.find_by_fit_id('2011010212345678901234567890123')
     assert_equal Date.parse('2011-01-02'), transaction.original_date
     assert_equal 'other',                  transaction.type

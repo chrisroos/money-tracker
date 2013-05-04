@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module HtmlSelectorsHelpers
   # Maps a name to a selector. Used primarily by the
   #
@@ -8,8 +10,8 @@ module HtmlSelectorsHelpers
   def selector_for(locator)
     case locator
 
-    when "the page"
-      "html > body"
+    when 'the page'
+      'html > body'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

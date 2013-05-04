@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module NavigationHelpers
   # Maps a name to a path. Used by the
   #
@@ -10,10 +12,10 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
-      
+
     when /the transactions page for period "(.*)"/
       transactions_path(period: $1)
-      
+
     when /the search results page for the query "(.*)"/
       search_transactions_path(q: $1)
 

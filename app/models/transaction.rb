@@ -1,14 +1,16 @@
+# encoding: utf-8
+
 class Transaction < ActiveRecord::Base
 
   self.inheritance_column = :_disabled_sti
 
   default_scope order('COALESCE(date, original_date) DESC')
 
-  scope :search, lambda { |search_string|
-    if search_string =~ /category:(.*)/
-      where(category: $1)
-    elsif search_string =~ /description:(.*)/
-      where(description: $1)
+  scope :search, ->(search_string) {
+    if m = /category:(.*)/.match(search_string)
+      where(category: m[1])
+    elsif m = /description:(.*)/.match(search_string)
+      where(description: m[1])
     else
       where(
         'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q',
@@ -17,20 +19,20 @@ class Transaction < ActiveRecord::Base
     end
   }
 
-  scope :period, lambda { |period|
+  scope :period, ->(period) {
     date = Date.from_period(period)
     where(
-      "COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?",
+      'COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?',
       date.beginning_of_month, date.end_of_month
     )
   }
 
   def self.category_search(query)
-    unscoped.select("DISTINCT(category)").where('category ILIKE :q', {q: "%#{query}%"}).order("category ASC")
+    unscoped.select('DISTINCT(category)').where('category ILIKE :q', {q: "%#{query}%"}).order('category ASC')
   end
 
   def self.description_search(query)
-    unscoped.select("DISTINCT(description)").where('description ILIKE :q', {q: "%#{query}%"}).order("description ASC")
+    unscoped.select('DISTINCT(description)').where('description ILIKE :q', {q: "%#{query}%"}).order('description ASC')
   end
 
   validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description
@@ -41,7 +43,7 @@ class Transaction < ActiveRecord::Base
   before_validation :set_original_description, on: :create
 
   def amount
-    amount_in_pence/100.0
+    amount_in_pence / 100.0
   end
 
   def credit?

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ApplicationHelper
 
   def link_to_previous_period(period, path_options = {})

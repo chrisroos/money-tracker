@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 def assert_credit_transaction(amount, date, description, note = nil, category = nil)
   xpath = "//#{xpath_transaction}//#{xpath_paid_in(amount)}"
   xpath += "/ancestor::#{xpath_transaction}//#{xpath_description(description)}"

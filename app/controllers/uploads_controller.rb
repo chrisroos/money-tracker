@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class UploadsController < ApplicationController
 
   def new
@@ -12,7 +14,7 @@ class UploadsController < ApplicationController
       flash[:info] = "#{imported} transactions were imported.  #{duplicates} duplicate transactions were ignored."
       redirect_to current_period_transactions_path
     else
-      flash.now[:info] = "Please select the OFX file to upload"
+      flash.now[:info] = 'Please select the OFX file to upload'
       render :new
     end
   end

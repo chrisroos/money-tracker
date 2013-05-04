@@ -1,4 +1,6 @@
-if(Rails.env.production?)
+# encoding: utf-8
+
+if Rails.env.production?
   ActionMailer::Base.smtp_settings = {
     address:        'smtp.sendgrid.net',
     port:           '587',
