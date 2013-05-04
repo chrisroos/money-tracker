@@ -43,7 +43,7 @@ class Transaction < ActiveRecord::Base
   before_validation :set_original_description, on: :create
 
   def amount
-    amount_in_pence/100.0
+    amount_in_pence / 100.0
   end
 
   def credit?
