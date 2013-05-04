@@ -4,6 +4,7 @@
       %td
         - klass = 'firstOfDay' if index == 0 || transaction.date != @transactions[index-1].date
         %span.date{class: klass}= transaction.date.to_s(date_format)
+      %td.account= transaction.account.name
       %td.detail
         %p.description_and_category
           = link_to transaction_description(transaction), search_transactions_path(q: ['description', transaction_description(transaction)].join(':')), class: 'description'

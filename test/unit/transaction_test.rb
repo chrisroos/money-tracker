@@ -23,6 +23,11 @@ class TransactionValidationTest < ActiveSupport::TestCase
     assert transaction.valid?
   end
 
+  test 'should be invalid without an account_id' do
+    transaction = FactoryGirl.build(:transaction, account_id: nil)
+    assert ! transaction.valid?
+  end
+
   test 'should be invalid without an original date' do
     transaction = FactoryGirl.build(:transaction, original_date: nil)
     assert ! transaction.valid?
