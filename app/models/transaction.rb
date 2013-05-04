@@ -35,7 +35,9 @@ class Transaction < ActiveRecord::Base
     unscoped.select('DISTINCT(description)').where('description ILIKE :q', {q: "%#{query}%"}).order('description ASC')
   end
 
-  validates_presence_of :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description
+  belongs_to :account
+
+  validates_presence_of :account_id, :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description
   validates_uniqueness_of :fit_id
 
   attr_protected :original_date, :name, :amount_in_pence, :type, :fit_id, :memo, :original_description

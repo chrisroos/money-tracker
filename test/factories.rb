@@ -14,6 +14,7 @@ FactoryGirl.define do
   end
 
   factory :transaction do
+    account
     original_date   Date.today
     name            'transaction-name'
     amount_in_pence 1

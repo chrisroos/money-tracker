@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130504153900) do
     t.string  "category"
     t.string  "original_description"
     t.string  "location"
+    t.integer "account_id",           :null => false
   end
 
   create_table "uploads", :force => true do |t|
