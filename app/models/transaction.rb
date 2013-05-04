@@ -7,10 +7,10 @@ class Transaction < ActiveRecord::Base
   default_scope order('COALESCE(date, original_date) DESC')
 
   scope :search, ->(search_string) {
-    if search_string =~ /category:(.*)/
-      where(category: $1)
-    elsif search_string =~ /description:(.*)/
-      where(description: $1)
+    if m = /category:(.*)/.match(search_string)
+      where(category: m[1])
+    elsif m = /description:(.*)/.match(search_string)
+      where(description: m[1])
     else
       where(
         'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q',
