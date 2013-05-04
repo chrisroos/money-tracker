@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20130504153900) do
     t.string   "account_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "transactions", :force => true do |t|

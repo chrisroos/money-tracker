@@ -16,3 +16,15 @@ class AccountValidationTest < ActiveSupport::TestCase
     assert_raise(ActiveRecord::RecordInvalid) { FactoryGirl.create(:account, account_id: '123') }
   end
 end
+
+class AccountTest < ActiveSupport::TestCase
+  test "should use the account_id if the name isn't set" do
+    account = FactoryGirl.create(:account, account_id: 'account-id')
+    assert_equal 'account-id', account.name
+  end
+
+  test "should use the name if it is set" do
+    account = FactoryGirl.create(:account, name: 'account-name')
+    assert_equal 'account-name', account.name
+  end
+end
