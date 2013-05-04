@@ -39,6 +39,16 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
     assert_select "a[title='View in Google Maps']"
   end
+
+  test 'should display the name of the account the transaction belongs to' do
+    account = FactoryGirl.create(:account, name: 'account-name')
+    transaction = FactoryGirl.create(:transaction, account: account)
+    today = Date.today
+
+    get :index, period: today.to_s(:period)
+
+    assert_select '.account', text: 'account-name'
+  end
 end
 
 class TransactionsControllerBulkEditTest < ActionController::TestCase
