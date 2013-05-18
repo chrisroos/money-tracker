@@ -81,6 +81,26 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select "textarea[name='transaction[note]']", text: ''
   end
 
+  test 'should display original date in the edit form' do
+    date   = Date.parse('2011-01-01')
+    period = date.to_s(:period)
+    FactoryGirl.create(:transaction, original_date: date)
+
+    get :index, period: period, edit: true
+
+    assert_select '.original_date', '2011-01-01'
+  end
+
+  test 'should display original description in the edit form' do
+    transaction = FactoryGirl.create(:transaction)
+    transaction.original_description = 'original-description'
+    transaction.save!
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select '.original_description', 'original-description'
+  end
+
   test 'should display user-entered values in the edit form' do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
