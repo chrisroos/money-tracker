@@ -219,6 +219,25 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select "input[name='transaction[category]']"
   end
 
+  test 'displays the original date in the edit form' do
+    date   = Date.parse('2011-01-01')
+    transaction = FactoryGirl.create(:transaction, original_date: date)
+
+    get :edit, id: transaction
+
+    assert_select '.original_date', '2011-01-01'
+  end
+
+  test 'should display original description in the edit form' do
+    transaction = FactoryGirl.create(:transaction)
+    transaction.original_description = 'original-description'
+    transaction.save!
+
+    get :edit, id: transaction
+
+    assert_select '.original_description', 'original-description'
+  end
+
   test 'adds a category class to the category field to enable autocomplete' do
     transaction = FactoryGirl.create(:transaction, category: 'category-name')
 
