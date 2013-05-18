@@ -36,10 +36,16 @@
         %td
           = form_for(transaction, html: {id: nil}) do |transaction_form|
             = transaction_form.text_field :date, size: '10', id: nil, value: transaction.date
+            %span.help-block
+              Original:
+              %span.text-info.original_date= transaction.original_date
             = transaction_form.submit 'Save date', id: nil
         %td
           = form_for(transaction, html: {id: nil}) do |transaction_form|
             = transaction_form.text_field :description, size: '80', id: nil, value: transaction.description, class: 'description'
+            %span.help-block
+              Original:
+              %span.text-info.original_description= transaction.original_description
             = transaction_form.submit 'Save description', id: nil
         %td
           = form_for(transaction, html: {id: nil}) do |transaction_form|

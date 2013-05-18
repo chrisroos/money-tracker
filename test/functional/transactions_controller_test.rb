@@ -81,6 +81,26 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select "textarea[name='transaction[note]']", text: ''
   end
 
+  test 'should display original date in the edit form' do
+    date   = Date.parse('2011-01-01')
+    period = date.to_s(:period)
+    FactoryGirl.create(:transaction, original_date: date)
+
+    get :index, period: period, edit: true
+
+    assert_select '.original_date', '2011-01-01'
+  end
+
+  test 'should display original description in the edit form' do
+    transaction = FactoryGirl.create(:transaction)
+    transaction.original_description = 'original-description'
+    transaction.save!
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select '.original_description', 'original-description'
+  end
+
   test 'should display user-entered values in the edit form' do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
@@ -136,14 +156,13 @@ class TransactionsControllerSearchTest < ActionController::TestCase
 
   test 'should add a class to the first transaction on a given day' do
     today = Date.today
-    transaction_1 = FactoryGirl.create(:transaction, date: today, description: 'test description')
-    transaction_2 = FactoryGirl.create(:transaction, date: today, description: 'test description')
+    FactoryGirl.create(:transaction, date: today, description: 'test description')
+    FactoryGirl.create(:transaction, date: today, description: 'test description')
 
     get :search, q: 'test description'
 
-    assert_select "#transaction_#{transaction_1.id} .date.firstOfDay"
-    assert_select "#transaction_#{transaction_2.id} .date"
-    assert_select "#transaction_#{transaction_2.id} .date.firstOfDay", count: 0
+    assert_select '.transaction .date', count: 2
+    assert_select '.transaction .date.firstOfDay', count: 1
   end
 
   test 'should include the search string in the page title' do
@@ -197,6 +216,25 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select "input[name='transaction[location]']"
     assert_select "textarea[name='transaction[note]']"
     assert_select "input[name='transaction[category]']"
+  end
+
+  test 'displays the original date in the edit form' do
+    date   = Date.parse('2011-01-01')
+    transaction = FactoryGirl.create(:transaction, original_date: date)
+
+    get :edit, id: transaction
+
+    assert_select '.original_date', '2011-01-01'
+  end
+
+  test 'should display original description in the edit form' do
+    transaction = FactoryGirl.create(:transaction)
+    transaction.original_description = 'original-description'
+    transaction.save!
+
+    get :edit, id: transaction
+
+    assert_select '.original_description', 'original-description'
   end
 
   test 'adds a category class to the category field to enable autocomplete' do
