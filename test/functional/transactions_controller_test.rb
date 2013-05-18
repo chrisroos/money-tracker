@@ -156,14 +156,13 @@ class TransactionsControllerSearchTest < ActionController::TestCase
 
   test 'should add a class to the first transaction on a given day' do
     today = Date.today
-    transaction_1 = FactoryGirl.create(:transaction, date: today, description: 'test description')
-    transaction_2 = FactoryGirl.create(:transaction, date: today, description: 'test description')
+    FactoryGirl.create(:transaction, date: today, description: 'test description')
+    FactoryGirl.create(:transaction, date: today, description: 'test description')
 
     get :search, q: 'test description'
 
-    assert_select "#transaction_#{transaction_1.id} .date.firstOfDay"
-    assert_select "#transaction_#{transaction_2.id} .date"
-    assert_select "#transaction_#{transaction_2.id} .date.firstOfDay", count: 0
+    assert_select '.transaction .date', count: 2
+    assert_select '.transaction .date.firstOfDay', count: 1
   end
 
   test 'should include the search string in the page title' do
