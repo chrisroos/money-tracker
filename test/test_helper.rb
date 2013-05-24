@@ -12,6 +12,12 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def in_demo_mode(&block)
+    ENV['DEMO_MODE'] = 'true'
+    yield
+  ensure
+    ENV.delete('DEMO_MODE')
+  end
 end
 
 require 'mocha/setup'

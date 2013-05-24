@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class UploadsController < ApplicationController
+  before_filter :hide_uploads_in_demo_mode
 
   def new
     @upload = Upload.new
@@ -19,4 +20,9 @@ class UploadsController < ApplicationController
     end
   end
 
+  private
+
+  def hide_uploads_in_demo_mode
+    render :demo if demo_mode?
+  end
 end

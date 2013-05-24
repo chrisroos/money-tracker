@@ -20,4 +20,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def demo_mode?
+    ENV['DEMO_MODE']
+  end
 end
