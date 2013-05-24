@@ -6,5 +6,7 @@ class LinkTransactionsToAccounts < ActiveRecord::Migration
     account = Account.create! account_id: 'generated-by-migration'
     update "UPDATE transactions SET account_id = #{account.id}"
     change_column :transactions, :account_id, :integer, null: false
+
+    Transaction.reset_column_information
   end
 end
