@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/floehopper/ofx.git
-  revision: d45a9f5d6567f2ebff34a78a24d0be83bb59ab33
+  remote: git://github.com/annacruz/ofx.git
+  revision: e9d2a94bf988f47e77e3f4803d27867375d72450
   specs:
-    ofx (0.3.1)
+    ofx (0.3.2)
       nokogiri
 
 GEM

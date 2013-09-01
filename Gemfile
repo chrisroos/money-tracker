@@ -11,8 +11,8 @@ gem 'pg'
 gem 'haml'
 gem 'thin'
 
-# Avoid iconv deprecation warning
-gem 'ofx', :git => 'git://github.com/floehopper/ofx.git'
+# Avoid iconv deprecation warning pending release of new gem version
+gem 'ofx', :git => 'git://github.com/annacruz/ofx.git'
 
 gem 'exception_notification', :require => 'exception_notifier'
 
