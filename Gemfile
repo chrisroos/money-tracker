@@ -12,7 +12,7 @@ gem 'haml'
 gem 'thin'
 
 # Avoid iconv deprecation warning
-gem 'ofx', :git => 'git://github.com/floehopper/ofx.git'
+gem 'ofx'
 
 gem 'exception_notification', :require => 'exception_notifier'
 
