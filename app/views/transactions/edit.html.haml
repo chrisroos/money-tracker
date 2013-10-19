@@ -7,6 +7,10 @@
 
 = form_for @transaction, html: {class: 'edit_transaction transaction'} do |transaction_form|
   %div
+    %span.help-block
+      Account:
+      %span.text-info.account_name= @transaction.account.name
+  %div
     = transaction_form.label :date
     = transaction_form.text_field :date, size: '10', value: @transaction.date
     %span.help-block

@@ -65,6 +65,15 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select "input[name='transaction[category]']"
   end
 
+  test 'displays the account name in the edit form' do
+    account = FactoryGirl.create(:account, name: 'account-name')
+    transaction = FactoryGirl.create(:transaction, account_id: account.id)
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select '.account_name', 'account-name'
+  end
+
   test 'should display original values in the edit form' do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
@@ -223,6 +232,15 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select "input[name='transaction[location]']"
     assert_select "textarea[name='transaction[note]']"
     assert_select "input[name='transaction[category]']"
+  end
+
+  test 'displays the account name in the edit form' do
+    account = FactoryGirl.create(:account, name: 'account-name')
+    transaction = FactoryGirl.create(:transaction, account_id: account.id)
+
+    get :edit, id: transaction
+
+    assert_select '.account_name', 'account-name'
   end
 
   test 'displays the original date in the edit form' do
