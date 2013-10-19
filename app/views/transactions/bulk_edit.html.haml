@@ -24,6 +24,7 @@
   %thead
     %tr
       %th Date
+      %th Account
       %th Description
       %th Location
       %th Paid in
@@ -40,6 +41,8 @@
               Original:
               %span.text-info.original_date= transaction.original_date
             = transaction_form.submit 'Save date', id: nil
+        %td
+          %span.text-info.account_name= transaction.account.name
         %td
           = form_for(transaction, html: {id: nil}) do |transaction_form|
             = transaction_form.text_field :description, size: '80', id: nil, value: transaction.description, class: 'description'
