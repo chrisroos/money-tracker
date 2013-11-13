@@ -1,22 +1,6 @@
 # encoding: utf-8
 require 'test_helper'
 
-class TransactionProtectedAttributesTest < ActiveSupport::TestCase
-  {
-    original_date:   Date.parse('2011-01-01'),
-    name:            'ofx-name',
-    amount_in_pence: 123,
-    type:            'ofx-type',
-    fit_id:          'ofx-fit-id',
-    memo:            'ofx-memo',
-    original_description: 'original-description'
-  }.each do |protected_attribute, value|
-    test "should not allow mass assignment of #{protected_attribute}" do
-      assert_raise(ActiveModel::MassAssignmentSecurity::Error) { Transaction.new(protected_attribute => value) }
-    end
-  end
-end
-
 class TransactionValidationTest < ActiveSupport::TestCase
   test 'should be valid when build from the factory' do
     transaction = FactoryGirl.build(:transaction)
