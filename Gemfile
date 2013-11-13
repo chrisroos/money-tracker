@@ -40,7 +40,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'ofx'
 
 # Send exception notifications by email
-gem 'exception_notification', :require => 'exception_notifier'
+gem 'exception_notification'
 
 
 group :doc do
