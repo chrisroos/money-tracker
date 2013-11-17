@@ -66,3 +66,7 @@ Sometimes the application breaks.  If you want to be emailed when it does you'll
 
     # Import the data
     $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -d money_tracker_development ./tmp/money-tracker-db.dump
+
+## Export data to CSV
+
+    $ rails r script/create-csv.rb "Name of account"
