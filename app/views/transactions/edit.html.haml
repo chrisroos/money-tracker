@@ -11,6 +11,10 @@
       Account:
       %span.text-info.account_name= @transaction.account.name
   %div
+    %span.help-block
+      Account:
+      %span.text-info.account_name= @transaction.account.name
+  %div
     = transaction_form.label :date
     = transaction_form.text_field :date, size: '10', value: @transaction.date
     %span.help-block
