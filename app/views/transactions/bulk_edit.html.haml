@@ -49,7 +49,7 @@
             = transaction_form.submit 'Save description', id: nil
         %td
           = form_for(transaction, html: {id: nil}) do |transaction_form|
-            = transaction_form.text_field :location, size: '40', id: nil, value: transaction.location
+            = transaction_form.text_field :location, size: '40', id: nil, value: transaction.location, class: 'location'
             = transaction_form.submit 'Save location', id: nil
         %td= transaction_amount_in(transaction)
         %td= transaction_amount_out(transaction)

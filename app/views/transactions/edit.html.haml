@@ -5,7 +5,7 @@
 
 %h1= page_title
 
-= form_for @transaction do |transaction_form|
+= form_for @transaction, html: {class: 'edit_transaction transaction'} do |transaction_form|
   %div
     = transaction_form.label :date
     = transaction_form.text_field :date, size: '10', value: @transaction.date
@@ -20,7 +20,7 @@
       %span.text-info.original_description= @transaction.original_description
   %div
     = transaction_form.label :location
-    = transaction_form.text_field :location, size: '40', value: @transaction.location
+    = transaction_form.text_field :location, size: '40', value: @transaction.location, class: 'location'
   %div
     = transaction_form.label :note
     = transaction_form.text_area :note, size: '40x3'

@@ -35,6 +35,10 @@ class Transaction < ActiveRecord::Base
     unscoped.select('DISTINCT(description)').where('description ILIKE :q', {q: "%#{query}%"}).order('description ASC')
   end
 
+  def self.location_search(description, query)
+    unscoped.select('DISTINCT(location)').where('UPPER(description) = UPPER(:description) AND location ILIKE :q', {description: description, q: "%#{query}%"}).order('location ASC')
+  end
+
   belongs_to :account
 
   validates_presence_of :account_id, :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description

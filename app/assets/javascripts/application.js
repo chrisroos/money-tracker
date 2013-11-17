@@ -50,4 +50,21 @@ $(document).ready(function() {
     source: '/descriptions/search',
     minLength: 0, delay: 100
   });
+
+  // I can't just pass a URL as the `source` option because I need to get the value of the associated
+  // description at the time the autocomplete function fires.
+  // This relies on the transaction container (a `tr` in bulk edit and the form in single edit) having
+  // a class of 'transaction'.
+  $("input.location").each(function() {
+    var locationElement = $(this);
+    $(this).autocomplete({
+      source: function(request, response) {
+        var transactionContainer = $(locationElement).parents('.transaction');
+        var description = $('input.description', transactionContainer).val();
+        var sourcePath = '/locations/search?description=' + encodeURIComponent(description) + '&term=' + request.term;
+        $.ajax(sourcePath).done(function(data) { response(data); });
+      },
+      minLength: 0, delay: 100
+    });
+  });
 });

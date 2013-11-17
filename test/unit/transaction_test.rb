@@ -111,6 +111,22 @@ class TransactionDescriptionSearchTest < ActiveSupport::TestCase
   end
 end
 
+class TransactionLocationSearchTest < ActiveSupport::TestCase
+  test 'should only return the locations matching the description _and_ query in alphabetical order' do
+    FactoryGirl.create(:transaction, description: 'description-a', location: 'Z MATCHING')
+    FactoryGirl.create(:transaction, description: 'description-a', location: 'no-match')
+    FactoryGirl.create(:transaction, description: 'description-a', location: 'A matching')
+    FactoryGirl.create(:transaction, description: 'description-z', location: 'matching for different description')
+    assert_equal ['A matching', 'Z MATCHING'], Transaction.location_search('description-a', 'matching').map(&:location)
+  end
+
+  test 'should ignore the case of the description when searching for locations' do
+    FactoryGirl.create(:transaction, description: 'description-a', location: 'matching-a')
+    FactoryGirl.create(:transaction, description: 'DESCRIPTION-A', location: 'matching-b')
+    assert_equal ['matching-a', 'matching-b'], Transaction.location_search('description-a', 'matching').map(&:location)
+  end
+end
+
 class TransactionPeriodTest < ActiveSupport::TestCase
   test 'should only return transactions within the given period' do
     FactoryGirl.create(:transaction, original_date: Date.parse('2011-01-01'))

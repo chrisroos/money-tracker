@@ -129,6 +129,14 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select 'input.description', value: 'description-name'
   end
 
+  test 'adds a location class to the location field to enable autocomplete' do
+    FactoryGirl.create(:transaction, location: 'location-name')
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select 'input.location', value: 'location-name'
+  end
+
   test 'should link to the edit form of the previous and next period' do
     get :index, period: Date.parse('2011-08-01').to_s(:period), edit: 'true'
 
@@ -251,6 +259,22 @@ class TransactionsControllerEditTest < ActionController::TestCase
     get :edit, id: transaction
 
     assert_select 'input.description', value: 'category-name'
+  end
+
+  test 'adds a location class to the location field to enable autocomplete' do
+    transaction = FactoryGirl.create(:transaction, location: 'location-name')
+
+    get :edit, id: transaction
+
+    assert_select 'input.location', value: 'location-name'
+  end
+
+  test 'adds a transaction class to the form to enable autocomplete of the location field' do
+    transaction = FactoryGirl.create(:transaction)
+
+    get :edit, id: transaction
+
+    assert_select 'form.edit_transaction.transaction'
   end
 end
 
