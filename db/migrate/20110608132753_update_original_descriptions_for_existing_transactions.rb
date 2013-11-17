@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class UpdateOriginalDescriptionsForExistingTransactions < ActiveRecord::Migration
 
   def self.up

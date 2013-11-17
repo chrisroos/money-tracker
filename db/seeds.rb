@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # This is the data used in the demo money tracker site, although there's nothing
 # to stop you using it in development too.
 

@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class StatementImporter
 
   def self.import(ofx)

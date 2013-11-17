@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class UploadsController < ApplicationController
   before_filter :hide_uploads_in_demo_mode
 

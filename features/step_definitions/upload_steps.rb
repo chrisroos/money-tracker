@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 Given(/^I have uploaded "([^"]*)"$/) do |filename|
   step %%I upload "#{filename}"%
 end

@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class RenameTransactionsAmountColumn < ActiveRecord::Migration
 
   def self.up

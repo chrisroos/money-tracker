@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class TransactionsController < ApplicationController
 
   def index

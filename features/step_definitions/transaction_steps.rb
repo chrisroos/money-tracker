@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 Then(/^I should see that the income of the transactions is £(\d+)$/) do |income|
   assert page.has_css?('#income', text: "£#{income}")
 end

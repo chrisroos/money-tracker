@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module TransactionsHelper
 
   def transaction_description(transaction)

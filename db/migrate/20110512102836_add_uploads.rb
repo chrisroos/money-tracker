@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class AddUploads < ActiveRecord::Migration
 
   def self.up

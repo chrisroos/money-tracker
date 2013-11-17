@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 FactoryGirl.define do
   sequence :account_id do |n|
     n.to_s
