@@ -62,7 +62,7 @@ Sometimes the application breaks.  If you want to be emailed when it does you'll
 
     # Download the data
     $ heroku pgbackups:capture --app money-tracker
-    $ curl -o money-tracker-db.dump `heroku pgbackups:url --app money-tracker`
+    $ curl -o ./tmp/money-tracker-db.dump `heroku pgbackups:url --app money-tracker`
 
     # Import the data
-    $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -d money_tracker_development money-tracker-db.dump
+    $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -d money_tracker_development ./tmp/money-tracker-db.dump
