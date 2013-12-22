@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
     redirect_to current_period_transactions_path unless params[:period]
 
     @transactions = Transaction.period(params[:period])
-    render :bulk_edit if params[:edit]
+    render :bulk_edit if params[:edit].present?
   end
 
   def edit
@@ -22,6 +22,6 @@ class TransactionsController < ApplicationController
 
   def search
     @transactions = Transaction.search(params[:q])
-    render :bulk_edit if params[:edit]
+    render :bulk_edit if params[:edit].present?
   end
 end
