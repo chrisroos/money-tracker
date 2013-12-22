@@ -3,10 +3,12 @@
 - content_for :title do
   = page_title
 
-%h1= page_title
-
-.nav
-  = link_to 'Edit transactions', search_transactions_path(q: params[:q], edit: true)
+.row-fluid
+  .span8
+    %h1= page_title
+  .span4
+    = link_to search_transactions_path(q: params[:q], edit: true), class: 'btn pull-right' do
+      - ['<i class="icon-edit"></i>', 'Edit transactions'].join(' ').html_safe
 
 %table#transactions.table.table-striped.table-condensed.table-bordered
   = render partial: 'table_header'
