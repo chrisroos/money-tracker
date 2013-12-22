@@ -25,6 +25,8 @@ class Transaction < ActiveRecord::Base
     )
   }
 
+  scope :uncategorized, -> { where("category IS NULL OR TRIM(category) =''") }
+
   def self.category_search(query)
     unscoped.select('DISTINCT(category)').where('category ILIKE :q', {q: "%#{query}%"}).order('category ASC')
   end

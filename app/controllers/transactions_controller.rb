@@ -34,4 +34,15 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def uncategorized
+    @filter =  "not yet categorized"
+    @date_format = :human_friendly
+    @transactions = Transaction.uncategorized
+    if params[:edit].present?
+      render :bulk_edit
+    else
+      render :index
+    end
+  end
+
 end
