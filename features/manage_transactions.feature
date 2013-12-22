@@ -107,6 +107,19 @@ Feature: Manage transactions
 
     Then I should see a debit of £0.01 on 2010-01-02 described as "Groceries"
 
+  Scenario: Viewing uncategorized transactions
+    Given the following transactions exist:
+      | date       | name            | type    | amount_in_pence | category   |
+      | 2011-01-01 | Shop X          | Other   | -2000           | Shopping   |
+      | 2011-01-02 | Cash withdrawal | Atm     | -100            | Withdrawal |
+      | 2011-02-01 | Shop Y          | Other   | -3000           |            |
+    And I am on the transactions page for period "2011-02"
+
+    When I follow "Uncategorized transactions"
+
+    Then I should see "Transactions not yet categorized"
+    And I should see a debit of £30.00 on 2011-02-01 described as "Shop Y (Other)"
+
   Scenario: Viewing all transactions with a given category
     Given the following transactions exist:
       | date       | name            | type    | amount_in_pence | category   |

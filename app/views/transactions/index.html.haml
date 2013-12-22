@@ -1,4 +1,4 @@
-- page_title = "Transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
+- page_title = "Transactions #{@filter}"
 
 - content_for :title do
   = page_title
@@ -7,14 +7,15 @@
   .span8
     %h1= page_title
   .span4
-    = link_to transactions_path(period: params[:period], edit: true), class: 'btn pull-right' do
+    = link_to url_for(params.merge(edit: true)), class: 'btn pull-right' do
       - ['<i class="icon-edit"></i>', 'Edit transactions'].join(' ').html_safe
 
-.nav
-  = link_to_previous_period params[:period]
-  = link_to_next_period params[:period]
+- if params[:period]
+  .nav
+    = link_to_previous_period params[:period]
+    = link_to_next_period params[:period]
 
 %table#transactions.table.table-striped.table-condensed.table-bordered
   = render partial: 'table_header'
   = render partial: 'table_footer'
-  = render partial: 'table_body', locals: {date_format: :weekday_and_day}
+  = render partial: 'table_body', locals: {date_format: @date_format}

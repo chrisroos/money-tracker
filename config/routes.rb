@@ -3,6 +3,7 @@ MoneyTracker::Application.routes.draw do
   resources :transactions, only: [:index, :edit, :update] do
     collection do
       get :search
+      get :uncategorized
     end
   end
   resources :uploads,      only: [:new, :create]

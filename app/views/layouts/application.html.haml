@@ -16,6 +16,8 @@
             %li
               = link_to 'Recent transactions', transactions_path
             %li
+              = link_to 'Uncategorized transactions', uncategorized_transactions_path
+            %li
               = link_to 'Upload statement', new_upload_path
           %div
             = form_tag search_transactions_path, method: :get, class: 'navbar-search pull-right' do

@@ -211,6 +211,47 @@ class TransactionsControllerSearchAndEditTest < ActionController::TestCase
   end
 end
 
+class TransactionsControllerUncategorizedTest < ActionController::TestCase
+  include ActionView::RecordIdentifier
+  tests TransactionsController
+
+  test 'renders index template' do
+    get :uncategorized
+    assert_template :index
+  end
+
+  test 'only displays uncategorized transactions' do
+    uncategorized_transaction = FactoryGirl.create(:transaction, category: nil)
+    categorized_transaction = FactoryGirl.create(:transaction, category: 'my-category')
+
+    get :uncategorized
+
+    assert_select "##{dom_id(uncategorized_transaction)}"
+    assert_select "##{dom_id(categorized_transaction)}", count: 0
+  end
+end
+
+class TransactionsControllerUncategorizedAndEditTest < ActionController::TestCase
+  include ActionView::RecordIdentifier
+  tests TransactionsController
+
+  test 'renders bulk edit template' do
+    get :uncategorized, edit: true
+    assert_template :bulk_edit
+  end
+
+
+  test 'only displays uncategorized transactions' do
+    uncategorized_transaction = FactoryGirl.create(:transaction, category: nil)
+    categorized_transaction = FactoryGirl.create(:transaction, category: 'my-category')
+
+    get :uncategorized, edit: true
+
+    assert_select "##{dom_id(uncategorized_transaction)}"
+    assert_select "##{dom_id(categorized_transaction)}", count: 0
+  end
+end
+
 class TransactionsControllerEditTest < ActionController::TestCase
   tests TransactionsController
 

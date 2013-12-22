@@ -1,7 +1,4 @@
--page_title = if params[:q]
-  - "Edit transactions matching '#{params[:q]}'"
--else
-  - "Edit transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
+- page_title = "Edit transactions #{@filter}"
 
 - content_for :title do
   = page_title
@@ -10,10 +7,7 @@
   .span8
     %h1= page_title
   .span4
-    - if params[:q]
-      = link_to 'View transactions', search_transactions_path(q: params[:q]), class: 'btn pull-right'
-    - else
-      = link_to 'View transactions', transactions_path(period: params[:period]), class: 'btn pull-right'
+    = link_to 'View transactions', url_for(params.merge(edit: '')), class: 'btn pull-right'
 
 - if params[:period]
   .nav
