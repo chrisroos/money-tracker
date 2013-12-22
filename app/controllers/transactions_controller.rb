@@ -3,6 +3,7 @@ class TransactionsController < ApplicationController
     redirect_to current_period_transactions_path unless params[:period]
 
     @filter = "for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
+    @date_format = :weekday_and_day
     @transactions = Transaction.period(params[:period])
     render :bulk_edit if params[:edit].present?
   end
@@ -23,7 +24,12 @@ class TransactionsController < ApplicationController
 
   def search
     @filter =  "matching '#{params[:q]}'"
+    @date_format = :human_friendly
     @transactions = Transaction.search(params[:q])
-    render :bulk_edit if params[:edit].present?
+    if params[:edit].present?
+      render :bulk_edit
+    else
+      render :index
+    end
   end
 end
