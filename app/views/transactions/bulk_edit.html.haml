@@ -1,7 +1,4 @@
--page_title = if params[:q]
-  - "Edit transactions matching '#{params[:q]}'"
--else
-  - "Edit transactions for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
+- page_title = "Edit transactions #{@filter}"
 
 - content_for :title do
   = page_title
