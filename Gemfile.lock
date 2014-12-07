@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/chrisroos/ofx.git
+  revision: 1b04543227d10da2d2100695071c142cc7f82184
+  branch: add-support-for-version-202-ofx-files
+  specs:
+    ofx (0.3.2)
+      nokogiri
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -113,8 +121,6 @@ GEM
     multi_test (0.0.2)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
-    ofx (0.3.2)
-      nokogiri
     parser (2.0.0)
       ast (~> 1.1)
       slop (~> 3.4, >= 3.4.5)
@@ -228,7 +234,7 @@ DEPENDENCIES
   less-rails
   mocha
   nokogiri (>= 1.4.4)
-  ofx
+  ofx!
   pg
   pickle
   rails (= 4.0.1)

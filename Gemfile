@@ -37,7 +37,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Avoid iconv deprecation warning
-gem 'ofx'
+gem 'ofx', git: 'git://github.com/chrisroos/ofx.git', branch: 'add-support-for-version-202-ofx-files'
 
 # Send exception notifications by email
 gem 'exception_notification'
