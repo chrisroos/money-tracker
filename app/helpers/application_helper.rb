@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def link_to_previous_period(period, path_options = {})
     previous_period = Date.from_period(period) - 1.month
     link_to transactions_path({ period: previous_period.to_s(:period) }.merge(path_options)), class: 'previous_period btn btn-info' do
