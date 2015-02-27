@@ -10,15 +10,15 @@ Transaction.destroy_all
 Account.destroy_all
 
 module SeedTransaction
-  Accounts = [
+  ACCOUNTS = [
     Account.create!(account_id: 'personal-account', name: 'Personal account'),
     Account.create!(account_id: 'joint-account', name: 'Joint account')
   ]
-  Types = [
+  TYPES = [
     'DEBIT',
     'CREDIT'
   ]
-  Descriptions = [
+  DESCRIPTIONS = [
     'Tesco',
     'Staples',
     'The Horse and Groom',
@@ -27,16 +27,16 @@ module SeedTransaction
     'Rent',
     nil # So that we leave some transactions 'unedited'
   ]
-  Categories = [
+  CATEGORIES = [
     'Entertainment',
     nil, nil, nil # So that we leave some transactions uncategorised
   ]
-  Notes = [
+  NOTES = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     nil, nil, nil # So that we leave some transactions with empty notes
   ]
-  Amounts = (1..10000).to_a
-  LastThreeMonths = (3.months.ago.to_date..Date.today).to_a
+  AMOUNTS = (1..10000).to_a
+  LAST_THREE_MONTHS = (3.months.ago.to_date..Date.today).to_a
 
   class FitId
     @fit_id = 0
@@ -47,18 +47,18 @@ module SeedTransaction
 end
 
 150.times do
-  transaction_type = SeedTransaction::Types.sample
-  transaction_amount = SeedTransaction::Amounts.sample
+  transaction_type = SeedTransaction::TYPES.sample
+  transaction_amount = SeedTransaction::AMOUNTS.sample
   transaction_amount = -transaction_amount if transaction_type == 'CREDIT'
 
-  t = SeedTransaction::Accounts.sample.transactions.build
+  t = SeedTransaction::ACCOUNTS.sample.transactions.build
   t.type = transaction_type
   t.amount_in_pence = transaction_amount
-  t.original_date = SeedTransaction::LastThreeMonths.sample
+  t.original_date = SeedTransaction::LAST_THREE_MONTHS.sample
   t.fit_id = SeedTransaction::FitId.next
   t.name = 'original transaction name'
-  t.description = SeedTransaction::Descriptions.sample
-  t.category = SeedTransaction::Categories.sample
-  t.note = SeedTransaction::Notes.sample
+  t.description = SeedTransaction::DESCRIPTIONS.sample
+  t.category = SeedTransaction::CATEGORIES.sample
+  t.note = SeedTransaction::NOTES.sample
   t.save!
 end
