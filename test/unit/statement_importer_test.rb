@@ -27,7 +27,7 @@ class StatementImporterTest < ActiveSupport::TestCase
     transaction = Transaction.find_by_fit_id('2011010112345678901234567890123')
     assert_equal Date.parse('2011-01-01'), transaction.original_date
     assert_equal 'other',                  transaction.type
-    assert_equal -123,                     transaction.amount_in_pence
+    assert_equal(-123,                     transaction.amount_in_pence)
     assert_equal 'SHOP X',                 transaction.name
     assert_equal 'LONDON',                 transaction.memo
   end
