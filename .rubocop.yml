@@ -3,4 +3,6 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   Exclude:
     - '.bundle/**/*'
+    - 'db/schema.rb'
+    - 'lib/tasks/cucumber.rake'
   RunRailsCops: true
