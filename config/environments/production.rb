@@ -81,7 +81,7 @@ MoneyTracker::Application.configure do
   notifier_options = {
     email: {
       email_prefix: '[Money Tracker] ',
-      sender_address: %{"notifier" <notifier@money-tracker.heroku.com>},
+      sender_address: %("notifier" <notifier@money-tracker.heroku.com>),
       exception_recipients: ENV['MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT'] || 'exceptions@example.com'
     }
   }
