@@ -3,7 +3,7 @@ class Transaction < ActiveRecord::Base
 
   default_scope { order('COALESCE(date, original_date) DESC') }
 
-  scope :search, ->(search_string) {
+  def self.search(search_string)
     if (m = /category:(.*)/.match(search_string))
       where(category: m[1])
     elsif (m = /description:(.*)/.match(search_string))
@@ -14,15 +14,15 @@ class Transaction < ActiveRecord::Base
         q: "%#{search_string}%"
       )
     end
-  }
+  end
 
-  scope :period, ->(period) {
+  def self.period(period)
     date = Date.from_period(period)
     where(
       'COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?',
       date.beginning_of_month, date.end_of_month
     )
-  }
+  end
 
   def self.category_search(query)
     unscoped.select('DISTINCT(category)').where('category ILIKE :q', q: "%#{query}%").order('category ASC')
