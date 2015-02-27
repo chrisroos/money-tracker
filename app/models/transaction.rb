@@ -4,9 +4,9 @@ class Transaction < ActiveRecord::Base
   default_scope { order('COALESCE(date, original_date) DESC') }
 
   scope :search, ->(search_string) {
-    if m = /category:(.*)/.match(search_string)
+    if (m = /category:(.*)/.match(search_string))
       where(category: m[1])
-    elsif m = /description:(.*)/.match(search_string)
+    elsif (m = /description:(.*)/.match(search_string))
       where(description: m[1])
     else
       where(
