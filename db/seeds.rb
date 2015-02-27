@@ -14,10 +14,7 @@ module SeedTransaction
     Account.create!(account_id: 'personal-account', name: 'Personal account'),
     Account.create!(account_id: 'joint-account', name: 'Joint account')
   ]
-  TYPES = [
-    'DEBIT',
-    'CREDIT'
-  ]
+  TYPES = %w(DEBIT CREDIT)
   DESCRIPTIONS = [
     'Tesco',
     'Staples',
