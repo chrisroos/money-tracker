@@ -1,3 +1,3 @@
 class Upload < ActiveRecord::Base
-  validates_presence_of :ofx_file
+  validates :ofx_file, presence: true
 end

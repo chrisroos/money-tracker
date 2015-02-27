@@ -38,8 +38,8 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :account
 
-  validates_presence_of :account_id, :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description
-  validates_uniqueness_of :fit_id
+  validates :account_id, :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description, presence: true
+  validates :fit_id, uniqueness: true
 
   before_validation :set_original_description, on: :create
 
