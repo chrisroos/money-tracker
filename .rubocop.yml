@@ -5,6 +5,8 @@ AllCops:
     - '.bundle/**/*'
     - 'db/schema.rb'
     - 'lib/tasks/cucumber.rake'
+    - 'features/support/paths.rb'
+    - 'features/support/selectors.rb'
   RunRailsCops: true
 Style/Documentation:
   Enabled: false
