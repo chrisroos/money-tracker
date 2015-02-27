@@ -40,7 +40,7 @@ end
 group :development do
   gem 'travis-lint'
   gem 'foreman'
-  gem 'rubocop'
+  gem 'rubocop', require: false
 end
 
 group :test do
