@@ -27,9 +27,6 @@ gem 'jquery-rails'
 # Use jquery-ui for autocomplete in text fields
 gem 'jquery-ui-rails'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
-
 # Avoid iconv deprecation warning
 gem 'ofx', git: 'git://github.com/chrisroos/ofx.git', branch: 'add-support-for-version-202-ofx-files'
 
