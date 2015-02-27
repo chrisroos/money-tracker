@@ -13,11 +13,11 @@ FactoryGirl.define do
 
   factory :transaction do
     account
-    original_date   Date.today
-    name            'transaction-name'
+    original_date Date.today
+    name 'transaction-name'
     amount_in_pence 1
     fit_id
-    type            'OTHER'
+    type 'OTHER'
   end
 
   factory :upload do
