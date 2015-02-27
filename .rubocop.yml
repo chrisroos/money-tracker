@@ -16,3 +16,6 @@ Style/Documentation:
 Rails/Output:
   Exclude:
     - 'db/seeds.rb'
+Style/FileName:
+  Exclude:
+    - 'script/create-csv.rb'
