@@ -302,8 +302,11 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
     request.env['HTTP_REFERER'] = '/previous-location'
 
     transaction = FactoryGirl.create(:transaction,
-      date: Date.today, description: 'old-description', location: 'old-location',
-      note: 'old-note', category: 'old-category'
+                                     date: Date.today,
+                                     description: 'old-description',
+                                     location: 'old-location',
+                                     note: 'old-note',
+                                     category: 'old-category'
     )
 
     put :update, id: transaction, transaction: {
