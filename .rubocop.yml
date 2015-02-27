@@ -1,0 +1,21 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - '.bundle/**/*'
+    - 'config/boot.rb'
+    - 'db/schema.rb'
+    - 'lib/tasks/cucumber.rake'
+    - 'features/support/paths.rb'
+    - 'features/support/selectors.rb'
+    - 'features/step_definitions/web_steps.rb'
+    - 'features/step_definitions/pickle_steps.rb'
+  RunRailsCops: true
+Style/Documentation:
+  Enabled: false
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'
+Style/FileName:
+  Exclude:
+    - 'script/create-csv.rb'

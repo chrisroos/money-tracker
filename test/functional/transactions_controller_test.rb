@@ -41,7 +41,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
   test 'should display the name of the account the transaction belongs to' do
     account = FactoryGirl.create(:account, name: 'account-name')
-    transaction = FactoryGirl.create(:transaction, account: account)
+    FactoryGirl.create(:transaction, account: account)
     today = Date.today
 
     get :index, period: today.to_s(:period)
@@ -54,7 +54,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   tests TransactionsController
 
   test 'displays the edit form' do
-    transaction = FactoryGirl.create(:transaction)
+    FactoryGirl.create(:transaction)
 
     get :index, period: Date.today.to_s(:period), edit: true
 
@@ -67,7 +67,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
 
   test 'displays the account name in the edit form' do
     account = FactoryGirl.create(:account, name: 'account-name')
-    transaction = FactoryGirl.create(:transaction, account_id: account.id)
+    FactoryGirl.create(:transaction, account_id: account.id)
 
     get :index, period: Date.today.to_s(:period), edit: true
 
@@ -302,8 +302,11 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
     request.env['HTTP_REFERER'] = '/previous-location'
 
     transaction = FactoryGirl.create(:transaction,
-      date: Date.today, description: 'old-description', location: 'old-location',
-      note: 'old-note', category: 'old-category'
+                                     date: Date.today,
+                                     description: 'old-description',
+                                     location: 'old-location',
+                                     note: 'old-note',
+                                     category: 'old-category'
     )
 
     put :update, id: transaction, transaction: {

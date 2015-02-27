@@ -1,5 +1,4 @@
 module TransactionsHelper
-
   def transaction_description(transaction)
     transaction.description
   end
@@ -13,13 +12,12 @@ module TransactionsHelper
   end
 
   def transaction_income(transactions)
-    income = transactions.select { |transaction| transaction.credit? }.sum(&:amount)
+    income = transactions.select(&:credit?).sum(&:amount)
     number_to_currency(income, unit: '£')
   end
 
   def transaction_expenditure(transactions)
-    expenditure = transactions.select { |transaction| transaction.debit? }.sum(&:amount)
+    expenditure = transactions.select(&:debit?).sum(&:amount)
     number_to_currency(-expenditure, unit: '£')
   end
-
 end

@@ -78,10 +78,12 @@ MoneyTracker::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.middleware.use ExceptionNotification::Rack,
+  notifier_options = {
     email: {
       email_prefix: '[Money Tracker] ',
-      sender_address: %{"notifier" <notifier@money-tracker.heroku.com>},
+      sender_address: %("notifier" <notifier@money-tracker.heroku.com>),
       exception_recipients: ENV['MONEY_TRACKER_EXCEPTION_EMAIL_RECIPIENT'] || 'exceptions@example.com'
     }
+  }
+  config.middleware.use ExceptionNotification::Rack, notifier_options
 end

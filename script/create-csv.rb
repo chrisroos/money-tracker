@@ -1,7 +1,7 @@
 require 'csv'
 
 account_name = ARGV.shift
-unless account_name && account = Account.find_by_name(account_name)
+unless account_name && (account = Account.find_by_name(account_name))
   puts "Usage: #{File.basename(__FILE__)} <account-name>"
   exit 1
 end

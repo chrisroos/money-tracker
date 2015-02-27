@@ -1,5 +1,5 @@
 class UploadsController < ApplicationController
-  before_filter :hide_uploads_in_demo_mode
+  before_action :hide_uploads_in_demo_mode
 
   def new
     @upload = Upload.new

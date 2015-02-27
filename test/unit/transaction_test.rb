@@ -8,38 +8,38 @@ class TransactionValidationTest < ActiveSupport::TestCase
 
   test 'should be invalid without an account_id' do
     transaction = FactoryGirl.build(:transaction, account_id: nil)
-    assert ! transaction.valid?
+    assert !transaction.valid?
   end
 
   test 'should be invalid without an original date' do
     transaction = FactoryGirl.build(:transaction, original_date: nil)
-    assert ! transaction.valid?
+    assert !transaction.valid?
   end
 
   test 'should be invalid without a name' do
     transaction = FactoryGirl.build(:transaction, name: nil)
-    assert ! transaction.valid?
+    assert !transaction.valid?
   end
 
   test 'should be invalid without an amount in pence' do
     transaction = FactoryGirl.build(:transaction, amount_in_pence: nil)
-    assert ! transaction.valid?
+    assert !transaction.valid?
   end
 
   test 'should be invalid without an ofx type' do
     transaction = FactoryGirl.build(:transaction, type: nil)
-    assert ! transaction.valid?
+    assert !transaction.valid?
   end
 
   test 'should be invalid without an original description' do
     transaction = FactoryGirl.create(:transaction)
     transaction.original_description = nil
-    assert ! transaction.valid?
+    assert !transaction.valid?
   end
 
   test 'should be invalid without a fit_id' do
     transaction = FactoryGirl.build(:transaction, fit_id: nil)
-    assert ! transaction.valid?
+    assert !transaction.valid?
   end
 
   test 'should be invalid unless the fit_id is unique' do

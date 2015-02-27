@@ -1,5 +1,4 @@
 class ModifyTransactionsTable < ActiveRecord::Migration
-
   def self.up
     rename_column :transactions, :description, :name
 
@@ -15,5 +14,4 @@ class ModifyTransactionsTable < ActiveRecord::Migration
 
     rename_column :transactions, :name, :description
   end
-
 end
