@@ -35,7 +35,7 @@ module SeedTransaction
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     nil, nil, nil # So that we leave some transactions with empty notes
   ]
-  AMOUNTS = (1..10000).to_a
+  AMOUNTS = (1..10_000).to_a
   LAST_THREE_MONTHS = (3.months.ago.to_date..Date.today).to_a
 
   class FitId
