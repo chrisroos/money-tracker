@@ -41,7 +41,6 @@ group :production do
 end
 
 group :development do
-  gem 'travis-lint'
   gem 'foreman'
   gem 'rubocop', require: false
 end
