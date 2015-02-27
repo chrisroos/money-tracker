@@ -86,7 +86,7 @@ GEM
       thor (>= 0.13.6)
     gherkin (2.12.2)
       multi_json (~> 1.3)
-    haml (4.0.4)
+    haml (4.0.6)
       tilt
     hashr (0.0.22)
     hike (1.2.3)
