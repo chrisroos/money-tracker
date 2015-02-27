@@ -33,12 +33,6 @@ gem 'ofx', git: 'git://github.com/chrisroos/ofx.git', branch: 'add-support-for-v
 # Send exception notifications by email
 gem 'exception_notification'
 
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
 group :production do
   gem 'rails_12factor'
 end
