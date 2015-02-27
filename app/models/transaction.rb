@@ -11,7 +11,7 @@ class Transaction < ActiveRecord::Base
     else
       where(
         'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q',
-        { q: "%#{search_string}%" }
+        q: "%#{search_string}%"
       )
     end
   }
@@ -25,15 +25,15 @@ class Transaction < ActiveRecord::Base
   }
 
   def self.category_search(query)
-    unscoped.select('DISTINCT(category)').where('category ILIKE :q', { q: "%#{query}%" }).order('category ASC')
+    unscoped.select('DISTINCT(category)').where('category ILIKE :q', q: "%#{query}%").order('category ASC')
   end
 
   def self.description_search(query)
-    unscoped.select('DISTINCT(description)').where('description ILIKE :q', { q: "%#{query}%" }).order('description ASC')
+    unscoped.select('DISTINCT(description)').where('description ILIKE :q', q: "%#{query}%").order('description ASC')
   end
 
   def self.location_search(description, query)
-    unscoped.select('DISTINCT(location)').where('UPPER(description) = UPPER(:description) AND location ILIKE :q', { description: description, q: "%#{query}%" }).order('location ASC')
+    unscoped.select('DISTINCT(location)').where('UPPER(description) = UPPER(:description) AND location ILIKE :q', description: description, q: "%#{query}%").order('location ASC')
   end
 
   belongs_to :account
