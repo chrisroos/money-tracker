@@ -65,8 +65,8 @@ class Transaction < ActiveRecord::Base
 
   private
 
-    def set_original_description
-      description = [name, memo].compact.join(' / ')
-      self.original_description = "#{description} (#{type})"
-    end
+  def set_original_description
+    description = [name, memo].compact.join(' / ')
+    self.original_description = "#{description} (#{type})"
+  end
 end
