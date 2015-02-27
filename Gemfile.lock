@@ -90,7 +90,7 @@ GEM
     hashr (0.0.22)
     hike (1.2.3)
     i18n (0.7.0)
-    jbuilder (1.5.2)
+    jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.1.2)
