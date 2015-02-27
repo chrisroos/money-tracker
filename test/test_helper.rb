@@ -12,7 +12,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  def in_demo_mode(&block)
+  def in_demo_mode
     ENV['DEMO_MODE'] = 'true'
     yield
   ensure
