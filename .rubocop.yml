@@ -9,6 +9,7 @@ AllCops:
     - 'features/support/paths.rb'
     - 'features/support/selectors.rb'
     - 'features/step_definitions/web_steps.rb'
+    - 'features/step_definitions/pickle_steps.rb'
   RunRailsCops: true
 Style/Documentation:
   Enabled: false
