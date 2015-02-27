@@ -23,7 +23,7 @@ class AccountTest < ActiveSupport::TestCase
     assert_equal 'account-id', account.name
   end
 
-  test "should use the name if it is set" do
+  test 'should use the name if it is set' do
     account = FactoryGirl.create(:account, name: 'account-name')
     assert_equal 'account-name', account.name
   end

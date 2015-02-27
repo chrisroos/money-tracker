@@ -2,7 +2,7 @@
 # to stop you using it in development too.
 
 unless ENV['DEMO_MODE']
-  puts "To avoid overwriting real data, seed data will only be loaded in demo mode"
+  puts 'To avoid overwriting real data, seed data will only be loaded in demo mode'
   exit
 end
 
