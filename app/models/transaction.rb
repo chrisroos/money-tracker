@@ -1,5 +1,4 @@
 class Transaction < ActiveRecord::Base
-
   self.inheritance_column = :_disabled_sti
 
   default_scope { order('COALESCE(date, original_date) DESC') }
@@ -70,5 +69,4 @@ class Transaction < ActiveRecord::Base
       description = [name, memo].compact.join(' / ')
       self.original_description = "#{description} (#{type})"
     end
-
 end

@@ -1,5 +1,4 @@
 class StatementImporter
-
   def self.import(ofx)
     imported = duplicates = 0
     OFX(ofx) do
@@ -19,5 +18,4 @@ class StatementImporter
     end
     [imported, duplicates]
   end
-
 end
