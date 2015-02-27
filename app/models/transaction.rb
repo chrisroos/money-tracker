@@ -56,11 +56,11 @@ class Transaction < ActiveRecord::Base
   end
 
   def description
-    read_attribute(:description) || original_description
+    self[:description] || original_description
   end
 
   def date
-    read_attribute(:date) || original_date
+    self[:date] || original_date
   end
 
   private
