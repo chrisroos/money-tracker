@@ -13,3 +13,6 @@ AllCops:
   RunRailsCops: true
 Style/Documentation:
   Enabled: false
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'
