@@ -5,19 +5,19 @@ ruby '2.2.0'
 # Avoid "WARNING: Nokogiri was built against LibXML version 2.7.8, but has dynamically loaded 2.7.3"
 gem 'nokogiri', '>= 1.4.4'
 
-gem 'rails', '4.1.9'
+gem 'rails', '4.2.0'
 gem 'pg'
 gem 'haml'
 gem 'thin'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
@@ -43,6 +43,7 @@ end
 group :development do
   gem 'foreman'
   gem 'rubocop', require: false
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 

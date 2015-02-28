@@ -9,7 +9,7 @@ class UploadsController < ApplicationController
     upload_params = params[:upload] ? params[:upload].permit(:ofx_file) : {}
     @upload = Upload.new(upload_params)
     if @upload.valid?
-      imported, duplicates = StatementImporter.import(@upload.ofx_file)
+      imported, duplicates = StatementImporter.import(upload_params[:ofx_file])
       flash[:info] = "#{imported} transactions were imported.  #{duplicates} duplicate transactions were ignored."
       redirect_to current_period_transactions_path
     else

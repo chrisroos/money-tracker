@@ -148,8 +148,8 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'should link to the edit form of the previous and next period' do
     get :index, period: Date.parse('2011-08-01').to_s(:period), edit: 'true'
 
-    assert_select 'a.previous_period[href=?]', CGI.escapeHTML(transactions_path(period: '2011-07', edit: true))
-    assert_select 'a.next_period[href=?]', CGI.escapeHTML(transactions_path(period: '2011-09', edit: true))
+    assert_select 'a.previous_period[href=?]', transactions_path(period: '2011-07', edit: true)
+    assert_select 'a.next_period[href=?]', transactions_path(period: '2011-09', edit: true)
   end
 
   test 'should include the period in the page title' do
