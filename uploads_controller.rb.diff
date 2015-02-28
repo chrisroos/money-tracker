@@ -1,0 +1,25 @@
+diff --git a/app/controllers/uploads_controller.rb b/app/controllers/uploads_controller.rb
+index 00620d3..3478dec 100644
+--- a/app/controllers/uploads_controller.rb
++++ b/app/controllers/uploads_controller.rb
+@@ -7,8 +7,20 @@ class UploadsController < ApplicationController
+ 
+   def create
+     upload_params = params[:upload] ? params[:upload].permit(:ofx_file) : {}
++
++# raise upload_params.inspect
++# Rails 2.4
++# {"ofx_file"=>#<ActionDispatch::Http::UploadedFile:0x007fe0af830288 @tempfile=#<Tempfile:/var/folders/6q/l69wx5lj2qv5w2b0zrlcv5kc0000gn/T/RackMultipart20150228-43451-1ah9xw6.ofx>, @original_filename="2015-02-18-barclaycard.ofx", @content_type="application/octet-stream", @headers="Content-Disposition: form-data; name=\"upload[ofx_file]\"; filename=\"2015-02-18-barclaycard.ofx\"\r\nContent-Type: application/octet-stream\r\n">}
++# Rails 2.0
++# {"ofx_file"=>#<ActionDispatch::Http::UploadedFile:0x007fa0a7662390 @tempfile=#<Tempfile:/var/folders/6q/l69wx5lj2qv5w2b0zrlcv5kc0000gn/T/RackMultipart20150228-43819-1crduje>, @original_filename="2015-02-18-barclaycard.ofx", @content_type="application/octet-stream", @headers="Content-Disposition: form-data; name=\"upload[ofx_file]\"; filename=\"2015-02-18-barclaycard.ofx\"\r\nContent-Type: application/octet-stream\r\n">}
++
+     @upload = Upload.new(upload_params)
+     if @upload.valid?
++raise @upload.ofx_file.inspect
++# Rails 2.4
++# "#<ActionDispatch::Http::UploadedFile:0x007fe0a61eb020>"
++# Rails 2.0
++# #<ActionDispatch::Http::UploadedFile:0x007fa0a73e02c0 @tempfile=#<Tempfile:/var/folders/6q/l69wx5lj2qv5w2b0zrlcv5kc0000gn/T/RackMultipart20150228-43819-bulnnw>, @original_filename="2015-02-18-barclaycard.ofx", @content_type="application/octet-stream", @headers="Content-Disposition: form-data; name=\"upload[ofx_file]\"; filename=\"2015-02-18-barclaycard.ofx\"\r\nContent-Type: application/octet-stream\r\n">
+       imported, duplicates = StatementImporter.import(@upload.ofx_file)
+       flash[:info] = "#{imported} transactions were imported.  #{duplicates} duplicate transactions were ignored."
+       redirect_to current_period_transactions_path

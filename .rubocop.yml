@@ -3,6 +3,7 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   Exclude:
     - '.bundle/**/*'
+    - 'bin/**/*'
     - 'config/boot.rb'
     - 'db/schema.rb'
     - 'lib/tasks/cucumber.rake'
