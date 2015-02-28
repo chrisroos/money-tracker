@@ -1,0 +1,16 @@
+%h1 Overview
+
+%h2 Date of the earliest transaction
+%p= Transaction.earliest_transaction.date.to_s(:human_friendly)
+
+%h2 Total income
+%p= income Transaction.total_income
+
+%h2 Total expense
+%p= expense Transaction.total_expense
+
+%h2 Average daily income
+%p= income Transaction.average_daily_income
+
+%h2 Average daily expense
+%p= expense Transaction.average_daily_expense

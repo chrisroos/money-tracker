@@ -3,12 +3,20 @@ module TransactionsHelper
     transaction.description
   end
 
+  def income(amount)
+    number_to_currency(amount, :unit => '£')
+  end
+
+  def expense(amount)
+    number_to_currency(-amount, :unit => '£')
+  end
+
   def transaction_amount_in(transaction)
-    number_to_currency(transaction.amount, unit: '£') if transaction.credit?
+    income(transaction.amount) if transaction.credit?
   end
 
   def transaction_amount_out(transaction)
-    number_to_currency(-transaction.amount, unit: '£') if transaction.debit?
+    expense(transaction.amount) if transaction.debit?
   end
 
   def transaction_income(transactions)

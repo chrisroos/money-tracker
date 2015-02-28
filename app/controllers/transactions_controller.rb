@@ -32,4 +32,7 @@ class TransactionsController < ApplicationController
       render :index
     end
   end
+
+  def overview
+  end
 end

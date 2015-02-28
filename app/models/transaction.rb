@@ -41,6 +41,26 @@ class Transaction < ActiveRecord::Base
     def location_search(description, query)
       unscoped.select('DISTINCT(location)').where('UPPER(description) = UPPER(:description) AND location ILIKE :q', description: description, q: "%#{query}%").order('location ASC')
     end
+
+    def earliest_transaction
+      unscoped.order("original_date ASC").first
+    end
+
+    def total_income
+      where("amount_in_pence > 0").sum("amount_in_pence") / 100.0
+    end
+
+    def total_expense
+      where("amount_in_pence < 0").sum("amount_in_pence") / 100.0
+    end
+
+    def average_daily_income
+      total_income / (Date.today - earliest_transaction.date)
+    end
+
+    def average_daily_expense
+      total_expense / (Date.today - earliest_transaction.date)
+    end
   end
 
   def amount
