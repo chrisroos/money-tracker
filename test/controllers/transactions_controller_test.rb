@@ -324,3 +324,13 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
     assert_equal 'new-category', transaction.category
   end
 end
+
+class TransactionsControllerMonthlyOverviewTest < ActionController::TestCase
+  tests TransactionsController
+
+  test 'should have a useful page title' do
+    get :monthly
+
+    assert_select 'head title', text: 'MoneyTracker - Monthly overview'
+  end
+end
