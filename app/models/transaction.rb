@@ -34,6 +34,10 @@ class Transaction < ActiveRecord::Base
       unscoped.select('DISTINCT(category)').where('category ILIKE :q', q: "%#{query}%").order('category ASC')
     end
 
+    def unexplained
+      where("description IS NULL OR description = ''")
+    end
+
     def description_search(query)
       unscoped.select('DISTINCT(description)').where('description ILIKE :q', q: "%#{query}%").order('description ASC')
     end

@@ -5,6 +5,7 @@ class TransactionsController < ApplicationController
     @filter = "for #{Date.from_period(params[:period]).to_s(:month_and_year)}"
     @date_format = :weekday_and_day
     @transactions = Transaction.period(params[:period])
+    @transactions = @transactions.unexplained if params[:unexplained]
     render :bulk_edit if params[:edit].present?
   end
 

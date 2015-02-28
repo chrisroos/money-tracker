@@ -142,6 +142,23 @@ class TransactionPeriodTest < ActiveSupport::TestCase
   end
 end
 
+class TransactionUnexplainedScopeTest < ActiveSupport::TestCase
+  test 'should include the transactions where the description is null' do
+    transaction = FactoryGirl.create(:transaction, description: nil)
+    assert_equal [transaction], Transaction.unexplained.to_a
+  end
+
+  test 'should include the transactions where the description is an empty string' do
+    transaction = FactoryGirl.create(:transaction, description: '')
+    assert_equal [transaction], Transaction.unexplained.to_a
+  end
+
+  test 'should not include the transactions that have a description' do
+    FactoryGirl.create(:transaction, description: 'transaction-description')
+    assert_equal [], Transaction.unexplained.to_a
+  end
+end
+
 class TransactionTest < ActiveSupport::TestCase
   test 'should always order by the most recent custom and then original date' do
     transaction_a = FactoryGirl.create(:transaction, source_date: Date.parse('2011-01-01'))
