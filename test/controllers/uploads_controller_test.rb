@@ -17,3 +17,15 @@ class UploadsControllerNewTest < ActionController::TestCase
     end
   end
 end
+
+class UploadsControllerCreateTest < ActionController::TestCase
+  tests UploadsController
+
+  test 'should import transactions from the ofx file' do
+    transactions_before = Transaction.count
+
+    post :create, upload: { ofx_file: fixture_file_upload('example-statement.ofx') }
+
+    assert_equal transactions_before + 2, Transaction.count
+  end
+end
