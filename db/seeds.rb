@@ -3,6 +3,7 @@
 
 unless ENV['DEMO_MODE']
   puts 'To avoid overwriting real data, seed data will only be loaded in demo mode'
+  puts 'Run again with `DEMO_MODE=true` to load seed data'
   exit
 end
 
