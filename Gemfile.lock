@@ -247,7 +247,6 @@ DEPENDENCIES
   launchy
   less-rails
   mocha
-  nokogiri (>= 1.4.4)
   ofx!
   pg
   pickle
