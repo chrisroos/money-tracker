@@ -13,11 +13,11 @@ FactoryGirl.define do
 
   factory :transaction do
     account
-    original_date Date.today
-    name 'transaction-name'
-    amount_in_pence 1
-    fit_id
-    type 'OTHER'
+    source_date Date.today
+    source_name 'transaction-source-name'
+    source_amount_in_pence 1
+    source_fit_id { generate(:fit_id) }
+    source_type 'OTHER'
   end
 
   factory :upload do

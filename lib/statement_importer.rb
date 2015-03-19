@@ -5,9 +5,9 @@ class StatementImporter
       target_account = Account.find_by_account_id(account.id) || Account.create!(account_id: account.id)
       account.transactions.each do |transaction|
         attrs = {
-          original_date: transaction.posted_at, type: transaction.type,
-          amount_in_pence: transaction.amount_in_pennies, fit_id: transaction.fit_id,
-          name: transaction.name, memo: transaction.memo
+          source_date: transaction.posted_at, source_type: transaction.type,
+          source_amount_in_pence: transaction.amount_in_pennies, source_fit_id: transaction.fit_id,
+          source_name: transaction.name, source_memo: transaction.memo
         }
         transaction = target_account.transactions.build
         attrs.each do |key, value|

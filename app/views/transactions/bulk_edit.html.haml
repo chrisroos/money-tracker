@@ -33,7 +33,7 @@
             = transaction_form.text_field :date, size: '10', id: nil, value: transaction.date
             %span.help-block
               Original:
-              %span.text-info.original_date= transaction.original_date
+              %span.text-info.source_date= transaction.source_date
             = transaction_form.submit 'Save date', id: nil
         %td
           %span.text-info.account_name= transaction.account.name
