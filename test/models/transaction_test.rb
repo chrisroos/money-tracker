@@ -38,13 +38,13 @@ class TransactionValidationTest < ActiveSupport::TestCase
   end
 
   test 'should be invalid without a fit_id' do
-    transaction = FactoryGirl.build(:transaction, fit_id: nil)
+    transaction = FactoryGirl.build(:transaction, source_fit_id: nil)
     assert !transaction.valid?
   end
 
   test 'should be invalid unless the fit_id is unique' do
-    FactoryGirl.create(:transaction, fit_id: '123')
-    assert_raise(ActiveRecord::RecordInvalid) { FactoryGirl.create(:transaction, fit_id: '123') }
+    FactoryGirl.create(:transaction, source_fit_id: '123')
+    assert_raise(ActiveRecord::RecordInvalid) { FactoryGirl.create(:transaction, source_fit_id: '123') }
   end
 end
 
