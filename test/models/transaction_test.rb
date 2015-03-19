@@ -16,8 +16,8 @@ class TransactionValidationTest < ActiveSupport::TestCase
     assert !transaction.valid?
   end
 
-  test 'should be invalid without a name' do
-    transaction = FactoryGirl.build(:transaction, name: nil)
+  test 'should be invalid without a source_name' do
+    transaction = FactoryGirl.build(:transaction, source_name: nil)
     assert !transaction.valid?
   end
 
@@ -49,9 +49,9 @@ class TransactionValidationTest < ActiveSupport::TestCase
 end
 
 class TransactionSearchTest < ActiveSupport::TestCase
-  test 'should search Transaction#name' do
-    t1 = FactoryGirl.create(:transaction, name: 'MATCHING TRANSACTION')
-    FactoryGirl.create(:transaction, name: 'no-match')
+  test 'should search Transaction#source_name' do
+    t1 = FactoryGirl.create(:transaction, source_name: 'MATCHING TRANSACTION')
+    FactoryGirl.create(:transaction, source_name: 'no-match')
     assert_equal [t1], Transaction.search('matching')
   end
 
@@ -179,14 +179,14 @@ class TransactionDescriptionTest < ActiveSupport::TestCase
 end
 
 class TransactionOriginalDescriptionTest < ActiveSupport::TestCase
-  test 'should build the description from the name, memo and source_type' do
-    transaction = FactoryGirl.create(:transaction, name: 'name', memo: 'memo', source_type: 'other')
-    assert_equal 'name / memo (other)', transaction.original_description
+  test 'should build the description from the source_name, memo and source_type' do
+    transaction = FactoryGirl.create(:transaction, source_name: 'source-name', memo: 'memo', source_type: 'other')
+    assert_equal 'source-name / memo (other)', transaction.original_description
   end
 
-  test 'should build the description from the name and source_type' do
-    transaction = FactoryGirl.create(:transaction, name: 'name', memo: nil, source_type: 'other')
-    assert_equal 'name (other)', transaction.original_description
+  test 'should build the description from the source_name and source_type' do
+    transaction = FactoryGirl.create(:transaction, source_name: 'source-name', memo: nil, source_type: 'other')
+    assert_equal 'source-name (other)', transaction.original_description
   end
 end
 

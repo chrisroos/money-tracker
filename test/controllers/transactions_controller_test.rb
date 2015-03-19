@@ -77,15 +77,15 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'should display original values in the edit form' do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
-    transaction = FactoryGirl.create(:transaction, name: 'name', memo: 'memo', source_type: 'source-type', source_date: date)
+    transaction = FactoryGirl.create(:transaction, source_name: 'source-name', memo: 'memo', source_type: 'source-type', source_date: date)
 
     get :index, period: period, edit: true
 
     assert_equal date, transaction.date
-    assert_equal 'name / memo (source-type)', transaction.description
+    assert_equal 'source-name / memo (source-type)', transaction.description
 
     assert_select "input[name='transaction[date]'][value='#{date}']"
-    assert_select "input[name='transaction[description]'][value='name / memo (source-type)']"
+    assert_select "input[name='transaction[description]'][value='source-name / memo (source-type)']"
     assert_select "textarea[name='transaction[note]']", text: ''
   end
 

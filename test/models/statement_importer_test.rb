@@ -28,7 +28,7 @@ class StatementImporterTest < ActiveSupport::TestCase
     assert_equal Date.parse('2011-01-01'), transaction.source_date
     assert_equal 'other',                  transaction.source_type
     assert_equal(-123,                     transaction.source_amount_in_pence)
-    assert_equal 'SHOP X',                 transaction.name
+    assert_equal 'SHOP X',                 transaction.source_name
     assert_equal 'LONDON',                 transaction.memo
   end
 
@@ -39,7 +39,7 @@ class StatementImporterTest < ActiveSupport::TestCase
     assert_equal Date.parse('2011-01-02'), transaction.source_date
     assert_equal 'other',                  transaction.source_type
     assert_equal 321,                      transaction.source_amount_in_pence
-    assert_equal 'WAGES',                  transaction.name
+    assert_equal 'WAGES',                  transaction.source_name
     assert_equal 'ACME LTD',               transaction.memo
   end
 

@@ -54,7 +54,7 @@ end
   t.source_amount_in_pence = transaction_amount
   t.source_date = SeedTransaction::LAST_THREE_MONTHS.sample
   t.source_fit_id = SeedTransaction::FitId.next
-  t.name = 'original transaction name'
+  t.source_name = 'original transaction name'
   t.description = SeedTransaction::DESCRIPTIONS.sample
   t.category = SeedTransaction::CATEGORIES.sample
   t.note = SeedTransaction::NOTES.sample

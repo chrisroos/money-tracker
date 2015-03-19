@@ -14,7 +14,7 @@ FactoryGirl.define do
   factory :transaction do
     account
     source_date Date.today
-    name 'transaction-name'
+    source_name 'transaction-source-name'
     source_amount_in_pence 1
     source_fit_id { generate(:fit_id) }
     source_type 'OTHER'
