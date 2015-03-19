@@ -10,7 +10,7 @@ class Transaction < ActiveRecord::Base
       where(description: m[1])
     else
       where(
-        'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR type ILIKE :q OR description ILIKE :q',
+        'name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR source_type ILIKE :q OR description ILIKE :q',
         q: "%#{search_string}%"
       )
     end
@@ -38,7 +38,7 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :account
 
-  validates :account_id, :source_date, :name, :amount_in_pence, :fit_id, :type, :original_description, presence: true
+  validates :account_id, :source_date, :name, :amount_in_pence, :fit_id, :source_type, :original_description, presence: true
   validates :fit_id, uniqueness: true
 
   before_validation :set_original_description, on: :create
@@ -67,6 +67,6 @@ class Transaction < ActiveRecord::Base
 
   def set_original_description
     description = [name, memo].compact.join(' / ')
-    self.original_description = "#{description} (#{type})"
+    self.original_description = "#{description} (#{source_type})"
   end
 end

@@ -17,7 +17,7 @@ FactoryGirl.define do
     name 'transaction-name'
     amount_in_pence 1
     fit_id
-    type 'OTHER'
+    source_type 'OTHER'
   end
 
   factory :upload do

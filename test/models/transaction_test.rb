@@ -26,8 +26,8 @@ class TransactionValidationTest < ActiveSupport::TestCase
     assert !transaction.valid?
   end
 
-  test 'should be invalid without an ofx type' do
-    transaction = FactoryGirl.build(:transaction, type: nil)
+  test 'should be invalid without a source_type' do
+    transaction = FactoryGirl.build(:transaction, source_type: nil)
     assert !transaction.valid?
   end
 
@@ -67,9 +67,9 @@ class TransactionSearchTest < ActiveSupport::TestCase
     assert_equal [t1], Transaction.search('matching')
   end
 
-  test 'should search Transaction#type' do
-    t1 = FactoryGirl.create(:transaction, type: 'MATCHING TRANSACTION')
-    FactoryGirl.create(:transaction, type: 'no-match')
+  test 'should search Transaction#source_type' do
+    t1 = FactoryGirl.create(:transaction, source_type: 'MATCHING TRANSACTION')
+    FactoryGirl.create(:transaction, source_type: 'no-match')
     assert_equal [t1], Transaction.search('matching')
   end
 
@@ -179,13 +179,13 @@ class TransactionDescriptionTest < ActiveSupport::TestCase
 end
 
 class TransactionOriginalDescriptionTest < ActiveSupport::TestCase
-  test 'should build the description from the name, memo and type' do
-    transaction = FactoryGirl.create(:transaction, name: 'name', memo: 'memo', type: 'other')
+  test 'should build the description from the name, memo and source_type' do
+    transaction = FactoryGirl.create(:transaction, name: 'name', memo: 'memo', source_type: 'other')
     assert_equal 'name / memo (other)', transaction.original_description
   end
 
-  test 'should build the description from the name and type' do
-    transaction = FactoryGirl.create(:transaction, name: 'name', memo: nil, type: 'other')
+  test 'should build the description from the name and source_type' do
+    transaction = FactoryGirl.create(:transaction, name: 'name', memo: nil, source_type: 'other')
     assert_equal 'name (other)', transaction.original_description
   end
 end

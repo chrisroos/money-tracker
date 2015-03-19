@@ -4,7 +4,7 @@ Feature: Manage transactions
 
   Scenario: Editing multiple transactions
     Given the following transactions exist:
-      | id | date       | name    | type    | amount_in_pence |
+      | id | date       | name    | source_type    | amount_in_pence |
       | 1  | 2010-01-01 | Shop X  | other   | -1              |
       | 2  | 2010-01-02 | Deposit | deposit | 1               |
     And I am on the transactions page for period "2010-01"
@@ -35,7 +35,7 @@ Feature: Manage transactions
   @javascript
   Scenario: Editing multiple transactions with javascript
     Given the following transactions exist:
-      | id | date       | name    | type    | amount_in_pence |
+      | id | date       | name    | source_type    | amount_in_pence |
       | 1  | 2010-01-01 | Shop X  | other   | -1              |
       | 2  | 2010-01-02 | Deposit | deposit | 1               |
     And I am on the transactions page for period "2010-01"
@@ -58,7 +58,7 @@ Feature: Manage transactions
 
   Scenario: Editing a single transaction
     Given the following transactions exist:
-      | id | date       | name   | type  | amount_in_pence |
+      | id | date       | name   | source_type  | amount_in_pence |
       | 1  | 2010-01-01 | Shop X | other | -1              |
       | 2  | 2010-01-01 | Shop Y | other | -2              |
     And I am on the transactions page for period "2010-01"
@@ -77,7 +77,7 @@ Feature: Manage transactions
 
   Scenario: Searching transactions
     Given the following transactions exist:
-      | date       | name            | type    | amount_in_pence |
+      | date       | name            | source_type    | amount_in_pence |
       | 2010-01-01 | Shop X          | Other   | -1              |
       | 2011-01-01 | Cash withdrawal | Atm     | -100            |
       | 2011-01-01 | Cash deposit    | Deposit | 200             |
@@ -94,7 +94,7 @@ Feature: Manage transactions
 
   Scenario: Editing transactions from a search result
     Given the following transactions exist:
-      | id | date       | name   | type  | amount_in_pence |
+      | id | date       | name   | source_type  | amount_in_pence |
       | 1  | 2010-01-01 | Shop X | other | -1              |
     And I am on the search results page for the query "shop"
 
@@ -109,7 +109,7 @@ Feature: Manage transactions
 
   Scenario: Viewing all transactions with a given category
     Given the following transactions exist:
-      | date       | name            | type    | amount_in_pence | category   |
+      | date       | name            | source_type    | amount_in_pence | category   |
       | 2011-01-01 | Shop X          | Other   | -2000           | Shopping   |
       | 2011-01-02 | Cash withdrawal | Atm     | -100            | Withdrawal |
       | 2011-02-01 | Shop Y          | Other   | -3000           | Shopping   |
@@ -136,7 +136,7 @@ Feature: Manage transactions
 
   Scenario: Navigating transaction periods
     Given the following transactions exist:
-      | date       | name          | type  | amount_in_pence |
+      | date       | name          | source_type  | amount_in_pence |
       | 2010-12-01 | Transaction 1 | Other | -100            |
       | 2011-01-01 | Transaction 2 | Other | 100             |
       | 2011-02-01 | Transaction 3 | Other | -200            |
