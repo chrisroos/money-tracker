@@ -1,4 +1,11 @@
 class Transaction < ActiveRecord::Base
+  belongs_to :account
+
+  validates :account_id, :source_date, :source_name, :source_amount_in_pence, :source_fit_id, :source_type, :original_description, presence: true
+  validates :source_fit_id, uniqueness: true
+
+  before_validation :set_original_description, on: :create
+
   default_scope { order('COALESCE(date, source_date) DESC') }
 
   def self.search(search_string)
@@ -33,13 +40,6 @@ class Transaction < ActiveRecord::Base
   def self.location_search(description, query)
     unscoped.select('DISTINCT(location)').where('UPPER(description) = UPPER(:description) AND location ILIKE :q', description: description, q: "%#{query}%").order('location ASC')
   end
-
-  belongs_to :account
-
-  validates :account_id, :source_date, :source_name, :source_amount_in_pence, :source_fit_id, :source_type, :original_description, presence: true
-  validates :source_fit_id, uniqueness: true
-
-  before_validation :set_original_description, on: :create
 
   def amount
     source_amount_in_pence / 100.0
