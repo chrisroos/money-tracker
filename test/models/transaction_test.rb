@@ -12,7 +12,7 @@ class TransactionValidationTest < ActiveSupport::TestCase
   end
 
   test 'should be invalid without an original date' do
-    transaction = FactoryGirl.build(:transaction, original_date: nil)
+    transaction = FactoryGirl.build(:transaction, source_date: nil)
     assert !transaction.valid?
   end
 
@@ -128,25 +128,25 @@ end
 
 class TransactionPeriodTest < ActiveSupport::TestCase
   test 'should only return transactions within the given period' do
-    FactoryGirl.create(:transaction, original_date: Date.parse('2011-01-01'))
-    transaction = FactoryGirl.create(:transaction, original_date: Date.parse('2011-02-01'))
-    FactoryGirl.create(:transaction, original_date: Date.parse('2011-03-01'))
+    FactoryGirl.create(:transaction, source_date: Date.parse('2011-01-01'))
+    transaction = FactoryGirl.create(:transaction, source_date: Date.parse('2011-02-01'))
+    FactoryGirl.create(:transaction, source_date: Date.parse('2011-03-01'))
     assert_equal [transaction], Transaction.period('2011-02')
   end
 
   test 'should return transactions with a date in the given period even if the original date is not' do
-    FactoryGirl.create(:transaction, original_date: Date.parse('2011-01-01'))
-    transaction_1 = FactoryGirl.create(:transaction, original_date: Date.parse('2011-02-01'))
-    transaction_2 = FactoryGirl.create(:transaction, original_date: Date.parse('2011-03-01'), date: Date.parse('2011-02-28'))
+    FactoryGirl.create(:transaction, source_date: Date.parse('2011-01-01'))
+    transaction_1 = FactoryGirl.create(:transaction, source_date: Date.parse('2011-02-01'))
+    transaction_2 = FactoryGirl.create(:transaction, source_date: Date.parse('2011-03-01'), date: Date.parse('2011-02-28'))
     assert_equal [transaction_1, transaction_2].to_set, Transaction.period('2011-02').to_set
   end
 end
 
 class TransactionTest < ActiveSupport::TestCase
   test 'should always order by the most recent custom and then original date' do
-    transaction_a = FactoryGirl.create(:transaction, original_date: Date.parse('2011-01-01'))
-    transaction_b = FactoryGirl.create(:transaction, original_date: Date.parse('2011-01-03'))
-    transaction_c = FactoryGirl.create(:transaction, original_date: Date.parse('2011-01-05'), date: Date.parse('2011-01-02'))
+    transaction_a = FactoryGirl.create(:transaction, source_date: Date.parse('2011-01-01'))
+    transaction_b = FactoryGirl.create(:transaction, source_date: Date.parse('2011-01-03'))
+    transaction_c = FactoryGirl.create(:transaction, source_date: Date.parse('2011-01-05'), date: Date.parse('2011-01-02'))
     assert_equal [transaction_b, transaction_c, transaction_a], Transaction.all
   end
 
@@ -192,12 +192,12 @@ end
 
 class TransactionDateTest < ActiveSupport::TestCase
   test 'should return the original date' do
-    transaction = FactoryGirl.build(:transaction, original_date: Date.parse('2011-01-01'))
+    transaction = FactoryGirl.build(:transaction, source_date: Date.parse('2011-01-01'))
     assert_equal Date.parse('2011-01-01'), transaction.date
   end
 
   test 'should prefer a custom date' do
-    transaction = FactoryGirl.build(:transaction, original_date: Date.parse('2011-01-01'), date: Date.parse('2011-01-02'))
+    transaction = FactoryGirl.build(:transaction, source_date: Date.parse('2011-01-01'), date: Date.parse('2011-01-02'))
     assert_equal Date.parse('2011-01-02'), transaction.date
   end
 end

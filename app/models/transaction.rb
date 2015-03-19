@@ -1,7 +1,7 @@
 class Transaction < ActiveRecord::Base
   self.inheritance_column = :_disabled_sti
 
-  default_scope { order('COALESCE(date, original_date) DESC') }
+  default_scope { order('COALESCE(date, source_date) DESC') }
 
   def self.search(search_string)
     if (m = /category:(.*)/.match(search_string))
@@ -19,7 +19,7 @@ class Transaction < ActiveRecord::Base
   def self.period(period)
     date = Date.from_period(period)
     where(
-      'COALESCE(date, original_date) >= ? AND COALESCE(date, original_date) <= ?',
+      'COALESCE(date, source_date) >= ? AND COALESCE(date, source_date) <= ?',
       date.beginning_of_month, date.end_of_month
     )
   end
@@ -38,7 +38,7 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :account
 
-  validates :account_id, :original_date, :name, :amount_in_pence, :fit_id, :type, :original_description, presence: true
+  validates :account_id, :source_date, :name, :amount_in_pence, :fit_id, :type, :original_description, presence: true
   validates :fit_id, uniqueness: true
 
   before_validation :set_original_description, on: :create
@@ -60,7 +60,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def date
-    self[:date] || original_date
+    self[:date] || source_date
   end
 
   private

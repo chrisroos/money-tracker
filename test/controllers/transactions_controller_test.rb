@@ -77,7 +77,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'should display original values in the edit form' do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
-    transaction = FactoryGirl.create(:transaction, name: 'name', memo: 'memo', type: 'type', original_date: date)
+    transaction = FactoryGirl.create(:transaction, name: 'name', memo: 'memo', type: 'type', source_date: date)
 
     get :index, period: period, edit: true
 
@@ -92,11 +92,11 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'should display original date in the edit form' do
     date   = Date.parse('2011-01-01')
     period = date.to_s(:period)
-    FactoryGirl.create(:transaction, original_date: date)
+    FactoryGirl.create(:transaction, source_date: date)
 
     get :index, period: period, edit: true
 
-    assert_select '.original_date', '2011-01-01'
+    assert_select '.source_date', '2011-01-01'
   end
 
   test 'should display original description in the edit form' do
@@ -245,11 +245,11 @@ class TransactionsControllerEditTest < ActionController::TestCase
 
   test 'displays the original date in the edit form' do
     date   = Date.parse('2011-01-01')
-    transaction = FactoryGirl.create(:transaction, original_date: date)
+    transaction = FactoryGirl.create(:transaction, source_date: date)
 
     get :edit, id: transaction
 
-    assert_select '.original_date', '2011-01-01'
+    assert_select '.source_date', '2011-01-01'
   end
 
   test 'should display original description in the edit form' do
