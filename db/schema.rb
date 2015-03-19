@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319153408) do
+ActiveRecord::Schema.define(version: 20150319154051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150319153408) do
     t.integer "source_amount_in_pence"
     t.string  "source_type"
     t.string  "source_fit_id"
-    t.string  "memo"
+    t.string  "source_memo"
     t.string  "description"
     t.date    "date"
     t.string  "category"

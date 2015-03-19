@@ -55,9 +55,9 @@ class TransactionSearchTest < ActiveSupport::TestCase
     assert_equal [t1], Transaction.search('matching')
   end
 
-  test 'should search Transaction#memo' do
-    t1 = FactoryGirl.create(:transaction, memo: 'MATCHING TRANSACTION')
-    FactoryGirl.create(:transaction, memo: 'no-match')
+  test 'should search Transaction#source_memo' do
+    t1 = FactoryGirl.create(:transaction, source_memo: 'MATCHING TRANSACTION')
+    FactoryGirl.create(:transaction, source_memo: 'no-match')
     assert_equal [t1], Transaction.search('matching')
   end
 
@@ -179,13 +179,13 @@ class TransactionDescriptionTest < ActiveSupport::TestCase
 end
 
 class TransactionOriginalDescriptionTest < ActiveSupport::TestCase
-  test 'should build the description from the source_name, memo and source_type' do
-    transaction = FactoryGirl.create(:transaction, source_name: 'source-name', memo: 'memo', source_type: 'other')
-    assert_equal 'source-name / memo (other)', transaction.original_description
+  test 'should build the description from the source_name, source_memo and source_type' do
+    transaction = FactoryGirl.create(:transaction, source_name: 'source-name', source_memo: 'source-memo', source_type: 'other')
+    assert_equal 'source-name / source-memo (other)', transaction.original_description
   end
 
   test 'should build the description from the source_name and source_type' do
-    transaction = FactoryGirl.create(:transaction, source_name: 'source-name', memo: nil, source_type: 'other')
+    transaction = FactoryGirl.create(:transaction, source_name: 'source-name', source_memo: nil, source_type: 'other')
     assert_equal 'source-name (other)', transaction.original_description
   end
 end

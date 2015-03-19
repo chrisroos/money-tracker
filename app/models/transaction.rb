@@ -8,7 +8,7 @@ class Transaction < ActiveRecord::Base
       where(description: m[1])
     else
       where(
-        'source_name ILIKE :q OR memo ILIKE :q OR note ILIKE :q OR source_type ILIKE :q OR description ILIKE :q',
+        'source_name ILIKE :q OR source_memo ILIKE :q OR note ILIKE :q OR source_type ILIKE :q OR description ILIKE :q',
         q: "%#{search_string}%"
       )
     end
@@ -64,7 +64,7 @@ class Transaction < ActiveRecord::Base
   private
 
   def set_original_description
-    description = [source_name, memo].compact.join(' / ')
+    description = [source_name, source_memo].compact.join(' / ')
     self.original_description = "#{description} (#{source_type})"
   end
 end

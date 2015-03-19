@@ -29,7 +29,7 @@ class StatementImporterTest < ActiveSupport::TestCase
     assert_equal 'other',                  transaction.source_type
     assert_equal(-123,                     transaction.source_amount_in_pence)
     assert_equal 'SHOP X',                 transaction.source_name
-    assert_equal 'LONDON',                 transaction.memo
+    assert_equal 'LONDON',                 transaction.source_memo
   end
 
   test 'should import the second transaction' do
@@ -40,7 +40,7 @@ class StatementImporterTest < ActiveSupport::TestCase
     assert_equal 'other',                  transaction.source_type
     assert_equal 321,                      transaction.source_amount_in_pence
     assert_equal 'WAGES',                  transaction.source_name
-    assert_equal 'ACME LTD',               transaction.memo
+    assert_equal 'ACME LTD',               transaction.source_memo
   end
 
   private
