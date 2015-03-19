@@ -1,6 +1,4 @@
 class Transaction < ActiveRecord::Base
-  self.inheritance_column = :_disabled_sti
-
   default_scope { order('COALESCE(date, source_date) DESC') }
 
   def self.search(search_string)
