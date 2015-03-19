@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 20130504153900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accounts", force: true do |t|
+  create_table "accounts", force: :cascade do |t|
     t.string   "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
   end
 
-  create_table "transactions", force: true do |t|
+  create_table "transactions", force: :cascade do |t|
     t.date    "original_date"
     t.string  "name"
     t.text    "note"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20130504153900) do
     t.integer "account_id",           null: false
   end
 
-  create_table "uploads", force: true do |t|
+  create_table "uploads", force: :cascade do |t|
     t.string   "ofx_file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
