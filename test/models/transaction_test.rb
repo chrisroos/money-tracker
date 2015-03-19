@@ -22,7 +22,7 @@ class TransactionValidationTest < ActiveSupport::TestCase
   end
 
   test 'should be invalid without an amount in pence' do
-    transaction = FactoryGirl.build(:transaction, amount_in_pence: nil)
+    transaction = FactoryGirl.build(:transaction, source_amount_in_pence: nil)
     assert !transaction.valid?
   end
 
@@ -151,17 +151,17 @@ class TransactionTest < ActiveSupport::TestCase
   end
 
   test 'should convert amount in pence to amount in pounds' do
-    transaction = FactoryGirl.build(:transaction, amount_in_pence: 123)
+    transaction = FactoryGirl.build(:transaction, source_amount_in_pence: 123)
     assert_equal 1.23, transaction.amount
   end
 
   test 'should be a debit' do
-    transaction = FactoryGirl.build(:transaction, amount_in_pence: -100)
+    transaction = FactoryGirl.build(:transaction, source_amount_in_pence: -100)
     assert transaction.debit?
   end
 
   test 'should be a credit' do
-    transaction = FactoryGirl.build(:transaction, amount_in_pence: 100)
+    transaction = FactoryGirl.build(:transaction, source_amount_in_pence: 100)
     assert transaction.credit?
   end
 end

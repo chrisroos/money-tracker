@@ -36,13 +36,13 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :account
 
-  validates :account_id, :source_date, :name, :amount_in_pence, :fit_id, :source_type, :original_description, presence: true
+  validates :account_id, :source_date, :name, :source_amount_in_pence, :fit_id, :source_type, :original_description, presence: true
   validates :fit_id, uniqueness: true
 
   before_validation :set_original_description, on: :create
 
   def amount
-    amount_in_pence / 100.0
+    source_amount_in_pence / 100.0
   end
 
   def credit?

@@ -15,7 +15,7 @@ FactoryGirl.define do
     account
     source_date Date.today
     name 'transaction-name'
-    amount_in_pence 1
+    source_amount_in_pence 1
     fit_id
     source_type 'OTHER'
   end

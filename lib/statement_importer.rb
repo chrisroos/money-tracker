@@ -6,7 +6,7 @@ class StatementImporter
       account.transactions.each do |transaction|
         attrs = {
           source_date: transaction.posted_at, source_type: transaction.type,
-          amount_in_pence: transaction.amount_in_pennies, fit_id: transaction.fit_id,
+          source_amount_in_pence: transaction.amount_in_pennies, fit_id: transaction.fit_id,
           name: transaction.name, memo: transaction.memo
         }
         transaction = target_account.transactions.build

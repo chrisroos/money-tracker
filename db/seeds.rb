@@ -51,7 +51,7 @@ end
 
   t = SeedTransaction::ACCOUNTS.sample.transactions.build
   t.source_type = transaction_type
-  t.amount_in_pence = transaction_amount
+  t.source_amount_in_pence = transaction_amount
   t.source_date = SeedTransaction::LAST_THREE_MONTHS.sample
   t.fit_id = SeedTransaction::FitId.next
   t.name = 'original transaction name'
