@@ -1,0 +1,24 @@
+@import "jquery-ui/autocomplete";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+th.date, th.paid_in, th.paid_out {
+  min-width: 70px;
+}
+
+.transaction .date {
+  display: none;
+}
+
+.transaction .date.firstOfDay {
+  display: inline;
+}
+
+.transaction .paid_in, .transaction .paid_out,
+tfoot td.paid_in, tfoot td.paid_out {
+  text-align: right;
+}
+
+#transactions .edited {
+  background-color: #ff0;
+}
