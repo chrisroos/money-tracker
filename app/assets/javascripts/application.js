@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require jquery-ui/effect
-//= require twitter/bootstrap
 //= require_tree .
 
 $(document).ready(function() {
