@@ -3,11 +3,11 @@
 - content_for :title do
   = page_title
 
-.row-fluid
-  .span8
+.row
+  .col-md-8
     %h1= page_title
-  .span4
-    = link_to url_for(params.merge(edit: true)), class: 'btn pull-right' do
+  .col-md-4
+    = link_to url_for(params.merge(edit: true)), class: 'btn btn-default pull-right' do
       - ['<i class="icon-edit"></i>', 'Edit transactions'].join(' ').html_safe
 
 - if params[:period]

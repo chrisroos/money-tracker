@@ -3,11 +3,11 @@
 - content_for :title do
   = page_title
 
-.row-fluid
-  .span8
+.row
+  .col-md-8
     %h1= page_title
-  .span4
-    = link_to 'View transactions', url_for(params.merge(edit: '')), class: 'btn pull-right'
+  .col-md-4
+    = link_to 'View transactions', url_for(params.merge(edit: '')), class: 'btn btn-default pull-right'
 
 - if params[:period]
   .nav
