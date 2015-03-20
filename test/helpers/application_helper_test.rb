@@ -11,7 +11,7 @@ class ApplicationHelperTest < ActionView::TestCase
 
     render text: link_to_location(transaction)
 
-    assert_select 'a i.icon-map-marker'
+    assert_select 'a i.glyphicon-map-marker'
     assert_select 'a[href=?]', 'https://maps.google.co.uk/maps?q=London+EC2A'
   end
 end

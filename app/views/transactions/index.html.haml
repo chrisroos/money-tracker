@@ -8,7 +8,7 @@
     %h1= page_title
   .col-md-4
     = link_to url_for(params.merge(edit: true)), class: 'btn btn-default pull-right' do
-      - ['<i class="icon-edit"></i>', 'Edit transactions'].join(' ').html_safe
+      - ['<i class="glyphicon glyphicon-edit"></i>', 'Edit transactions'].join(' ').html_safe
 
 - if params[:period]
   %nav
