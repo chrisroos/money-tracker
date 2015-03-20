@@ -1,26 +1,28 @@
 !!! 5
 %html
   %head
+    %meta{charset: 'utf-8'}
+    %meta{'http-equiv' => 'X-UA-Compatible', content: 'IE=edge'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
     %title= ['MoneyTracker', yield(:title)].compact.join(' - ')
     = csrf_meta_tag
-    %meta{charset: 'utf-8'}
     = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
 
   %body
     .container-fluid
-      .navbar
-        .navbar-inner
-          = link_to 'Money Tracker', root_path, class: 'brand'
-          %ul.nav
-            %li
-              = link_to 'Recent transactions', transactions_path
-            %li
-              = link_to 'Upload statement', new_upload_path
-          %div
-            = form_tag search_transactions_path, method: :get, class: 'navbar-search pull-right' do
-              = text_field_tag :q, params[:q], size: '60', placeholder: 'Search transactions', class: 'search-query'
-              = submit_tag 'Search', class: 'btn'
+      .navbar.navbar-default
+        = link_to 'Money Tracker', root_path, class: 'navbar-brand'
+        %ul.nav.navbar-nav
+          %li
+            = link_to 'Recent transactions', transactions_path
+          %li
+            = link_to 'Upload statement', new_upload_path
+        %div
+          = form_tag search_transactions_path, method: :get, class: 'navbar-form pull-right' do
+            .form-group
+              = text_field_tag :q, params[:q], size: '60', placeholder: 'Search transactions', class: 'search-query form-control'
+              = submit_tag 'Search', class: 'btn btn-default'
       -if flash[:info]
         #flash.alert.alert-info= flash[:info]
 
