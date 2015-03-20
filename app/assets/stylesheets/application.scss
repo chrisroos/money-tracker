@@ -1,4 +1,6 @@
 @import "jquery-ui/autocomplete";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 th.date, th.paid_in, th.paid_out {
   min-width: 70px;
