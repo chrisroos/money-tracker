@@ -10,9 +10,10 @@
     = link_to 'View transactions', url_for(params.merge(edit: '')), class: 'btn btn-default pull-right'
 
 - if params[:period]
-  .nav
-    = link_to_previous_period params[:period], edit: true
-    = link_to_next_period params[:period], edit: true
+  %nav
+    %ul.pager
+      %li.previous= link_to_previous_period params[:period], edit: true
+      %li.next= link_to_next_period params[:period], edit: true
 
 %table#transactions.table.table-striped.table-condensed.table-bordered
   %thead
