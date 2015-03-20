@@ -5,31 +5,37 @@
 
 %h1= page_title
 
-= form_for @transaction, html: {class: 'edit_transaction transaction'} do |transaction_form|
-  %div
-    %span.help-block
-      Account:
-      %span.text-info.account_name= @transaction.account.name
-  %div
-    = transaction_form.label :date
-    = transaction_form.text_field :date, size: '10', value: @transaction.date
-    %span.help-block
-      Original:
-      %span.text-info.source_date= @transaction.source_date
-  %div
-    = transaction_form.label :description
-    = transaction_form.text_field :description, size: '80', value: @transaction.description, class: 'description'
-    %span.help-block
-      Original:
-      %span.text-info.original_description= @transaction.original_description
-  %div
-    = transaction_form.label :location
-    = transaction_form.text_field :location, size: '40', value: @transaction.location, class: 'location'
-  %div
-    = transaction_form.label :note
-    = transaction_form.text_area :note, size: '40x3'
-  %div
-    = transaction_form.label :category
-    = transaction_form.text_field :category, size: 40, class: 'category'
-  %div
-    = transaction_form.submit 'Save'
+= form_for @transaction, html: {class: 'edit_transaction transaction form-horizontal'} do |transaction_form|
+  .form-group
+    %label.col-sm-1.control-label Account
+    .col-sm-6
+      %p.form-control-static.account_name= @transaction.account.name
+  .form-group
+    = transaction_form.label :date, class: 'control-label col-sm-1'
+    .col-sm-6
+      = transaction_form.text_field :date, size: '10', value: @transaction.date, class: 'form-control'
+      %span.help-block
+        Original:
+        %span.text-info.source_date= @transaction.source_date
+  .form-group
+    = transaction_form.label :description, class: 'control-label col-sm-1'
+    .col-sm-6
+      = transaction_form.text_field :description, size: '80', value: @transaction.description, class: 'description form-control'
+      %span.help-block
+        Original:
+        %span.text-info.original_description= @transaction.original_description
+  .form-group
+    = transaction_form.label :location, class: 'control-label col-sm-1'
+    .col-sm-6
+      = transaction_form.text_field :location, size: '40', value: @transaction.location, class: 'location form-control'
+  .form-group
+    = transaction_form.label :note, class: 'control-label col-sm-1'
+    .col-sm-6
+      = transaction_form.text_area :note, size: '40x3', class: 'form-control'
+  .form-group
+    = transaction_form.label :category, class: 'control-label col-sm-1'
+    .col-sm-6
+      = transaction_form.text_field :category, size: 40, class: 'category form-control'
+  .form-group
+    .col-sm-offset-1.col-sm-6
+      = transaction_form.submit 'Save', class: 'btn btn-default'
