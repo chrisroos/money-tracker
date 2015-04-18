@@ -14,6 +14,8 @@ class Transaction < ActiveRecord::Base
         where(category: m[1])
       elsif (m = /description:(.*)/.match(search_string))
         where(description: m[1])
+      elsif (m = /grouping:(.*)/.match(search_string))
+        where(grouping: m[1])
       else
         where(
           'source_name ILIKE :q OR source_memo ILIKE :q OR note ILIKE :q OR source_type ILIKE :q OR description ILIKE :q',

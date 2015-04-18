@@ -90,6 +90,12 @@ class TransactionSearchTest < ActiveSupport::TestCase
     FactoryGirl.create(:transaction, description: 'no-match')
     assert_equal [t1], Transaction.search('description:MATCHING TRANSACTION')
   end
+
+  test 'should filter by Transaction#grouping' do
+    t1 = FactoryGirl.create(:transaction, grouping: 'MATCHING TRANSACTION')
+    FactoryGirl.create(:transaction, grouping: 'no-match')
+    assert_equal [t1], Transaction.search('grouping:MATCHING TRANSACTION')
+  end
 end
 
 class TransactionCategorySearchTest < ActiveSupport::TestCase

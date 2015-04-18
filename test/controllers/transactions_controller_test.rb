@@ -66,6 +66,15 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
     assert_select '.grouping', false
   end
+
+  test 'should display a link to search by groupings' do
+    FactoryGirl.create(:transaction, grouping: 'grouping-name')
+
+    get :index, period: Date.today.to_s(:period)
+
+    search_path = search_transactions_path(q: 'grouping:grouping-name')
+    assert_select 'a[href=?]', search_path
+  end
 end
 
 class TransactionsControllerBulkEditTest < ActionController::TestCase
