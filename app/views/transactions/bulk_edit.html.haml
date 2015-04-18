@@ -62,5 +62,5 @@
             = transaction_form.submit 'Save category', id: nil
         %td
           = form_for(transaction, html: {id: nil}) do |transaction_form|
-            = transaction_form.text_field :grouping, size: 40, id: nil
+            = transaction_form.text_field :grouping, size: 40, id: nil, class: 'grouping'
             = transaction_form.submit 'Save grouping', id: nil

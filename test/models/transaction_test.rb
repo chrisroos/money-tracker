@@ -126,6 +126,15 @@ class TransactionLocationSearchTest < ActiveSupport::TestCase
   end
 end
 
+class TransactionGroupSearchTest < ActiveSupport::TestCase
+  test 'should return the groupings matching the query in alphabetical order' do
+    FactoryGirl.create(:transaction, grouping: 'Z MATCHING')
+    FactoryGirl.create(:transaction, grouping: 'A matching')
+    FactoryGirl.create(:transaction, grouping: 'no-match')
+    assert_equal ['A matching', 'Z MATCHING'], Transaction.grouping_search('matching').map(&:grouping)
+  end
+end
+
 class TransactionPeriodTest < ActiveSupport::TestCase
   test 'should only return transactions within the given period' do
     FactoryGirl.create(:transaction, source_date: Date.parse('2011-01-01'))

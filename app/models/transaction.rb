@@ -41,6 +41,10 @@ class Transaction < ActiveRecord::Base
     def location_search(description, query)
       unscoped.select('DISTINCT(location)').where('UPPER(description) = UPPER(:description) AND location ILIKE :q', description: description, q: "%#{query}%").order('location ASC')
     end
+
+    def grouping_search(query)
+      unscoped.select('DISTINCT(grouping)').where('grouping ILIKE :q', q: "%#{query}%").order('grouping ASC')
+    end
   end
 
   def amount

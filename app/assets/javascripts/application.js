@@ -51,6 +51,11 @@ $(document).ready(function() {
     minLength: 0, delay: 100
   });
 
+  $("input.grouping").autocomplete({
+    source: '/groupings/search',
+    minLength: 0, delay: 100
+  });
+
   // I can't just pass a URL as the `source` option because I need to get the value of the associated
   // description at the time the autocomplete function fires.
   // This relies on the transaction container (a `tr` in bulk edit and the form in single edit) having

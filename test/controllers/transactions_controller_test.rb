@@ -164,6 +164,14 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select 'input.location', value: 'location-name'
   end
 
+  test 'adds a grouping class to the grouping field to enable autocomplete' do
+    FactoryGirl.create(:transaction, grouping: 'grouping-name')
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select 'input.grouping', value: 'grouping-name'
+  end
+
   test 'should link to the edit form of the previous and next period' do
     get :index, period: Date.parse('2011-08-01').to_s(:period), edit: 'true'
 
@@ -304,6 +312,14 @@ class TransactionsControllerEditTest < ActionController::TestCase
     get :edit, id: transaction
 
     assert_select 'input.location', value: 'location-name'
+  end
+
+  test 'adds a grouping class to the grouping field to enable autocomplete' do
+    transaction = FactoryGirl.create(:transaction, grouping: 'grouping-name')
+
+    get :edit, id: transaction
+
+    assert_select 'input.grouping', value: 'grouping-name'
   end
 
   test 'adds a transaction class to the form to enable autocomplete of the location field' do

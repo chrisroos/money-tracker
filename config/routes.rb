@@ -21,4 +21,9 @@ MoneyTracker::Application.routes.draw do
       get :search
     end
   end
+  resources :groupings, only: [] do
+    collection do
+      get :search
+    end
+  end
 end
