@@ -48,6 +48,24 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
     assert_select '.account', text: 'account-name'
   end
+
+  test 'should display the grouping the transaction belongs to' do
+    FactoryGirl.create(:transaction, grouping: 'grouping-name')
+    today = Date.today
+
+    get :index, period: today.to_s(:period)
+
+    assert_select '.grouping', text: 'grouping-name'
+  end
+
+  test "should not display the grouping container if the transaction doesn't belong to a grouping" do
+    FactoryGirl.create(:transaction, grouping: '')
+    today = Date.today
+
+    get :index, period: today.to_s(:period)
+
+    assert_select '.grouping', false
+  end
 end
 
 class TransactionsControllerBulkEditTest < ActionController::TestCase

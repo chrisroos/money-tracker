@@ -11,6 +11,8 @@
           = link_to_location(transaction)
           - unless transaction.category.blank?
             = link_to transaction.category, search_transactions_path(q: ['category', transaction.category].join(':')), class: 'category label label-info'
+          - unless transaction.grouping.blank?
+            %span.grouping.label.label-info= transaction.grouping
         %p.note= preserve transaction.note
       %td.paid_in= transaction_amount_in(transaction)
       %td.paid_out= transaction_amount_out(transaction)
