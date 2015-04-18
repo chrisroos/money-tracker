@@ -90,6 +90,12 @@ class TransactionSearchTest < ActiveSupport::TestCase
     FactoryGirl.create(:transaction, description: 'no-match')
     assert_equal [t1], Transaction.search('description:MATCHING TRANSACTION')
   end
+
+  test 'should filter by Transaction#grouping' do
+    t1 = FactoryGirl.create(:transaction, grouping: 'MATCHING TRANSACTION')
+    FactoryGirl.create(:transaction, grouping: 'no-match')
+    assert_equal [t1], Transaction.search('grouping:MATCHING TRANSACTION')
+  end
 end
 
 class TransactionCategorySearchTest < ActiveSupport::TestCase
@@ -123,6 +129,15 @@ class TransactionLocationSearchTest < ActiveSupport::TestCase
     FactoryGirl.create(:transaction, description: 'description-a', location: 'matching-a')
     FactoryGirl.create(:transaction, description: 'DESCRIPTION-A', location: 'matching-b')
     assert_equal ['matching-a', 'matching-b'], Transaction.location_search('description-a', 'matching').map(&:location)
+  end
+end
+
+class TransactionGroupSearchTest < ActiveSupport::TestCase
+  test 'should return the groupings matching the query in alphabetical order' do
+    FactoryGirl.create(:transaction, grouping: 'Z MATCHING')
+    FactoryGirl.create(:transaction, grouping: 'A matching')
+    FactoryGirl.create(:transaction, grouping: 'no-match')
+    assert_equal ['A matching', 'Z MATCHING'], Transaction.grouping_search('matching').map(&:grouping)
   end
 end
 

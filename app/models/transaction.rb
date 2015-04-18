@@ -14,6 +14,8 @@ class Transaction < ActiveRecord::Base
         where(category: m[1])
       elsif (m = /description:(.*)/.match(search_string))
         where(description: m[1])
+      elsif (m = /grouping:(.*)/.match(search_string))
+        where(grouping: m[1])
       else
         where(
           'source_name ILIKE :q OR source_memo ILIKE :q OR note ILIKE :q OR source_type ILIKE :q OR description ILIKE :q',
@@ -40,6 +42,10 @@ class Transaction < ActiveRecord::Base
 
     def location_search(description, query)
       unscoped.select('DISTINCT(location)').where('UPPER(description) = UPPER(:description) AND location ILIKE :q', description: description, q: "%#{query}%").order('location ASC')
+    end
+
+    def grouping_search(query)
+      unscoped.select('DISTINCT(grouping)').where('grouping ILIKE :q', q: "%#{query}%").order('grouping ASC')
     end
   end
 

@@ -48,6 +48,33 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
     assert_select '.account', text: 'account-name'
   end
+
+  test 'should display the grouping the transaction belongs to' do
+    FactoryGirl.create(:transaction, grouping: 'grouping-name')
+    today = Date.today
+
+    get :index, period: today.to_s(:period)
+
+    assert_select '.grouping', text: 'grouping-name'
+  end
+
+  test "should not display the grouping container if the transaction doesn't belong to a grouping" do
+    FactoryGirl.create(:transaction, grouping: '')
+    today = Date.today
+
+    get :index, period: today.to_s(:period)
+
+    assert_select '.grouping', false
+  end
+
+  test 'should display a link to search by groupings' do
+    FactoryGirl.create(:transaction, grouping: 'grouping-name')
+
+    get :index, period: Date.today.to_s(:period)
+
+    search_path = search_transactions_path(q: 'grouping:grouping-name')
+    assert_select 'a[href=?]', search_path
+  end
 end
 
 class TransactionsControllerBulkEditTest < ActionController::TestCase
@@ -63,6 +90,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select "input[name='transaction[location]']"
     assert_select "textarea[name='transaction[note]']"
     assert_select "input[name='transaction[category]']"
+    assert_select "input[name='transaction[grouping]']"
   end
 
   test 'displays the account name in the edit form' do
@@ -143,6 +171,14 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     get :index, period: Date.today.to_s(:period), edit: true
 
     assert_select 'input.location', value: 'location-name'
+  end
+
+  test 'adds a grouping class to the grouping field to enable autocomplete' do
+    FactoryGirl.create(:transaction, grouping: 'grouping-name')
+
+    get :index, period: Date.today.to_s(:period), edit: true
+
+    assert_select 'input.grouping', value: 'grouping-name'
   end
 
   test 'should link to the edit form of the previous and next period' do
@@ -232,6 +268,7 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select "input[name='transaction[location]']"
     assert_select "textarea[name='transaction[note]']"
     assert_select "input[name='transaction[category]']"
+    assert_select "input[name='transaction[grouping]']"
   end
 
   test 'displays the account name in the edit form' do
@@ -286,6 +323,14 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select 'input.location', value: 'location-name'
   end
 
+  test 'adds a grouping class to the grouping field to enable autocomplete' do
+    transaction = FactoryGirl.create(:transaction, grouping: 'grouping-name')
+
+    get :edit, id: transaction
+
+    assert_select 'input.grouping', value: 'grouping-name'
+  end
+
   test 'adds a transaction class to the form to enable autocomplete of the location field' do
     transaction = FactoryGirl.create(:transaction)
 
@@ -306,12 +351,13 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
                                      description: 'old-description',
                                      location: 'old-location',
                                      note: 'old-note',
-                                     category: 'old-category'
+                                     category: 'old-category',
+                                     grouping: 'old-grouping'
     )
 
     put :update, id: transaction, transaction: {
       date: Date.yesterday, description: 'new-description', location: 'new-location',
-      note: 'new-note', category: 'new-category'
+      note: 'new-note', category: 'new-category', grouping: 'new-grouping'
     }
     transaction.reload
 
@@ -322,5 +368,6 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
     assert_equal 'new-location', transaction.location
     assert_equal 'new-note', transaction.note
     assert_equal 'new-category', transaction.category
+    assert_equal 'new-grouping', transaction.grouping
   end
 end
