@@ -14,7 +14,7 @@ class TransactionsController < ApplicationController
 
   def update
     transaction = Transaction.find(params[:id])
-    transaction.update_attributes(params[:transaction].permit(:date, :description, :location, :note, :category))
+    transaction.update_attributes(params[:transaction].permit(:date, :description, :location, :note, :category, :grouping))
     if request.xhr?
       render text: 'OK'
     else

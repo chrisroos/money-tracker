@@ -37,5 +37,9 @@
     .col-sm-6
       = transaction_form.text_field :category, size: 40, class: 'category form-control'
   .form-group
+    = transaction_form.label :grouping, class: 'control-label col-sm-1'
+    .col-sm-6
+      = transaction_form.text_field :grouping, size: 40, class: 'form-control'
+  .form-group
     .col-sm-offset-1.col-sm-6
       = transaction_form.submit 'Save', class: 'btn btn-default'

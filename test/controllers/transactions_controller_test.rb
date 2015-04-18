@@ -63,6 +63,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     assert_select "input[name='transaction[location]']"
     assert_select "textarea[name='transaction[note]']"
     assert_select "input[name='transaction[category]']"
+    assert_select "input[name='transaction[grouping]']"
   end
 
   test 'displays the account name in the edit form' do
@@ -232,6 +233,7 @@ class TransactionsControllerEditTest < ActionController::TestCase
     assert_select "input[name='transaction[location]']"
     assert_select "textarea[name='transaction[note]']"
     assert_select "input[name='transaction[category]']"
+    assert_select "input[name='transaction[grouping]']"
   end
 
   test 'displays the account name in the edit form' do
@@ -306,12 +308,13 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
                                      description: 'old-description',
                                      location: 'old-location',
                                      note: 'old-note',
-                                     category: 'old-category'
+                                     category: 'old-category',
+                                     grouping: 'old-grouping'
     )
 
     put :update, id: transaction, transaction: {
       date: Date.yesterday, description: 'new-description', location: 'new-location',
-      note: 'new-note', category: 'new-category'
+      note: 'new-note', category: 'new-category', grouping: 'new-grouping'
     }
     transaction.reload
 
@@ -322,5 +325,6 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
     assert_equal 'new-location', transaction.location
     assert_equal 'new-note', transaction.note
     assert_equal 'new-category', transaction.category
+    assert_equal 'new-grouping', transaction.grouping
   end
 end
