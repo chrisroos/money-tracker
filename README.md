@@ -67,8 +67,8 @@ Sometimes the application breaks.  If you want to be emailed when it does you'll
 *NOTE* If you've got a single instance of the app deployed to heroku then you won't need to specify the --app switch
 
     # Download the data
-    $ heroku pgbackups:capture --app money-tracker
-    $ curl --silent --output ./tmp/`date "+%Y-%m-%d"`-money-tracker.pgdump `heroku pgbackups:url --app money-tracker`
+    $ heroku pg:backups capture --app money-tracker
+    $ curl --silent --output ./tmp/`date "+%Y-%m-%d"`-money-tracker.pgdump `heroku pg:backups public-url --app money-tracker`
 
     # Import the data
     $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -d money_tracker_development ./tmp/`date "+%Y-%m-%d"`-money-tracker.pgdump
