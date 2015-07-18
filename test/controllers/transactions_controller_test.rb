@@ -353,7 +353,7 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
                                      note: 'old-note',
                                      category: 'old-category',
                                      grouping: 'old-grouping'
-    )
+                                    )
 
     put :update, id: transaction, transaction: {
       date: Time.zone.yesterday, description: 'new-description', location: 'new-location',
