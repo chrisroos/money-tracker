@@ -356,14 +356,14 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
     )
 
     put :update, id: transaction, transaction: {
-      date: Date.yesterday, description: 'new-description', location: 'new-location',
+      date: Time.zone.yesterday, description: 'new-description', location: 'new-location',
       note: 'new-note', category: 'new-category', grouping: 'new-grouping'
     }
     transaction.reload
 
     assert_redirected_to '/previous-location'
 
-    assert_equal Date.yesterday, transaction.date
+    assert_equal Time.zone.yesterday, transaction.date
     assert_equal 'new-description', transaction.description
     assert_equal 'new-location', transaction.location
     assert_equal 'new-note', transaction.note
