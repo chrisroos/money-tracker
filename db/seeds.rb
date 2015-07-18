@@ -34,7 +34,7 @@ module SeedTransaction
     nil, nil, nil # So that we leave some transactions with empty notes
   ]
   AMOUNTS = (1..10_000).to_a
-  LAST_THREE_MONTHS = (3.months.ago.to_date..Date.today).to_a
+  LAST_THREE_MONTHS = (3.months.ago.to_date..Time.zone.today).to_a
 
   class FitId
     @fit_id = 0

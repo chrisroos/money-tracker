@@ -4,7 +4,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
   tests TransactionsController
 
   test 'should redirect to the most recent period' do
-    current_period = Date.today.to_s(:period)
+    current_period = Time.zone.today.to_s(:period)
 
     get :index
 
@@ -12,7 +12,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
   end
 
   test 'should add a class to the first transaction on a given day' do
-    today = Date.today
+    today = Time.zone.today
     transaction_1 = FactoryGirl.create(:transaction, date: today)
     transaction_2 = FactoryGirl.create(:transaction, date: today)
 
@@ -24,7 +24,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
   end
 
   test 'should include the period in the page title' do
-    today = Date.today
+    today = Time.zone.today
 
     get :index, period: today.to_s(:period)
 
@@ -34,7 +34,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
   test 'should link to a map of the location' do
     FactoryGirl.create(:transaction, location: 'London EC2A')
 
-    get :index, period: Date.today.to_s(:period)
+    get :index, period: Time.zone.today.to_s(:period)
 
     assert_select "a[title='View in Google Maps']"
   end
@@ -42,7 +42,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
   test 'should display the name of the account the transaction belongs to' do
     account = FactoryGirl.create(:account, name: 'account-name')
     FactoryGirl.create(:transaction, account: account)
-    today = Date.today
+    today = Time.zone.today
 
     get :index, period: today.to_s(:period)
 
@@ -51,7 +51,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
   test 'should display the grouping the transaction belongs to' do
     FactoryGirl.create(:transaction, grouping: 'grouping-name')
-    today = Date.today
+    today = Time.zone.today
 
     get :index, period: today.to_s(:period)
 
@@ -60,7 +60,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
 
   test "should not display the grouping container if the transaction doesn't belong to a grouping" do
     FactoryGirl.create(:transaction, grouping: '')
-    today = Date.today
+    today = Time.zone.today
 
     get :index, period: today.to_s(:period)
 
@@ -70,7 +70,7 @@ class TransactionsControllerIndexTest < ActionController::TestCase
   test 'should display a link to search by groupings' do
     FactoryGirl.create(:transaction, grouping: 'grouping-name')
 
-    get :index, period: Date.today.to_s(:period)
+    get :index, period: Time.zone.today.to_s(:period)
 
     search_path = search_transactions_path(q: 'grouping:grouping-name')
     assert_select 'a[href=?]', search_path
@@ -83,7 +83,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'displays the edit form' do
     FactoryGirl.create(:transaction)
 
-    get :index, period: Date.today.to_s(:period), edit: true
+    get :index, period: Time.zone.today.to_s(:period), edit: true
 
     assert_select "input[name='transaction[date]']"
     assert_select "input[name='transaction[description]']"
@@ -97,7 +97,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     account = FactoryGirl.create(:account, name: 'account-name')
     FactoryGirl.create(:transaction, account_id: account.id)
 
-    get :index, period: Date.today.to_s(:period), edit: true
+    get :index, period: Time.zone.today.to_s(:period), edit: true
 
     assert_select '.account_name', 'account-name'
   end
@@ -132,7 +132,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
     transaction.original_description = 'original-description'
     transaction.save!
 
-    get :index, period: Date.today.to_s(:period), edit: true
+    get :index, period: Time.zone.today.to_s(:period), edit: true
 
     assert_select '.original_description', 'original-description'
   end
@@ -152,7 +152,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'adds a category class to the category field to enable autocomplete' do
     FactoryGirl.create(:transaction, category: 'category-name')
 
-    get :index, period: Date.today.to_s(:period), edit: true
+    get :index, period: Time.zone.today.to_s(:period), edit: true
 
     assert_select 'input.category', value: 'category-name'
   end
@@ -160,7 +160,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'adds a description class to the description field to enable autocomplete' do
     FactoryGirl.create(:transaction, description: 'description-name')
 
-    get :index, period: Date.today.to_s(:period), edit: true
+    get :index, period: Time.zone.today.to_s(:period), edit: true
 
     assert_select 'input.description', value: 'description-name'
   end
@@ -168,7 +168,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'adds a location class to the location field to enable autocomplete' do
     FactoryGirl.create(:transaction, location: 'location-name')
 
-    get :index, period: Date.today.to_s(:period), edit: true
+    get :index, period: Time.zone.today.to_s(:period), edit: true
 
     assert_select 'input.location', value: 'location-name'
   end
@@ -176,7 +176,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   test 'adds a grouping class to the grouping field to enable autocomplete' do
     FactoryGirl.create(:transaction, grouping: 'grouping-name')
 
-    get :index, period: Date.today.to_s(:period), edit: true
+    get :index, period: Time.zone.today.to_s(:period), edit: true
 
     assert_select 'input.grouping', value: 'grouping-name'
   end
@@ -189,7 +189,7 @@ class TransactionsControllerBulkEditTest < ActionController::TestCase
   end
 
   test 'should include the period in the page title' do
-    today = Date.today
+    today = Time.zone.today
 
     get :index, period: today.to_s(:period), edit: true
 
@@ -207,7 +207,7 @@ class TransactionsControllerSearchTest < ActionController::TestCase
   end
 
   test 'should add a class to the first transaction on a given day' do
-    today = Date.today
+    today = Time.zone.today
     FactoryGirl.create(:transaction, date: today, description: 'test description')
     FactoryGirl.create(:transaction, date: today, description: 'test description')
 
@@ -347,7 +347,7 @@ class TransactionsControllerUpdateTest < ActionController::TestCase
     request.env['HTTP_REFERER'] = '/previous-location'
 
     transaction = FactoryGirl.create(:transaction,
-                                     date: Date.today,
+                                     date: Time.zone.today,
                                      description: 'old-description',
                                      location: 'old-location',
                                      note: 'old-note',
