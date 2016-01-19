@@ -6,7 +6,7 @@ class Transaction < ActiveRecord::Base
 
   before_validation :set_original_description, on: :create
 
-  default_scope { order('COALESCE(date, source_date) DESC') }
+  default_scope { order('COALESCE(date, source_date) DESC, account_id ASC, source_fit_id DESC') }
 
   class << self
     def search(search_string)

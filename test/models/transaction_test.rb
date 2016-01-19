@@ -165,6 +165,25 @@ class TransactionTest < ActiveSupport::TestCase
     assert_equal [transaction_b, transaction_c, transaction_a], Transaction.all
   end
 
+  test 'should order by date then account' do
+    account_1 = FactoryGirl.create(:account)
+    account_2 = FactoryGirl.create(:account)
+    transaction_a = FactoryGirl.create(:transaction, source_date: Date.parse('2016-01-19'), account: account_2)
+    transaction_b = FactoryGirl.create(:transaction, source_date: Date.parse('2016-01-18'), account: account_2)
+    transaction_c = FactoryGirl.create(:transaction, source_date: Date.parse('2016-01-19'), account: account_1)
+    transaction_d = FactoryGirl.create(:transaction, source_date: Date.parse('2016-01-18'), account: account_1)
+    expected_order = [transaction_c, transaction_a, transaction_d, transaction_b]
+    assert_equal expected_order, Transaction.all
+  end
+
+  test 'should order by date then account then source_fit_id descending' do
+    account = FactoryGirl.create(:account)
+    transaction_a = FactoryGirl.create(:transaction, source_date: Date.parse('2016-01-19'), account: account, source_fit_id: 1)
+    transaction_b = FactoryGirl.create(:transaction, source_date: Date.parse('2016-01-19'), account: account, source_fit_id: 2)
+    expected_order = [transaction_b, transaction_a]
+    assert_equal expected_order, Transaction.all
+  end
+
   test 'should convert amount in pence to amount in pounds' do
     transaction = FactoryGirl.build(:transaction, source_amount_in_pence: 123)
     assert_equal 1.23, transaction.amount
