@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/annacruz/ofx.git
+  remote: https://github.com/annacruz/ofx.git
   revision: 70e99076440bd2915b10d59298c1d063b0ef6f57
   specs:
     ofx (0.3.2)
