@@ -22,7 +22,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 # Avoid iconv deprecation warning
-gem 'ofx', git: 'git://github.com/chrisroos/ofx.git', branch: 'add-support-for-version-202-ofx-files'
+gem 'ofx', git: 'https://github.com/annacruz/ofx.git'
 
 # Send exception notifications by email
 gem 'exception_notification'

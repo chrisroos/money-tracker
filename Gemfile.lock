@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/chrisroos/ofx.git
-  revision: 1b04543227d10da2d2100695071c142cc7f82184
-  branch: add-support-for-version-202-ofx-files
+  remote: https://github.com/annacruz/ofx.git
+  revision: 70e99076440bd2915b10d59298c1d063b0ef6f57
   specs:
     ofx (0.3.2)
       nokogiri
